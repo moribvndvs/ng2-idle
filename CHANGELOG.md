@@ -1,7 +1,7 @@
-<a name="2.0.0-alpha.1"></a>
-# 2.0.0-alpha.1 (2016-02-11)
+<a name="0.1.0"></a>
+# 0.1.0 (2016-02-06)
 
 
 ### Features
 
-* **Idle:** add service with basic features ([6db5d50](https://github.com/HackedByChinese/ng2-idle/commit/6db5d50))
+* example pipe, service, and directives ([7a56268](https://github.com/HackedByChinese/ng2-library-seed/commit/7a56268))

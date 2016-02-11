@@ -1,6 +1,6 @@
 {
   "name": "ng2-library-seed",
-  "version": "2.0.0-alpha.1",
+  "version": "0.1.0",
   "description": "A module for responding to idle users in Angular2 applications.",
   "main": "index.js",
   "scripts": {
