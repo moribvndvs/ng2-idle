@@ -27,15 +27,12 @@ export class EventTargetInterruptSource extends InterruptSource {
     };
 
     this.attachFn = () => {
-      this.eventSrc.forEach((src: Observable<any>) => {
-        self.eventSubscription.push(src.subscribe(handler));
-      });
+      this.eventSrc.forEach(
+          (src: Observable<any>) => { self.eventSubscription.push(src.subscribe(handler)); });
     };
 
     this.detachFn = () => {
-      this.eventSubscription.forEach((sub: Subscription<any>) => {
-        sub.unsubscribe();
-      });
+      this.eventSubscription.forEach((sub: Subscription<any>) => { sub.unsubscribe(); });
       this.eventSubscription.length = 0;
     };
   }

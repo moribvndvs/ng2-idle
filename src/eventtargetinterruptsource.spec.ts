@@ -17,7 +17,8 @@ export function main() {
          });
        }), 300);
 
-    it('emits onInterrupt event when multiple events are specified and one is triggered', injectAsync([], () => {
+    it('emits onInterrupt event when multiple events are specified and one is triggered',
+       injectAsync([], () => {
          let source = new EventTargetInterruptSource(document.body, 'click touch');
          source.attach();
 
@@ -49,7 +50,8 @@ export function main() {
          });
        }), 300);
 
-    it('does not emit onInterrupt event when multiple events are detached and one is triggered', injectAsync([], () => {
+    it('does not emit onInterrupt event when multiple events are detached and one is triggered',
+       injectAsync([], () => {
          let source = new EventTargetInterruptSource(document.body, 'click touch');
 
          // make it interesting by attaching and detaching
