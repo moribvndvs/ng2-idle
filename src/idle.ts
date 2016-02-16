@@ -1,8 +1,9 @@
-import {Injectable, EventEmitter, OnDestroy} from 'angular2/core';
+import {Injectable, EventEmitter, OnDestroy, Optional} from 'angular2/core';
 
 import {InterruptSource} from './interruptsource';
 import {InterruptArgs} from './interruptargs';
 import {Interrupt} from './interrupt';
+import {KeepaliveSvc} from './keepalivesvc';
 
 /*
  * Indicates the desired auto resume behavior.
@@ -36,12 +37,45 @@ export class Idle implements OnDestroy {
   private idleHandle: any;
   private timeoutHandle: any;
   private countdown: number;
+  private keepaliveEnabled: boolean = false;
+  private keepaliveSvc: KeepaliveSvc;
 
   public onIdleStart: EventEmitter<any> = new EventEmitter;
   public onIdleEnd: EventEmitter<any> = new EventEmitter;
   public onTimeoutWarning: EventEmitter<number> = new EventEmitter;
   public onTimeout: EventEmitter<number> = new EventEmitter;
   public onInterrupt: EventEmitter<any> = new EventEmitter;
+
+  constructor(@Optional() keepaliveSvc?: KeepaliveSvc) {
+    if (keepaliveSvc) {
+      this.keepaliveSvc = keepaliveSvc;
+      this.keepaliveEnabled = true;
+    }
+  }
+
+  /*
+   * Returns whether or not keepalive integration is enabled.
+   * @return True if integration is enabled; otherwise, false.
+   */
+  getKeepaliveEnabled(): boolean { return this.keepaliveEnabled; }
+
+  /*
+   * Sets and returns whether or not keepalive integration is enabled.
+   * @param True if the integration is enabled; otherwise, false.
+   * @return The current value.
+   */
+  setKeepaliveEnabled(value: boolean): boolean {
+    if (!this.keepaliveSvc) {
+      throw new Error(
+          'Cannot enable keepalive integration because no KeepaliveSvc has been provided.');
+    }
+
+    if (!value) {
+      this.keepaliveSvc.stop();
+    }
+
+    return this.keepaliveEnabled = value;
+  }
 
   /*
    * Returns the current timeout value.
@@ -154,6 +188,9 @@ export class Idle implements OnDestroy {
     if (this.idling) {
       this.toggleState();
     }
+    if (!this.running) {
+      this.startKeepalive();
+    }
 
     this.running = true;
 
@@ -164,6 +201,8 @@ export class Idle implements OnDestroy {
    * Stops watching for inactivity.
    */
   stop(): void {
+    this.stopKeepalive();
+
     this.safeClearInterval('idleHandle');
     this.safeClearInterval('timeoutHandle');
 
@@ -175,6 +214,8 @@ export class Idle implements OnDestroy {
    * Forces a timeout event and state.
    */
   timeout(): void {
+    this.stopKeepalive();
+
     this.safeClearInterval('idleHandle');
     this.safeClearInterval('timeoutHandle');
 
@@ -209,6 +250,7 @@ export class Idle implements OnDestroy {
 
     if (this.idling) {
       this.onIdleStart.emit(null);
+      this.stopKeepalive();
 
       if (this.timeoutVal > 0) {
         this.countdown = this.timeoutVal;
@@ -241,6 +283,26 @@ export class Idle implements OnDestroy {
       clearInterval(this[handleName]);
       this[handleName] = null;
     }
+  }
+
+  private startKeepalive(): void {
+    if (!this.keepaliveSvc || !this.keepaliveEnabled) {
+      return;
+    }
+
+    if (this.running) {
+      this.keepaliveSvc.ping();
+    }
+
+    this.keepaliveSvc.start();
+  }
+
+  private stopKeepalive(): void {
+    if (!this.keepaliveSvc || !this.keepaliveEnabled) {
+      return;
+    }
+
+    this.keepaliveSvc.stop();
   }
 
   /*
