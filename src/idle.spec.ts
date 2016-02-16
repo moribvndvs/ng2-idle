@@ -489,7 +489,8 @@ export function main() {
              instance.stop();
            }));
 
-        it('should immediately ping and restart keepalive when user returns from idle', <any>fakeAsync((): void => {
+        it('should immediately ping and restart keepalive when user returns from idle',
+           <any>fakeAsync((): void => {
              spyOn(svc, 'ping').and.callThrough();
              instance.watch();
              expect(svc.isRunning).toBe(true);
