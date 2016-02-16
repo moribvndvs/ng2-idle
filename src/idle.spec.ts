@@ -13,16 +13,22 @@ import {Idle, AutoResume} from './idle';
 import {KeepaliveSvc} from './keepalivesvc';
 import {MockInterruptSource} from './mocks/mockinterruptsource';
 import {MockKeepaliveSvc} from './mocks/mockkeepalivesvc';
+import {IdleExpiry} from './idleexpiry';
+import {MockExpiry} from './mocks/mockexpiry';
 
 export function main() {
   describe('Idle', () => {
 
     describe('without KeepaliveSvc integration', () => {
-      beforeEachProviders(() => [Idle]);
+      beforeEachProviders(() => [MockExpiry, provide(IdleExpiry, {useExisting: MockExpiry}), Idle]);
 
       let instance: Idle;
+      let expiry: MockExpiry;
 
-      beforeEach(inject([Idle], (idle: Idle) => { instance = idle; }));
+      beforeEach(inject([Idle, MockExpiry], (idle: Idle, exp: MockExpiry) => {
+        instance = idle;
+        expiry = exp;
+      }));
 
       describe('runtime config', () => {
         it('getKeepaliveEnabled() should be false',
@@ -143,6 +149,13 @@ export function main() {
              expect(window.clearInterval).toHaveBeenCalledTimes(1);
            }));
 
+        it('stop() should clear last expiry', () => {
+          instance.watch();
+          expect(expiry.last()).not.toBeNull();
+          instance.stop();
+          expect(expiry.last()).toBeNull();
+        });
+
         it('watch() should clear timeouts and start running', <any>fakeAsync((): void => {
              spyOn(window, 'setInterval').and.callThrough();
 
@@ -153,6 +166,20 @@ export function main() {
 
              instance.stop();
            }));
+
+        it('watch() should set expiry', () => {
+          let now = new Date();
+          expiry.mockNow = now;
+          instance.watch();
+          expect(expiry.last())
+              .toEqual(
+                  new Date(now.getTime() + ((instance.getIdle() + instance.getTimeout()) * 1000)));
+        });
+
+        it('watch(true) should not set expiry', () => {
+          instance.watch(true);
+          expect(expiry.last()).toBeUndefined();
+        });
 
         it('isIdle() should return true when idle interval elapses, and false after stop() is called',
            <any>fakeAsync((): void => {
@@ -387,6 +414,27 @@ export function main() {
              instance.stop();
            }));
 
+        it('interrupt() should not call watch if expiry has expired', () => {
+          instance.setTimeout(3);
+          instance.setIdle(3);
+          instance.watch();
+          spyOn(instance, 'watch').and.callThrough();
+
+          expiry.mockNow = new Date(expiry.last().getTime() + 7000);
+
+          instance.interrupt();
+
+          expect(instance.watch).not.toHaveBeenCalled();
+        });
+
+        it('interrupt(true) should call watch(true)', () => {
+          instance.watch();
+          spyOn(instance, 'watch').and.callThrough();
+
+          instance.interrupt(true);
+          expect(instance.watch).toHaveBeenCalledWith(true);
+        });
+
         it('triggering an interrupt source should call interrupt()', injectAsync([], () => {
              let source = new MockInterruptSource;
              instance.setInterrupts([source]);
@@ -415,10 +463,8 @@ export function main() {
 
     describe('with KeepaliveSvc integration', () => {
       beforeEachProviders(
-          () => [provide(KeepaliveSvc, {useClass: MockKeepaliveSvc}), provide(Idle, {
-                   deps: [KeepaliveSvc],
-                   useFactory: (keepaliveSvc) => { return new Idle(keepaliveSvc); }
-                 })]);
+          () => [MockExpiry, provide(IdleExpiry, {useExisting: MockExpiry}),
+                 provide(KeepaliveSvc, {useClass: MockKeepaliveSvc}), Idle]);
 
       let instance: Idle;
       let svc: MockKeepaliveSvc;

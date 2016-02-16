@@ -4,6 +4,7 @@ import {InterruptSource} from './interruptsource';
 import {InterruptArgs} from './interruptargs';
 import {Interrupt} from './interrupt';
 import {KeepaliveSvc} from './keepalivesvc';
+import {IdleExpiry} from './idleexpiry';
 
 /*
  * Indicates the desired auto resume behavior.
@@ -46,7 +47,7 @@ export class Idle implements OnDestroy {
   public onTimeout: EventEmitter<number> = new EventEmitter;
   public onInterrupt: EventEmitter<any> = new EventEmitter;
 
-  constructor(@Optional() keepaliveSvc?: KeepaliveSvc) {
+  constructor(private expiry: IdleExpiry, @Optional() keepaliveSvc?: KeepaliveSvc) {
     if (keepaliveSvc) {
       this.keepaliveSvc = keepaliveSvc;
       this.keepaliveEnabled = true;
@@ -177,9 +178,15 @@ export class Idle implements OnDestroy {
   /*
    * Starts watching for inactivity.
    */
-  watch(): void {
+  watch(skipExpiry?: boolean): void {
     this.safeClearInterval('idleHandle');
     this.safeClearInterval('timeoutHandle');
+
+    let timeout = !this.timeoutVal ? 0 : this.timeoutVal;
+    if (!skipExpiry) {
+      let value = new Date(this.expiry.now().getTime() + ((this.idle + timeout) * 1000));
+      this.expiry.last(value);
+    }
 
     if (this.idling) {
       this.toggleState();
@@ -204,6 +211,8 @@ export class Idle implements OnDestroy {
 
     this.idling = false;
     this.running = false;
+
+    this.expiry.last(null);
   }
 
   /*
@@ -232,12 +241,15 @@ export class Idle implements OnDestroy {
       return;
     }
 
-    // TODO: expiry checking
+    if (this.timeoutVal && this.expiry.isExpired()) {
+      this.timeout();
+      return;
+    }
     this.onInterrupt.emit(eventArgs);
 
     if (force === true || this.autoResume === AutoResume.idle ||
         (this.autoResume === AutoResume.notIdle && !this.idling)) {
-      this.watch();
+      this.watch(force);
     }
   }
 
