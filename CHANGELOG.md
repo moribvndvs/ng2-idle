@@ -1,3 +1,13 @@
+<a name="1.0.0-alpha.5"></a>
+# [1.0.0-alpha.5](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.4...v1.0.0-alpha.5) (2016-02-16)
+
+
+### Bug Fixes
+
+* **Idle:** immediately ping and resume keepalive upon interrupting idle state ([62b47b2](https://github.com/HackedByChinese/ng2-idle/commit/62b47b2))
+
+
+
 <a name="1.0.0-alpha.4"></a>
 # [1.0.0-alpha.4](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.3...v1.0.0-alpha.4) (2016-02-16)
 

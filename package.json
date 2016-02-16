@@ -1,6 +1,6 @@
 {
   "name": "ng2-idle",
-  "version": "1.0.0-alpha.4",
+  "version": "1.0.0-alpha.5",
   "description": "A module for responding to idle users in Angular2 applications.",
   "main": "index.js",
   "scripts": {
