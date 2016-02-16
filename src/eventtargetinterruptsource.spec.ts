@@ -17,8 +17,40 @@ export function main() {
          });
        }), 300);
 
+    it('emits onInterrupt event when multiple events are specified and one is triggered', injectAsync([], () => {
+         let source = new EventTargetInterruptSource(document.body, 'click touch');
+         source.attach();
+
+         return new Promise((pass, fail) => {
+           let expected = new Event('click');
+
+           source.onInterrupt.subscribe(() => { pass(); });
+
+           document.body.dispatchEvent(expected);
+         });
+       }), 300);
+
     it('does not emit onInterrupt event when detached and event is fired', injectAsync([], () => {
          let source = new EventTargetInterruptSource(document.body, 'click');
+
+         // make it interesting by attaching and detaching
+         source.attach();
+         source.detach();
+
+         return new Promise((pass, fail) => {
+           let expected = new Event('click');
+
+           source.onInterrupt.subscribe((actual) => { fail(); });
+
+           document.body.dispatchEvent(expected);
+
+           // HACK: try to give it a chance to fail first, if it's going to fail
+           setTimeout(pass, 200);
+         });
+       }), 300);
+
+    it('does not emit onInterrupt event when multiple events are detached and one is triggered', injectAsync([], () => {
+         let source = new EventTargetInterruptSource(document.body, 'click touch');
 
          // make it interesting by attaching and detaching
          source.attach();

@@ -6,15 +6,18 @@ import {Observable, Subscription} from 'rxjs/Rx';
  * An interrupt source on an EventTarget object, such as a Window or HTMLElement.
  */
 export class EventTargetInterruptSource extends InterruptSource {
-  private eventSrc: Observable<any>;
-  private eventSubscription: Subscription<any>;
+  private eventSrc: Array<Observable<any>> = new Array;
+  private eventSubscription: Array<Subscription<any>> = new Array;
 
   constructor(protected target, protected events: string) {
     super(null, null);
 
-    this.eventSrc = Observable.fromEvent(target, this.events);
-
     let self = this;
+
+    events.split(' ').forEach(function(event) {
+      self.eventSrc.push(Observable.fromEvent(target, event));
+    });
+
     let handler = function(innerArgs: any): void {
       if (self.filterEvent(innerArgs)) {
         return;
@@ -23,11 +26,17 @@ export class EventTargetInterruptSource extends InterruptSource {
       self.onInterrupt.emit(args);
     };
 
-    this.attachFn = () => { this.eventSubscription = this.eventSrc.subscribe(handler); };
+    this.attachFn = () => {
+      this.eventSrc.forEach((src: Observable<any>) => {
+        self.eventSubscription.push(src.subscribe(handler));
+      });
+    };
 
     this.detachFn = () => {
-      this.eventSubscription.unsubscribe();
-      this.eventSubscription = null;
+      this.eventSubscription.forEach((sub: Subscription<any>) => {
+        sub.unsubscribe();
+      });
+      this.eventSubscription.length = 0;
     };
   }
 
