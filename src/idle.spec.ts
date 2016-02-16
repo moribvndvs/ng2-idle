@@ -488,6 +488,26 @@ export function main() {
 
              instance.stop();
            }));
+
+        it('should immediately ping and restart keepalive when user returns from idle', <any>fakeAsync((): void => {
+             spyOn(svc, 'ping').and.callThrough();
+             instance.watch();
+             expect(svc.isRunning).toBe(true);
+             tick(3000);
+
+             expect(instance.isIdling()).toBe(true);
+             expect(instance.isRunning()).toBe(true);
+             expect(svc.isRunning).toBe(false);
+
+             instance.interrupt();
+
+             expect(instance.isIdling()).toBe(false);
+             expect(instance.isRunning()).toBe(true);
+             expect(svc.isRunning).toBe(true);
+             expect(svc.ping).toHaveBeenCalled();
+
+             instance.stop();
+           }));
       });
     });
   });

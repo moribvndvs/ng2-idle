@@ -255,6 +255,7 @@ export class Idle implements OnDestroy {
       }
     } else {
       this.onIdleEnd.emit(null);
+      this.startKeepalive();
     }
 
     this.safeClearInterval('idleHandle');
