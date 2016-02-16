@@ -90,7 +90,7 @@ gulp.task('build:dist:es6', function() {
 gulp.task('build:dist', function(done) {
   runSequence('clean:dist',
     'lint',
-    ['release:copy-assets', 'build:dist:ts',
+    ['release:copy-assets', 'release:fix-package', 'build:dist:ts',
       'build:dist:cjs', 'build:dist:es6'],
     'bundle',
     done);
