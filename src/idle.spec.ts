@@ -438,12 +438,12 @@ export function main() {
         it('setKeepaliveEnabled() should set and return current value.',
            () => { expect(instance.setKeepaliveEnabled(false)).toBe(false); });
 
-        it('setKeepaliveEnabled() should stop the keepalive service when value is false', () => {
+        it('setKeepaliveEnabled() should NOT stop the keepalive service when value is false', () => {
           spyOn(svc, 'stop').and.callThrough();
 
           instance.setKeepaliveEnabled(false);
 
-          expect(svc.stop).toHaveBeenCalled();
+          expect(svc.stop).not.toHaveBeenCalled();
         });
       });
 

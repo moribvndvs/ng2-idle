@@ -70,10 +70,6 @@ export class Idle implements OnDestroy {
           'Cannot enable keepalive integration because no KeepaliveSvc has been provided.');
     }
 
-    if (!value) {
-      this.keepaliveSvc.stop();
-    }
-
     return this.keepaliveEnabled = value;
   }
 
