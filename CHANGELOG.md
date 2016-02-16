@@ -1,3 +1,13 @@
+<a name="1.0.0-alpha.6"></a>
+# [1.0.0-alpha.6](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.5...v1.0.0-alpha.6) (2016-02-16)
+
+
+### Features
+
+* **IdleExpiry:** add extensible timeout expiry support ([31be875](https://github.com/HackedByChinese/ng2-idle/commit/31be875))
+
+
+
 <a name="1.0.0-alpha.5"></a>
 # [1.0.0-alpha.5](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.4...v1.0.0-alpha.5) (2016-02-16)
 
