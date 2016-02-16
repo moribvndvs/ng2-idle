@@ -1,3 +1,14 @@
+<a name="1.0.0-alpha.4"></a>
+# [1.0.0-alpha.4](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.3...v1.0.0-alpha.4) (2016-02-16)
+
+
+### Bug Fixes
+
+* **EventTargetInterruptSource:** subscribing to multiple events separated by space no longer breaks ([c552d07](https://github.com/HackedByChinese/ng2-idle/commit/c552d07))
+* **Idle:** setKeepaliveEnabled(false) no longer stops keepalive ([050a590](https://github.com/HackedByChinese/ng2-idle/commit/050a590))
+
+
+
 <a name="1.0.0-alpha.3"></a>
 # [1.0.0-alpha.3](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.2...v1.0.0-alpha.3) (2016-02-16)
 
