@@ -109,7 +109,7 @@ export function main() {
           let actual = subs[0];
           expect(actual.source).toBe(source);
           expect(source.onInterrupt.subscribe).toHaveBeenCalled();
-          expect(source.attach).toHaveBeenCalled();
+          expect(source.attach).not.toHaveBeenCalled();
         });
 
         it('getInterrupts() should return current subscriptions', () => {
@@ -176,6 +176,65 @@ export function main() {
                   new Date(now.getTime() + ((instance.getIdle() + instance.getTimeout()) * 1000)));
         });
 
+        it('watch() should attach all interrupts', () => {
+          let source = new MockInterruptSource();
+
+          instance.setInterrupts([source]);
+          expect(source.isAttached).toBe(false);
+
+          instance.watch();
+
+          expect(source.isAttached).toBe(true);
+
+          instance.stop();
+        });
+
+        it('watch() should detach all interrupts', () => {
+          let source = new MockInterruptSource();
+
+          instance.setInterrupts([source]);
+          instance.watch();
+
+          expect(source.isAttached).toBe(true);
+
+          instance.stop();
+
+          expect(source.isAttached).toBe(false);
+        });
+
+        it('watch() should attach all interrupts when resuming after idle',
+           <any>fakeAsync((): void => {
+             let source = new MockInterruptSource();
+
+             instance.setInterrupts([source]);
+             instance.watch();
+
+             expect(source.isAttached).toBe(true);
+
+             tick(3000);
+
+             expect(source.isAttached).toBe(false);
+
+             instance.watch();
+
+             expect(source.isAttached).toBe(true);
+
+             instance.stop();
+           }));
+
+        it('timeout() should detach all interrupts', () => {
+          let source = new MockInterruptSource();
+
+          instance.setInterrupts([source]);
+          instance.watch();
+
+          expect(source.isAttached).toBe(true);
+
+          instance.stop();
+
+          expect(source.isAttached).toBe(false);
+        });
+
         it('watch(true) should not set expiry', () => {
           instance.watch(true);
           expect(expiry.last()).toBeUndefined();
@@ -192,6 +251,21 @@ export function main() {
 
              instance.stop();
              expect(instance.isIdling()).toBe(false);
+           }));
+
+        it('should pause interrupts when idle', <any>fakeAsync((): void => {
+             let source = new MockInterruptSource();
+
+             instance.setInterrupts([source]);
+             instance.watch();
+
+             tick(3000);
+
+             expect(instance.isIdling()).toBe(true);
+
+             expect(source.isAttached).toBe(false);
+
+             instance.stop();
            }));
 
         it('emits an onIdleStart event when the user becomes idle', <any>fakeAsync((): void => {

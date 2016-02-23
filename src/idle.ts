@@ -137,7 +137,6 @@ export class Idle implements OnDestroy {
     for (let source of sources) {
       let sub = new Interrupt(source);
       sub.subscribe((args: InterruptArgs) => { self.interrupt(args.force, args.innerArgs); });
-      sub.resume();
 
       this.interrupts.push(sub);
     }
@@ -193,6 +192,7 @@ export class Idle implements OnDestroy {
     }
     if (!this.running) {
       this.startKeepalive();
+      this.toggleInterrupts(true);
     }
 
     this.running = true;
@@ -205,6 +205,8 @@ export class Idle implements OnDestroy {
    */
   stop(): void {
     this.stopKeepalive();
+
+    this.toggleInterrupts(false);
 
     this.safeClearInterval('idleHandle');
     this.safeClearInterval('timeoutHandle');
@@ -220,6 +222,8 @@ export class Idle implements OnDestroy {
    */
   timeout(): void {
     this.stopKeepalive();
+
+    this.toggleInterrupts(false);
 
     this.safeClearInterval('idleHandle');
     this.safeClearInterval('timeoutHandle');
@@ -257,6 +261,7 @@ export class Idle implements OnDestroy {
     this.idling = !this.idling;
 
     if (this.idling) {
+      this.toggleInterrupts(false);
       this.onIdleStart.emit(null);
       this.stopKeepalive();
 
@@ -266,11 +271,22 @@ export class Idle implements OnDestroy {
         this.timeoutHandle = setInterval(() => { this.doCountdown(); }, 1000);
       }
     } else {
+      this.toggleInterrupts(true);
       this.onIdleEnd.emit(null);
       this.startKeepalive();
     }
 
     this.safeClearInterval('idleHandle');
+  }
+
+  private toggleInterrupts(resume: boolean): void {
+    for (let interrupt of this.interrupts) {
+      if (resume) {
+        interrupt.resume();
+      } else {
+        interrupt.pause();
+      }
+    }
   }
 
   private doCountdown(): void {

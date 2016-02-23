@@ -33,7 +33,7 @@ export class Interrupt {
   resume(): void { this.source.attach(); }
 
   /*
-   * Keeps the subscription but halts interrupt events.
+   * Keeps the subscription but pauses interrupt events.
    */
   pause(): void { this.source.detach(); }
 }
