@@ -1,3 +1,17 @@
+<a name="1.0.0-alpha.7"></a>
+# [1.0.0-alpha.7](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.6...v1.0.0-alpha.7) (2016-02-24)
+
+
+### Features
+
+* **EventTargetInterruptSource:** target events can be throttled over a specified duration ([174d2d0](https://github.com/HackedByChinese/ng2-idle/commit/174d2d0))
+
+### Performance Improvements
+
+* **Idle:** interrupts are detached when state is idle or not running ([e0b2a1e](https://github.com/HackedByChinese/ng2-idle/commit/e0b2a1e))
+
+
+
 <a name="1.0.0-alpha.6"></a>
 # [1.0.0-alpha.6](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.5...v1.0.0-alpha.6) (2016-02-16)
 
