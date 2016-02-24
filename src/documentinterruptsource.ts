@@ -4,7 +4,9 @@ import {EventTargetInterruptSource} from './eventtargetinterruptsource';
  * An interrupt source that uses events on the document element (html tag).
  */
 export class DocumentInterruptSource extends EventTargetInterruptSource {
-  constructor(events: string) { super(document.documentElement, events); }
+  constructor(events: string, throttleDelay = 500) {
+    super(document.documentElement, events, throttleDelay);
+  }
 
   /*
    * Checks to see if the event should be filtered.

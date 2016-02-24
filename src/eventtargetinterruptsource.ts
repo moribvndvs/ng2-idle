@@ -9,13 +9,19 @@ export class EventTargetInterruptSource extends InterruptSource {
   private eventSrc: Array<Observable<any>> = new Array;
   private eventSubscription: Array<Subscription<any>> = new Array;
 
-  constructor(protected target, protected events: string) {
+  constructor(protected target, protected events: string, protected throttleDelay = 500) {
     super(null, null);
 
     let self = this;
 
     events.split(' ').forEach(function(event) {
-      self.eventSrc.push(Observable.fromEvent(target, event));
+      let src = Observable.fromEvent(target, event);
+
+      if (self.throttleDelay > 0) {
+        src = src.throttleTime(self.throttleDelay);
+      }
+
+      self.eventSrc.push(src);
     });
 
     let handler = function(innerArgs: any): void {
