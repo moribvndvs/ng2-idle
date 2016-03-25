@@ -1,12 +1,4 @@
-import {
-  it,
-  inject,
-  injectAsync,
-  beforeEach,
-  beforeEachProviders,
-  fakeAsync,
-  tick
-} from 'angular2/testing';
+import {it, inject, injectAsync, beforeEach, beforeEachProviders, fakeAsync, tick} from 'angular2/testing';
 import {provide} from 'angular2/core';
 
 import {Idle, AutoResume} from './idle';
@@ -537,8 +529,9 @@ export function main() {
 
     describe('with KeepaliveSvc integration', () => {
       beforeEachProviders(
-          () => [MockExpiry, provide(IdleExpiry, {useExisting: MockExpiry}),
-                 provide(KeepaliveSvc, {useClass: MockKeepaliveSvc}), Idle]);
+          () =>
+              [MockExpiry, provide(IdleExpiry, {useExisting: MockExpiry}),
+               provide(KeepaliveSvc, {useClass: MockKeepaliveSvc}), Idle]);
 
       let instance: Idle;
       let svc: MockKeepaliveSvc;

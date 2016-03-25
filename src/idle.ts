@@ -85,7 +85,7 @@ export class Idle implements OnDestroy {
    * @param seconds - The timeout value in seconds. 0 or false to disable timeout feature.
    * @return The current value. If disabled, the value will be 0.
    */
-  setTimeout(seconds: number | boolean): number {
+  setTimeout(seconds: number|boolean): number {
     if (seconds === false) {
       this.timeoutVal = 0;
     } else if (typeof seconds === 'number' && seconds >= 0) {
