@@ -7,7 +7,7 @@ import {InterruptSource} from './interruptsource';
  * A class for managing an interrupt from an interrupt source.
  */
 export class Interrupt {
-  private sub: Subscription<any>;
+  private sub: Subscription;
 
   constructor(public source: InterruptSource) {}
 

@@ -7,7 +7,7 @@ import {Observable, Subscription} from 'rxjs/Rx';
  */
 export class EventTargetInterruptSource extends InterruptSource {
   private eventSrc: Array<Observable<any>> = new Array;
-  private eventSubscription: Array<Subscription<any>> = new Array;
+  private eventSubscription: Array<Subscription> = new Array;
 
   constructor(protected target, protected events: string, protected throttleDelay = 500) {
     super(null, null);
@@ -38,7 +38,7 @@ export class EventTargetInterruptSource extends InterruptSource {
     };
 
     this.detachFn = () => {
-      this.eventSubscription.forEach((sub: Subscription<any>) => { sub.unsubscribe(); });
+      this.eventSubscription.forEach((sub: Subscription) => { sub.unsubscribe(); });
       this.eventSubscription.length = 0;
     };
   }
