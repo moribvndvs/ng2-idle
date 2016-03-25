@@ -1,3 +1,13 @@
+<a name="1.0.0-alpha.8"></a>
+# [1.0.0-alpha.8](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.7...v1.0.0-alpha.8) (2016-03-25)
+
+
+### Bug Fixes
+
+* **dependencies:** update to target Angular 2.0.0-beta.12 ([37bf7ad](https://github.com/HackedByChinese/ng2-idle/commit/37bf7ad))
+
+
+
 <a name="1.0.0-alpha.7"></a>
 # [1.0.0-alpha.7](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.6...v1.0.0-alpha.7) (2016-02-24)
 
