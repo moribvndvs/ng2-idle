@@ -1,3 +1,13 @@
+<a name="1.0.0-alpha.9"></a>
+# [1.0.0-alpha.9](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2016-03-25)
+
+
+### Bug Fixes
+
+* **typings:** add ambient dev dependencies for es6-shim ([1a6fe2a](https://github.com/HackedByChinese/ng2-idle/commit/1a6fe2a))
+
+
+
 <a name="1.0.0-alpha.8"></a>
 # [1.0.0-alpha.8](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.7...v1.0.0-alpha.8) (2016-03-25)
 
