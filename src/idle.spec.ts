@@ -194,17 +194,19 @@ export function main() {
           expect(source.isAttached).toBe(false);
         });
 
-        it('watch() should attach all interrupts when resuming after idle',
+        it('watch() should attach all interrupts when resuming after timeout',
            <any>fakeAsync((): void => {
              let source = new MockInterruptSource();
 
+             instance.setTimeout(3);
              instance.setInterrupts([source]);
              instance.watch();
 
              expect(source.isAttached).toBe(true);
 
-             tick(3000);
+             tick(6000);
 
+             expect(instance.isIdling()).toBe(true);
              expect(source.isAttached).toBe(false);
 
              instance.watch();
@@ -245,7 +247,7 @@ export function main() {
              expect(instance.isIdling()).toBe(false);
            }));
 
-        it('should pause interrupts when idle', <any>fakeAsync((): void => {
+        it('should NOT pause interrupts when idle', <any>fakeAsync((): void => {
              let source = new MockInterruptSource();
 
              instance.setInterrupts([source]);
@@ -255,7 +257,7 @@ export function main() {
 
              expect(instance.isIdling()).toBe(true);
 
-             expect(source.isAttached).toBe(false);
+             expect(source.isAttached).toBe(true);
 
              instance.stop();
            }));
