@@ -6,8 +6,8 @@ gulp.task('karma:start', function(done) {
   new Server({
     configFile: config.PATHS.root + '/karma.conf.js',
     singleRun: true
-  }, function() {
-    done();
+  }, function(err) {
+    done(err ? 'There are failing unit tests' : undefined);
   }).start();
 });
 
@@ -16,7 +16,7 @@ gulp.task('karma:start:watch', function(done) {
     configFile: config.PATHS.root + '/karma.conf.js',
     singleRun: false,
     browsers: ['Chrome']
-  }, function() {
-    done();
+  }, function(err) {
+    done(err ? 'There are failing unit tests' : undefined);
   }).start();
 });
