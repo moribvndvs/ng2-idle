@@ -261,7 +261,6 @@ export class Idle implements OnDestroy {
     this.idling = !this.idling;
 
     if (this.idling) {
-      this.toggleInterrupts(false);
       this.onIdleStart.emit(null);
       this.stopKeepalive();
 
