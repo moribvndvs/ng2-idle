@@ -1,3 +1,13 @@
+<a name="1.0.0-alpha.10"></a>
+# [1.0.0-alpha.10](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2016-04-06)
+
+
+### Bug Fixes
+
+* **Idle:** do not pause interrupts when idle ([d8d600d](https://github.com/HackedByChinese/ng2-idle/commit/d8d600d)), closes [#4](https://github.com/HackedByChinese/ng2-idle/issues/4) [#5](https://github.com/HackedByChinese/ng2-idle/issues/5)
+
+
+
 <a name="1.0.0-alpha.9"></a>
 # [1.0.0-alpha.9](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2016-03-25)
 
