@@ -1,3 +1,10 @@
+<a name="1.0.0-alpha.11"></a>
+# [1.0.0-alpha.11](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2016-05-09)
+
+
+### BREAKING CHANGES
+This release targets Angular2 RC.1. Angular2 RC.0 introduced breaking changes to how Angular is packaged. You will need to upgrade your application to RC.0 or later for this version of ng2-idle to work.
+
 <a name="1.0.0-alpha.10"></a>
 # [1.0.0-alpha.10](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2016-04-06)
 
