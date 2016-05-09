@@ -1,39 +1,34 @@
-import {it, injectAsync} from 'angular2/testing';
+import {it, fakeAsync} from '@angular/core/testing';
 import {WindowInterruptSource} from './windowinterruptsource';
 
 export function main() {
   describe('WindowInterruptSource', () => {
 
-    it('emits onInterrupt event when attached and event is fired', injectAsync([], () => {
+    it('emits onInterrupt event when attached and event is fired', fakeAsync(() => {
          let source = new WindowInterruptSource('focus');
+         spyOn(source.onInterrupt, 'emit').and.callThrough();
          source.attach();
 
-         return new Promise((pass, fail) => {
-           let expected = new Event('focus');
+         let expected = new Event('focus');
+         window.dispatchEvent(expected);
 
-           source.onInterrupt.subscribe(() => { pass(); });
+         expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
 
-           window.dispatchEvent(expected);
-         });
-       }), 300);
+         source.detach();
+       }));
 
-    it('does not emit onInterrupt event when detached and event is fired', injectAsync([], () => {
+    it('does not emit onInterrupt event when detached and event is fired', fakeAsync(() => {
          let source = new WindowInterruptSource('focus');
+         spyOn(source.onInterrupt, 'emit').and.callThrough();
 
          // make it interesting by attaching and detaching
          source.attach();
          source.detach();
 
-         return new Promise((pass, fail) => {
-           let expected = new Event('focus');
+         let expected = new Event('focus');
+         window.dispatchEvent(expected);
 
-           source.onInterrupt.subscribe((actual) => { fail(); });
-
-           window.dispatchEvent(expected);
-
-           // HACK: try to give it a chance to fail first, if it's going to fail
-           setTimeout(pass, 200);
-         });
-       }), 300);
+         expect(source.onInterrupt.emit).not.toHaveBeenCalled();
+       }));
   });
 }

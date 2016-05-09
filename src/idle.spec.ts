@@ -1,5 +1,5 @@
-import {it, inject, injectAsync, beforeEach, beforeEachProviders, fakeAsync, tick} from 'angular2/testing';
-import {provide} from 'angular2/core';
+import {it, inject, beforeEach, beforeEachProviders, fakeAsync, tick} from '@angular/core/testing';
+import {provide} from '@angular/core';
 
 import {Idle, AutoResume} from './idle';
 import {KeepaliveSvc} from './keepalivesvc';
@@ -131,7 +131,7 @@ export function main() {
       describe('watching', () => {
         beforeEach(() => { instance.setIdle(3); });
 
-        it('stop() should clear timeouts and stop running', <any>fakeAsync((): void => {
+        it('stop() should clear timeouts and stop running', fakeAsync(() => {
              spyOn(window, 'clearInterval').and.callThrough();
 
              instance.watch();
@@ -148,7 +148,7 @@ export function main() {
           expect(expiry.last()).toBeNull();
         });
 
-        it('watch() should clear timeouts and start running', <any>fakeAsync((): void => {
+        it('watch() should clear timeouts and start running', fakeAsync(() => {
              spyOn(window, 'setInterval').and.callThrough();
 
              instance.watch();
@@ -194,8 +194,7 @@ export function main() {
           expect(source.isAttached).toBe(false);
         });
 
-        it('watch() should attach all interrupts when resuming after timeout',
-           <any>fakeAsync((): void => {
+        it('watch() should attach all interrupts when resuming after timeout', fakeAsync(() => {
              let source = new MockInterruptSource();
 
              instance.setTimeout(3);
@@ -204,7 +203,10 @@ export function main() {
 
              expect(source.isAttached).toBe(true);
 
-             tick(6000);
+             tick(3000);
+             tick(1000);
+             tick(1000);
+             tick(1000);
 
              expect(instance.isIdling()).toBe(true);
              expect(source.isAttached).toBe(false);
@@ -235,7 +237,7 @@ export function main() {
         });
 
         it('isIdle() should return true when idle interval elapses, and false after stop() is called',
-           <any>fakeAsync((): void => {
+           fakeAsync(() => {
              instance.watch();
              expect(instance.isIdling()).toBe(false);
 
@@ -247,7 +249,7 @@ export function main() {
              expect(instance.isIdling()).toBe(false);
            }));
 
-        it('should NOT pause interrupts when idle', <any>fakeAsync((): void => {
+        it('should NOT pause interrupts when idle', fakeAsync(() => {
              let source = new MockInterruptSource();
 
              instance.setInterrupts([source]);
@@ -262,7 +264,7 @@ export function main() {
              instance.stop();
            }));
 
-        it('emits an onIdleStart event when the user becomes idle', <any>fakeAsync((): void => {
+        it('emits an onIdleStart event when the user becomes idle', fakeAsync(() => {
              spyOn(instance.onIdleStart, 'emit').and.callThrough();
 
              instance.watch();
@@ -273,7 +275,7 @@ export function main() {
              instance.stop();
            }));
 
-        it('emits an onIdleEnd event when the user returns from idle', <any>fakeAsync((): void => {
+        it('emits an onIdleEnd event when the user returns from idle', fakeAsync(() => {
              spyOn(instance.onIdleEnd, 'emit').and.callThrough();
 
              instance.watch();
@@ -286,8 +288,7 @@ export function main() {
              instance.stop();
            }));
 
-        it('emits an onTimeoutWarning every second during the timeout duration',
-           <any>fakeAsync((): void => {
+        it('emits an onTimeoutWarning every second during the timeout duration', fakeAsync(() => {
              spyOn(instance.onTimeoutWarning, 'emit').and.callThrough();
              spyOn(instance.onTimeout, 'emit').and.callThrough();
 
@@ -306,7 +307,7 @@ export function main() {
              instance.stop();
            }));
 
-        it('emits an onTimeout event when the countdown reaches 0', <any>fakeAsync((): void => {
+        it('emits an onTimeout event when the countdown reaches 0', fakeAsync(() => {
              spyOn(instance.onTimeout, 'emit').and.callThrough();
 
              instance.setTimeout(3);
@@ -323,8 +324,7 @@ export function main() {
              instance.stop();
            }));
 
-        it('does not emit an onTimeoutWarning when timeout is disabled',
-           <any>fakeAsync((): void => {
+        it('does not emit an onTimeoutWarning when timeout is disabled', fakeAsync(() => {
              spyOn(instance.onTimeoutWarning, 'emit').and.callThrough();
 
              instance.setTimeout(false);
@@ -339,7 +339,7 @@ export function main() {
              instance.stop();
            }));
 
-        it('does not emit an onTimeout event timeout is disabled', <any>fakeAsync((): void => {
+        it('does not emit an onTimeout event timeout is disabled', fakeAsync(() => {
              spyOn(instance.onTimeout, 'emit').and.callThrough();
 
              instance.setTimeout(false);
@@ -374,8 +374,7 @@ export function main() {
           expect(instance.onInterrupt.emit).toHaveBeenCalledWith(expected);
         });
 
-        it('interrupt() with the force parameter set to true calls watch()',
-           <any>fakeAsync((): void => {
+        it('interrupt() with the force parameter set to true calls watch()', fakeAsync(() => {
              instance.setAutoResume(AutoResume.disabled);
              instance.setIdle(3);
 
@@ -393,7 +392,7 @@ export function main() {
            }));
 
         it('interrupt() with AutoResume.disabled should not call watch() when state is idle',
-           <any>fakeAsync((): void => {
+           fakeAsync(() => {
              instance.setAutoResume(AutoResume.disabled);
              instance.setIdle(3);
 
@@ -411,7 +410,7 @@ export function main() {
            }));
 
         it('interrupt() with AutoResume.disabled should not call watch() when state is not idle',
-           <any>fakeAsync((): void => {
+           fakeAsync(() => {
              instance.setAutoResume(AutoResume.disabled);
              instance.setIdle(3);
 
@@ -429,7 +428,7 @@ export function main() {
            }));
 
         it('interrupt() with AutoResume.idle should call watch when state is idle',
-           <any>fakeAsync((): void => {
+           fakeAsync(() => {
              instance.setAutoResume(AutoResume.idle);
              instance.setIdle(3);
 
@@ -447,7 +446,7 @@ export function main() {
            }));
 
         it('interrupt() with AutoResume.notIdle should call watch() when state is not idle',
-           <any>fakeAsync((): void => {
+           fakeAsync(() => {
              instance.setAutoResume(AutoResume.notIdle);
              instance.setIdle(3);
 
@@ -465,7 +464,7 @@ export function main() {
            }));
 
         it('interrupt() with AutoResume.notIdle should not call watch() when state is idle',
-           <any>fakeAsync((): void => {
+           fakeAsync(() => {
              instance.setAutoResume(AutoResume.notIdle);
              instance.setIdle(3);
 
@@ -503,19 +502,22 @@ export function main() {
           expect(instance.watch).toHaveBeenCalledWith(true);
         });
 
-        it('triggering an interrupt source should call interrupt()', injectAsync([], () => {
+        it('triggering an interrupt source should call interrupt()', fakeAsync(() => {
+             spyOn(instance.onInterrupt, 'emit').and.callThrough();
+
              let source = new MockInterruptSource;
              instance.setInterrupts([source]);
 
-             // HACK: not sure how to test this; infer that if onInterrupt is called, the call
-             // pattern worked
-             return new Promise((pass, fail) => {
-               instance.onInterrupt.subscribe(() => { pass(); });
+             instance.watch();
+             source.trigger();
+             // not sure why I have to pad the call with a tick for onInterrupt to be called
+             // possibly because of RxJS throttling
+             tick(1);
 
-               instance.watch();
-               source.trigger();
-             });
-           }), 300);
+             expect(instance.onInterrupt.emit).toHaveBeenCalledTimes(1);
+
+             instance.stop();
+           }));
 
         it('ngOnDestroy calls stop() and clearInterrupts()', () => {
           spyOn(instance, 'stop').and.callThrough();
@@ -564,14 +566,14 @@ export function main() {
       });
 
       describe('watching', () => {
-        it('should start keepalive when watch() is called', <any>fakeAsync((): void => {
+        it('should start keepalive when watch() is called', fakeAsync(() => {
              instance.watch();
              expect(svc.isRunning).toBe(true);
 
              instance.stop();
            }));
 
-        it('should stop keepalive when stop() is called', <any>fakeAsync((): void => {
+        it('should stop keepalive when stop() is called', fakeAsync(() => {
              instance.watch();
              expect(svc.isRunning).toBe(true);
 
@@ -580,7 +582,7 @@ export function main() {
              expect(svc.isRunning).toBe(false);
            }));
 
-        it('should stop keepalive when idle', <any>fakeAsync((): void => {
+        it('should stop keepalive when idle', fakeAsync(() => {
              instance.watch();
              expect(svc.isRunning).toBe(true);
              tick(3000);
@@ -592,10 +594,13 @@ export function main() {
              instance.stop();
            }));
 
-        it('should stop keepalive when timed out', <any>fakeAsync((): void => {
+        it('should stop keepalive when timed out', fakeAsync(() => {
              instance.watch();
              expect(svc.isRunning).toBe(true);
-             tick(6000);
+             tick(3000);
+             tick(1000);
+             tick(1000);
+             tick(1000);
 
              expect(instance.isIdling()).toBe(true);
              expect(instance.isRunning()).toBe(false);
@@ -605,7 +610,7 @@ export function main() {
            }));
 
         it('should immediately ping and restart keepalive when user returns from idle',
-           <any>fakeAsync((): void => {
+           fakeAsync(() => {
              spyOn(svc, 'ping').and.callThrough();
              instance.watch();
              expect(svc.isRunning).toBe(true);

@@ -4,15 +4,14 @@ const path = require('path');
 const Builder = require('systemjs-builder');
 
 var bundleConfig = {
-  baseURL: config.PATHS.dist.cjs,
   defaultJSExtensions: true,
   paths: {
-    'angular2/*': './node_modules/angular2/*',
-    'rxjs/*': './node_modules/rxjs/*'
+    '@angular/core': 'node_modules/@angular/core/index.js',
+    'rxjs/*': 'node_modules/rxjs/*'
   }
 };
 
-bundleConfig.paths[config.pkg.name + '/*'] = '*';
+bundleConfig.paths[config.pkg.name + '/*'] = 'dist/*';
 
 function bundle(moduleName, moduleBundleName, minify, done) {
   const outputConfig = {
@@ -24,7 +23,7 @@ function bundle(moduleName, moduleBundleName, minify, done) {
   const outputFile = path.join(config.PATHS.dist.bundles,
       moduleBundleName + (minify ? '.min' : '') + '.js');
   const bundlePromise = builder.bundle(moduleName +
-      ' - angular2/* - rxjs/*', outputFile, outputConfig)
+      ' - @angular/core - rxjs/*', outputFile, outputConfig)
       .then(function() {
         done();
       });

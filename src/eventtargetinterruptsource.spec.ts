@@ -1,57 +1,51 @@
-import {it, injectAsync, fakeAsync, tick} from 'angular2/testing';
+import {it, fakeAsync, tick} from '@angular/core/testing';
 import {EventTargetInterruptSource} from './eventtargetinterruptsource';
 
 export function main() {
   describe('EventTargetInterruptSource', () => {
 
-    it('emits onInterrupt event when attached and event is fired', injectAsync([], () => {
+    it('emits onInterrupt event when attached and event is fired', fakeAsync(() => {
          let source = new EventTargetInterruptSource(document.body, 'click');
+         spyOn(source.onInterrupt, 'emit').and.callThrough();
          source.attach();
 
-         return new Promise((pass, fail) => {
-           let expected = new Event('click');
+         let expected = new Event('click');
+         document.body.dispatchEvent(expected);
 
-           source.onInterrupt.subscribe(() => { pass(); });
+         expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
 
-           document.body.dispatchEvent(expected);
-         });
-       }), 300);
+         source.detach();
+       }));
 
     it('emits onInterrupt event when multiple events are specified and one is triggered',
-       injectAsync([], () => {
+       fakeAsync(() => {
          let source = new EventTargetInterruptSource(document.body, 'click touch');
+         spyOn(source.onInterrupt, 'emit').and.callThrough();
          source.attach();
 
-         return new Promise((pass, fail) => {
-           let expected = new Event('click');
+         let expected = new Event('click');
+         document.body.dispatchEvent(expected);
 
-           source.onInterrupt.subscribe(() => { pass(); });
+         expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
 
-           document.body.dispatchEvent(expected);
-         });
-       }), 300);
+         source.detach();
+       }));
 
-    it('does not emit onInterrupt event when detached and event is fired', injectAsync([], () => {
+    it('does not emit onInterrupt event when detached and event is fired', fakeAsync(() => {
          let source = new EventTargetInterruptSource(document.body, 'click');
+         spyOn(source.onInterrupt, 'emit').and.callThrough();
 
          // make it interesting by attaching and detaching
          source.attach();
          source.detach();
 
-         return new Promise((pass, fail) => {
-           let expected = new Event('click');
+         let expected = new Event('click');
+         document.body.dispatchEvent(expected);
 
-           source.onInterrupt.subscribe((actual) => { fail(); });
+         expect(source.onInterrupt.emit).not.toHaveBeenCalled();
+       }));
 
-           document.body.dispatchEvent(expected);
-
-           // HACK: try to give it a chance to fail first, if it's going to fail
-           setTimeout(pass, 200);
-         });
-       }), 300);
-
-    it('should throttle target events using the specified throttleDelay value',
-       <any>fakeAsync((): void => {
+    it('should throttle target events using the specified throttleDelay value', fakeAsync(() => {
          let source = new EventTargetInterruptSource(document.body, 'click', 500);
          spyOn(source.onInterrupt, 'emit').and.callThrough();
          source.attach();
@@ -84,7 +78,7 @@ export function main() {
          tick(500);
        }));
 
-    it('should not throttle target events if throttleDelay is 0', <any>fakeAsync((): void => {
+    it('should not throttle target events if throttleDelay is 0', fakeAsync(() => {
          let source = new EventTargetInterruptSource(document.body, 'click', 0);
          spyOn(source.onInterrupt, 'emit').and.callThrough();
          source.attach();

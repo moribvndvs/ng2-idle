@@ -1,4 +1,4 @@
-import {it} from 'angular2/testing';
+import {it} from '@angular/core/testing';
 import {MockExpiry} from './mocks/mockexpiry';
 
 export function main() {

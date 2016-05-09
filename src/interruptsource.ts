@@ -1,4 +1,4 @@
-import {EventEmitter} from 'angular2/core';
+import {EventEmitter} from '@angular/core';
 
 import {InterruptArgs} from './interruptargs';
 
@@ -8,7 +8,7 @@ import {InterruptArgs} from './interruptargs';
 export abstract class InterruptSource {
   isAttached: boolean = false;
 
-  public onInterrupt: EventEmitter<InterruptArgs> = new EventEmitter;
+  public onInterrupt: EventEmitter<InterruptArgs> = new EventEmitter<InterruptArgs>();
 
   constructor(
       protected attachFn?: (source: InterruptSource) => void,

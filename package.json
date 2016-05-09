@@ -27,8 +27,15 @@
   },
   "homepage": "https://github.com/HackedByChinese/ng2-idle.git#readme",
   "devDependencies": {
-    "cz-conventional-changelog": "^1.1.5",
+    "@angular/compiler": "2.0.0-rc.1",
+    "@angular/platform-browser": "2.0.0-rc.1",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.1",
+    "cz-conventional-changelog": "^1.1.6",
     "del": "^2.2.0",
+    "es6-module-loader": "^0.17.8",
+    "es6-promise": "^3.0.0",
+    "es6-shim": "^0.35.0",
+    "es7-reflect-metadata": "^1.5.0",
     "eslint": "^1.10.3",
     "eslint-config-google": "^0.3.0",
     "gulp": "^3.9.0",
@@ -52,6 +59,7 @@
     "karma-mocha-reporter": "^1.1.5",
     "karma-phantomjs2-launcher": "^0.4.0",
     "merge2": "^1.0.1",
+    "reflect-metadata": "0.1.2",
     "require-dir": "^0.3.0",
     "run-sequence": "^1.1.5",
     "systemjs": "0.19.6",
@@ -62,14 +70,11 @@
     "typings": "^0.6.6"
   },
   "dependencies": {
-    "angular2": "^2.0.0-beta.12",
-    "es6-module-loader": "^0.17.8",
-    "es6-promise": "^3.0.0",
-    "es6-shim": "^0.35.0",
-    "es7-reflect-metadata": "^1.5.0",
-    "reflect-metadata": "0.1.2",
-    "rxjs": "5.0.0-beta.2",
-    "zone.js": "^0.6.6"
+    "@angular/http": "2.0.0-rc.1",
+    "@angular/common": "2.0.0-rc.1",
+    "@angular/core": "2.0.0-rc.1",
+    "rxjs": "5.0.0-beta.6",
+    "zone.js": "^0.6.12"
   },
   "config": {
     "commitizen": {
