@@ -157,12 +157,6 @@ export class AppCmp {
 
 This repository uses TypeScript (with Typings as the definition manager), Gulp, tslint, eslint (for JS files used in Gulp tasks), Karma, and Jasmine.
 
-To run Gulp tasks, you'll need to install the `gulp-cli`.
-
-```
- npm install -g gulp-cli
-```
-
 Once you have cloned the repository, install all packages.
 
 ```
@@ -172,31 +166,31 @@ Once you have cloned the repository, install all packages.
 You can now build and run tests.
 
 ```
- gulp test
+ npm run gulp test
 ```
 
 If you want to continuously build and test, first execute this task in a _separate window_:
 
 ```
- gulp build:dev:watch
+ npm run gulp build:dev:watch
 ```
 
 Then run this task:
 
 ```
- gulp test:watch
+ npm run gulp test:watch
 ```
 
 If you wish to prepare a branch for a pull request, run this command and fix any errors:
 
 ```
- gulp build
+ npm run gulp build
 ```
 
 You can use `clang-format` to automatically correct most style errors and then commit the results:
 
 ```
- gulp clang:format
+ npm run gulp clang:format
 ```
 
 ## Contributing

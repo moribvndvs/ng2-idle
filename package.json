@@ -4,8 +4,10 @@
   "description": "A module for responding to idle users in Angular2 applications.",
   "main": "index.js",
   "scripts": {
-    "postinstall": "typings install",
-    "test": "gulp test"
+    "typings": "node node_modules/.bin/typings",
+    "gulp": "node node_modules/.bin/gulp",
+    "postinstall": "npm run typings -- install",
+    "test": "npm run gulp -- test"
   },
   "repository": {
     "type": "git",
