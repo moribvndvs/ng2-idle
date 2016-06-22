@@ -1,12 +1,12 @@
-import {it, inject, beforeEach, beforeEachProviders, fakeAsync, tick} from '@angular/core/testing';
 import {provide} from '@angular/core';
+import {beforeEach, beforeEachProviders, fakeAsync, inject, it, tick} from '@angular/core/testing';
 
-import {Idle, AutoResume} from './idle';
+import {AutoResume, Idle} from './idle';
+import {IdleExpiry} from './idleexpiry';
 import {KeepaliveSvc} from './keepalivesvc';
+import {MockExpiry} from './mocks/mockexpiry';
 import {MockInterruptSource} from './mocks/mockinterruptsource';
 import {MockKeepaliveSvc} from './mocks/mockkeepalivesvc';
-import {IdleExpiry} from './idleexpiry';
-import {MockExpiry} from './mocks/mockexpiry';
 
 export function main() {
   describe('Idle', () => {

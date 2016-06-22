@@ -1,10 +1,11 @@
-import {Injectable, EventEmitter, OnDestroy, Optional} from '@angular/core';
+import {EventEmitter, Injectable, OnDestroy, Optional} from '@angular/core';
 
-import {InterruptSource} from './interruptsource';
-import {InterruptArgs} from './interruptargs';
-import {Interrupt} from './interrupt';
-import {KeepaliveSvc} from './keepalivesvc';
 import {IdleExpiry} from './idleexpiry';
+import {Interrupt} from './interrupt';
+import {InterruptArgs} from './interruptargs';
+import {InterruptSource} from './interruptsource';
+import {KeepaliveSvc} from './keepalivesvc';
+
 
 /*
  * Indicates the desired auto resume behavior.

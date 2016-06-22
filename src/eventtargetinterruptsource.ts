@@ -1,6 +1,8 @@
-import {InterruptSource} from './interruptsource';
-import {InterruptArgs} from './interruptargs';
 import {Observable, Subscription} from 'rxjs/Rx';
+
+import {InterruptArgs} from './interruptargs';
+import {InterruptSource} from './interruptsource';
+
 
 /*
  * An interrupt source on an EventTarget object, such as a Window or HTMLElement.

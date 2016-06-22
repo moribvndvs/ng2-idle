@@ -1,4 +1,5 @@
-import {it, fakeAsync} from '@angular/core/testing';
+import {fakeAsync, it} from '@angular/core/testing';
+
 import {WindowInterruptSource} from './windowinterruptsource';
 
 export function main() {

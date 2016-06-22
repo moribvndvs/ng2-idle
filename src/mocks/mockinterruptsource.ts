@@ -1,5 +1,6 @@
-import {InterruptSource} from '../interruptsource';
 import {InterruptArgs} from '../interruptargs';
+import {InterruptSource} from '../interruptsource';
+
 
 /*
  * A simple InterruptSource for mocking during tests.
