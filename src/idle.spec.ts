@@ -1,5 +1,5 @@
 import {provide} from '@angular/core';
-import {beforeEach, beforeEachProviders, fakeAsync, inject, it, tick} from '@angular/core/testing';
+import {addProviders, beforeEach, fakeAsync, inject, it, tick} from '@angular/core/testing';
 
 import {AutoResume, Idle} from './idle';
 import {IdleExpiry} from './idleexpiry';
@@ -12,7 +12,9 @@ export function main() {
   describe('Idle', () => {
 
     describe('without KeepaliveSvc integration', () => {
-      beforeEachProviders(() => [MockExpiry, provide(IdleExpiry, {useExisting: MockExpiry}), Idle]);
+      beforeEach(() => {
+        addProviders([MockExpiry, provide(IdleExpiry, {useExisting: MockExpiry}), Idle]);
+      });
 
       let instance: Idle;
       let expiry: MockExpiry;
@@ -532,10 +534,12 @@ export function main() {
     });
 
     describe('with KeepaliveSvc integration', () => {
-      beforeEachProviders(
-          () =>
-              [MockExpiry, provide(IdleExpiry, {useExisting: MockExpiry}),
-               provide(KeepaliveSvc, {useClass: MockKeepaliveSvc}), Idle]);
+      beforeEach(() => {
+        addProviders([
+          MockExpiry, provide(IdleExpiry, {useExisting: MockExpiry}),
+          provide(KeepaliveSvc, {useClass: MockKeepaliveSvc}), Idle
+        ]);
+      });
 
       let instance: Idle;
       let svc: MockKeepaliveSvc;
