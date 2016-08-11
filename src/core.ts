@@ -1,5 +1,3 @@
-import {provide} from '@angular/core';
-
 import {DocumentInterruptSource} from './documentinterruptsource';
 import {Idle} from './idle';
 import {IdleExpiry} from './idleexpiry';
@@ -16,7 +14,7 @@ export * from './idleexpiry';
 export * from './simpleexpiry';
 
 export const IDLE_PROVIDERS: any[] =
-    [SimpleExpiry, provide(IdleExpiry, {useExisting: SimpleExpiry}), Idle];
+    [SimpleExpiry, {provide: IdleExpiry, useExisting: SimpleExpiry}, Idle];
 
 export const DEFAULT_INTERRUPTSOURCES: any[] = [new DocumentInterruptSource(
     'mousemove keydown DOMMouseScroll mousewheel mousedown touchstart touchmove scroll')];
