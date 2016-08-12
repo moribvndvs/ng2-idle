@@ -1,4 +1,3 @@
-import {it} from '@angular/core/testing';
 import {MockInterruptSource} from './mocks/mockinterruptsource';
 
 

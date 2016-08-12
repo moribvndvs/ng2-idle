@@ -1,4 +1,3 @@
-import {it} from '@angular/core/testing';
 import {SimpleExpiry} from './simpleexpiry';
 
 export function main() {

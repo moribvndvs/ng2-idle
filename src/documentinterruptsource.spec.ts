@@ -1,4 +1,4 @@
-import {fakeAsync, it} from '@angular/core/testing';
+import {fakeAsync} from '@angular/core/testing';
 
 import {DocumentInterruptSource} from './documentinterruptsource';
 
