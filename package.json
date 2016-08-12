@@ -27,9 +27,9 @@
   },
   "homepage": "https://github.com/HackedByChinese/ng2-idle.git#readme",
   "devDependencies": {
-    "@angular/compiler": "2.0.0-rc.4",
-    "@angular/platform-browser": "2.0.0-rc.4",
-    "@angular/platform-browser-dynamic": "2.0.0-rc.4",
+    "@angular/compiler": "2.0.0-rc.5",
+    "@angular/platform-browser": "2.0.0-rc.5",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.5",
     "cz-conventional-changelog": "^1.1.6",
     "del": "^2.2.0",
     "es6-module-loader": "^0.17.8",
@@ -69,9 +69,9 @@
     "typings": "^0.6.6"
   },
   "dependencies": {
-    "@angular/http": "2.0.0-rc.4",
-    "@angular/common": "2.0.0-rc.4",
-    "@angular/core": "2.0.0-rc.4",
+    "@angular/http": "2.0.0-rc.5",
+    "@angular/common": "2.0.0-rc.5",
+    "@angular/core": "2.0.0-rc.5",
     "rxjs": "5.0.0-beta.6",
     "zone.js": "^0.6.12"
   },

@@ -1,5 +1,5 @@
 import {provide} from '@angular/core';
-import {addProviders, beforeEach, fakeAsync, inject, it, tick} from '@angular/core/testing';
+import {addProviders, fakeAsync, inject, tick} from '@angular/core/testing';
 
 import {AutoResume, Idle} from './idle';
 import {IdleExpiry} from './idleexpiry';
