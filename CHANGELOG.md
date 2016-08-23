@@ -1,5 +1,15 @@
+<a name="1.0.0-alpha.15"></a>
+# [1.0.0-alpha.15](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.14...v1.0.0-alpha.15) (2016-08-23)
+
+### Bug Fixes
+
+* **release:**: incorrect publishing
+
+
 <a name="1.0.0-alpha.14"></a>
 # [1.0.0-alpha.14](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.13...v1.0.0-alpha.14) (2016-08-23)
+
+**DEPRECATED**
 
 ### Chores
 
