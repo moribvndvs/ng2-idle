@@ -1,5 +1,4 @@
-import {provide} from '@angular/core';
-import {addProviders, fakeAsync, inject, tick} from '@angular/core/testing';
+import {fakeAsync, inject, TestBed, tick} from '@angular/core/testing';
 
 import {AutoResume, Idle} from './idle';
 import {IdleExpiry} from './idleexpiry';
@@ -13,7 +12,8 @@ export function main() {
 
     describe('without KeepaliveSvc integration', () => {
       beforeEach(() => {
-        addProviders([MockExpiry, provide(IdleExpiry, {useExisting: MockExpiry}), Idle]);
+        TestBed.configureTestingModule(
+            {providers: [MockExpiry, {provide: IdleExpiry, useExisting: MockExpiry}, Idle]});
       });
 
       let instance: Idle;
@@ -535,10 +535,12 @@ export function main() {
 
     describe('with KeepaliveSvc integration', () => {
       beforeEach(() => {
-        addProviders([
-          MockExpiry, provide(IdleExpiry, {useExisting: MockExpiry}),
-          provide(KeepaliveSvc, {useClass: MockKeepaliveSvc}), Idle
-        ]);
+        TestBed.configureTestingModule({
+          providers: [
+            MockExpiry, {provide: IdleExpiry, useExisting: MockExpiry},
+            {provide: KeepaliveSvc, useClass: MockKeepaliveSvc}, Idle
+          ]
+        });
       });
 
       let instance: Idle;
