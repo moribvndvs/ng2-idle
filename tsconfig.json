@@ -11,6 +11,9 @@
         "sourceMap": true,
         "moduleResolution": "node"
     },
+    "types": [
+      "jasmine"
+    ],
     "exclude": [
         "typings/browser.d.ts",
         "typings/browser/**",
