@@ -1,3 +1,11 @@
+<a name="1.0.0-alpha.17"></a>
+# [1.0.0-alpha.17](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2016-11-02)
+
+### Chores
+
+* **deps**: relax angular dependencies to minor version
+
+
 <a name="1.0.0-alpha.16"></a>
 # [1.0.0-alpha.16](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2016-09-19)
 
