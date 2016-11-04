@@ -1,3 +1,65 @@
+<a name="1.0.0-alpha.18"></a>
+# [1.0.0-alpha.18](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2016-11-04)
+
+
+### Features
+
+* **module:** add Ng2IdleModule ([b0d6372](https://github.com/HackedByChinese/ng2-idle/commit/b0d6372)), closes [#3](https://github.com/HackedByChinese/ng2-idle/issues/3) [#10](https://github.com/HackedByChinese/ng2-idle/issues/10) [#22](https://github.com/HackedByChinese/ng2-idle/issues/22) [#23](https://github.com/HackedByChinese/ng2-idle/issues/23) [#24](https://github.com/HackedByChinese/ng2-idle/issues/24)
+
+### BREAKING CHANGES
+
+This change removes the core.ts. Instead, you should create an app module using `NgModule` and import the new `Ng2IdleModule`.
+
+* Change any `import ... from 'ng2-idle/core';` to `import ... from 'ng2-idle';`
+* Create an AppModule using `NgModule` if you haven't already. `NgModule` was added in Angular2 RC.5
+* Use `Ng2Module.forRoot()` in your app module's `imports` declaration.
+
+Example:
+
+**app.module.ts**
+```
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpModule } from '@angular/http';
+
+import { Ng2IdleModule } from 'ng2-idle';
+
+import { AppComponent } from './app.component';
+
+@NgModule({
+  declarations: [
+    AppComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpModule,
+    Ng2IdleModule.forRoot()
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+```
+**app.component.ts**
+```
+import { Component } from '@angular/core';
+
+import {Idle, DEFAULT_INTERRUPTSOURCES} from 'ng2-idle';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+  constructor(private idle: Idle) {
+    // initialize idle here.
+  }
+}
+```
+
 <a name="1.0.0-alpha.17"></a>
 # [1.0.0-alpha.17](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2016-11-02)
 
