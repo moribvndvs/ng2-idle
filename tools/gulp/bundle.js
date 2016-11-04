@@ -32,11 +32,11 @@ function bundle(moduleName, moduleBundleName, minify, done) {
 }
 
 gulp.task('bundle:cjs', function bundleCjs(done) {
-  bundle(config.pkg.name + '/core', config.pkg.name, false, done);
+  bundle(config.pkg.name + '/*', config.pkg.name, false, done);
 });
 
 gulp.task('bundle:cjs:min', function bundleCjsMin(done) {
-  bundle(config.pkg.name + '/core', config.pkg.name, true, done);
+  bundle(config.pkg.name + '/*', config.pkg.name, true, done);
 });
 
 gulp.task('bundle', ['bundle:cjs', 'bundle:cjs:min']);
