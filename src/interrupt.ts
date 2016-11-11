@@ -30,10 +30,14 @@ export class Interrupt {
   /*
    * Keeps the subscription but resumes interrupt events.
    */
-  resume(): void { this.source.attach(); }
+  resume(): void {
+    this.source.attach();
+  }
 
   /*
    * Keeps the subscription but pauses interrupt events.
    */
-  pause(): void { this.source.detach(); }
+  pause(): void {
+    this.source.detach();
+  }
 }

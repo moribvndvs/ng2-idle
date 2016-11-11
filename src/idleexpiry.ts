@@ -4,7 +4,9 @@
 export abstract class IdleExpiry {
   protected idValue: any;
 
-  constructor() { this.idValue = new Date(); }
+  constructor() {
+    this.idValue = new Date();
+  }
 
   /*
    * Gets or sets a unique ID for the window
@@ -34,7 +36,9 @@ export abstract class IdleExpiry {
    * Returns the current Date.
    * @return The current Date.
    */
-  now(): Date { return new Date(); }
+  now(): Date {
+    return new Date();
+  }
 
   /*
    * Returns whether or not it is expired.

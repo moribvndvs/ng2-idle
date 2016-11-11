@@ -25,17 +25,21 @@ export function main() {
       }));
 
       describe('runtime config', () => {
-        it('getKeepaliveEnabled() should be false',
-           () => { expect(instance.getKeepaliveEnabled()).toBe(false); });
+        it('getKeepaliveEnabled() should be false', () => {
+          expect(instance.getKeepaliveEnabled()).toBe(false);
+        });
 
         it('setKeepaliveEnabled() should throw', () => {
-          expect(() => { instance.setKeepaliveEnabled(true); })
+          expect(() => {
+            instance.setKeepaliveEnabled(true);
+          })
               .toThrowError(
                   'Cannot enable keepalive integration because no KeepaliveSvc has been provided.');
         });
 
-        it('getIdle() should return current value',
-           () => { expect(instance.getIdle()).toEqual(20 * 60); });
+        it('getIdle() should return current value', () => {
+          expect(instance.getIdle()).toEqual(20 * 60);
+        });
 
         it('setIdle() should set and return the current value', () => {
           let expected = 500;
@@ -47,13 +51,18 @@ export function main() {
         it('setIdle() should throw if argument is less than or equal to zero', () => {
           let expected = new Error('\'seconds\' must be greater zero');
 
-          expect(() => { instance.setIdle(0); }).toThrow(expected);
+          expect(() => {
+            instance.setIdle(0);
+          }).toThrow(expected);
 
-          expect(() => { instance.setIdle(-1); }).toThrow(expected);
+          expect(() => {
+            instance.setIdle(-1);
+          }).toThrow(expected);
         });
 
-        it('getTimeout() should return current value',
-           () => { expect(instance.getTimeout()).toEqual(30); });
+        it('getTimeout() should return current value', () => {
+          expect(instance.getTimeout()).toEqual(30);
+        });
 
         it('setTimeout() should set and return the current value', () => {
           let expected = 10 * 60;
@@ -81,8 +90,9 @@ export function main() {
           }).toThrow(new Error('\'seconds\' can only be \'false\' or a positive number.'));
         });
 
-        it('getAutoResume() should return current value',
-           () => { expect(instance.getAutoResume()).toEqual(AutoResume.idle); });
+        it('getAutoResume() should return current value', () => {
+          expect(instance.getAutoResume()).toEqual(AutoResume.idle);
+        });
 
         it('setAutoResume() should set and return current value', () => {
           let expected = AutoResume.disabled;
@@ -131,7 +141,9 @@ export function main() {
       });
 
       describe('watching', () => {
-        beforeEach(() => { instance.setIdle(3); });
+        beforeEach(() => {
+          instance.setIdle(3);
+        });
 
         it('stop() should clear timeouts and stop running', fakeAsync(() => {
              spyOn(window, 'clearInterval').and.callThrough();
@@ -555,11 +567,13 @@ export function main() {
       }));
 
       describe('runtime config', () => {
-        it('getKeepaliveEnabled() should return true by default when service is injected.',
-           () => { expect(instance.getKeepaliveEnabled()).toBe(true); });
+        it('getKeepaliveEnabled() should return true by default when service is injected.', () => {
+          expect(instance.getKeepaliveEnabled()).toBe(true);
+        });
 
-        it('setKeepaliveEnabled() should set and return current value.',
-           () => { expect(instance.setKeepaliveEnabled(false)).toBe(false); });
+        it('setKeepaliveEnabled() should set and return current value.', () => {
+          expect(instance.setKeepaliveEnabled(false)).toBe(false);
+        });
 
         it('setKeepaliveEnabled() should NOT stop the keepalive service when value is false',
            () => {

@@ -7,7 +7,9 @@ import {IdleExpiry} from './idleexpiry';
 export class SimpleExpiry extends IdleExpiry {
   private lastValue: Date = null;
 
-  constructor() { super(); }
+  constructor() {
+    super();
+  }
 
   /*
    * Gets or sets the last expiry date.

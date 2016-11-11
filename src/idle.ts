@@ -59,7 +59,9 @@ export class Idle implements OnDestroy {
    * Returns whether or not keepalive integration is enabled.
    * @return True if integration is enabled; otherwise, false.
    */
-  getKeepaliveEnabled(): boolean { return this.keepaliveEnabled; }
+  getKeepaliveEnabled(): boolean {
+    return this.keepaliveEnabled;
+  }
 
   /*
    * Sets and returns whether or not keepalive integration is enabled.
@@ -79,7 +81,9 @@ export class Idle implements OnDestroy {
    * Returns the current timeout value.
    * @return The timeout value in seconds.
    */
-  getTimeout(): number { return this.timeoutVal; }
+  getTimeout(): number {
+    return this.timeoutVal;
+  }
 
   /*
    * Sets the timeout value.
@@ -102,7 +106,9 @@ export class Idle implements OnDestroy {
    * Returns the current idle value.
    * @return The idle value in seconds.
    */
-  getIdle(): number { return this.idle; }
+  getIdle(): number {
+    return this.idle;
+  }
 
   /*
    * Sets the idle value.
@@ -121,9 +127,13 @@ export class Idle implements OnDestroy {
    * Returns the current autoresume value.
    * @return The current value.
    */
-  getAutoResume(): AutoResume { return this.autoResume; }
+  getAutoResume(): AutoResume {
+    return this.autoResume;
+  }
 
-  setAutoResume(value: AutoResume): AutoResume { return this.autoResume = value; }
+  setAutoResume(value: AutoResume): AutoResume {
+    return this.autoResume = value;
+  }
 
   /*
    * Sets interrupts from the specified sources.
@@ -137,7 +147,9 @@ export class Idle implements OnDestroy {
 
     for (let source of sources) {
       let sub = new Interrupt(source);
-      sub.subscribe((args: InterruptArgs) => { self.interrupt(args.force, args.innerArgs); });
+      sub.subscribe((args: InterruptArgs) => {
+        self.interrupt(args.force, args.innerArgs);
+      });
 
       this.interrupts.push(sub);
     }
@@ -149,7 +161,9 @@ export class Idle implements OnDestroy {
    * Returns the current interrupts.
    * @return The current interrupts.
    */
-  getInterrupts(): Array<Interrupt> { return this.interrupts; }
+  getInterrupts(): Array<Interrupt> {
+    return this.interrupts;
+  }
 
   /*
    * Pauses, unsubscribes, and clears the current interrupt subscriptions.
@@ -167,13 +181,17 @@ export class Idle implements OnDestroy {
    * Returns whether or not the service is running i.e. watching for idleness.
    * @return True if service is watching; otherwise, false.
    */
-  isRunning(): boolean { return this.running; }
+  isRunning(): boolean {
+    return this.running;
+  }
 
   /*
    * Returns whether or not the user is considered idle.
    * @return True if the user is in the idle state; otherwise, false.
    */
-  isIdling(): boolean { return this.idling; }
+  isIdling(): boolean {
+    return this.idling;
+  }
 
   /*
    * Starts watching for inactivity.
@@ -198,7 +216,9 @@ export class Idle implements OnDestroy {
 
     this.running = true;
 
-    this.idleHandle = setInterval(() => { this.toggleState(); }, this.idle * 1000);
+    this.idleHandle = setInterval(() => {
+      this.toggleState();
+    }, this.idle * 1000);
   }
 
   /*
@@ -268,7 +288,9 @@ export class Idle implements OnDestroy {
       if (this.timeoutVal > 0) {
         this.countdown = this.timeoutVal;
         this.doCountdown();
-        this.timeoutHandle = setInterval(() => { this.doCountdown(); }, 1000);
+        this.timeoutHandle = setInterval(() => {
+          this.doCountdown();
+        }, 1000);
       }
     } else {
       this.toggleInterrupts(true);

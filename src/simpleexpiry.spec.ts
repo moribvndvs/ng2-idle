@@ -5,7 +5,9 @@ export function main() {
 
     let instance = new SimpleExpiry();
 
-    it('last() returns the current value', () => { expect(instance.last()).toBeNull(); });
+    it('last() returns the current value', () => {
+      expect(instance.last()).toBeNull();
+    });
 
     it('last() sets the specified value', () => {
       let expected = new Date();

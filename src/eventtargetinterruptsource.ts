@@ -35,12 +35,15 @@ export class EventTargetInterruptSource extends InterruptSource {
     };
 
     this.attachFn = () => {
-      this.eventSrc.forEach(
-          (src: Observable<any>) => { self.eventSubscription.push(src.subscribe(handler)); });
+      this.eventSrc.forEach((src: Observable<any>) => {
+        self.eventSubscription.push(src.subscribe(handler));
+      });
     };
 
     this.detachFn = () => {
-      this.eventSubscription.forEach((sub: Subscription) => { sub.unsubscribe(); });
+      this.eventSubscription.forEach((sub: Subscription) => {
+        sub.unsubscribe();
+      });
       this.eventSubscription.length = 0;
     };
   }
@@ -50,5 +53,7 @@ export class EventTargetInterruptSource extends InterruptSource {
    * @param event - The original event object.
    * @return True if the event should be filtered (don't cause an interrupt); otherwise, false.
    */
-  protected filterEvent(event: any): boolean { return false; }
+  protected filterEvent(event: any): boolean {
+    return false;
+  }
 }

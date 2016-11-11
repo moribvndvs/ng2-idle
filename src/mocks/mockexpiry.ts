@@ -12,5 +12,7 @@ export class MockExpiry extends IdleExpiry {
     return this.lastDate;
   }
 
-  now(): Date { return this.mockNow || new Date(); }
+  now(): Date {
+    return this.mockNow || new Date();
+  }
 }
