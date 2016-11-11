@@ -1,5 +1,4 @@
-import {InterruptArgs} from '../interruptargs';
-import {InterruptSource} from '../interruptsource';
+import {InterruptArgs, InterruptSource} from '@ng-idle/core';
 
 
 /*

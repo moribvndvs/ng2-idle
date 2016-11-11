@@ -8,11 +8,28 @@ Authored by **Mike Grabski** @HackedByChinese me@mikegrabski.com
 
 Licensed under MIT
 
+## Quick start
+
+`@ng-idle` is shipped via [npm](https://www.npmjs.com). You can install the package using the following command:
+
+```
+npm install --save @ng-idle/core
+```
+
+Integrating and configuring the package into your application requires a few more steps. Please visit [@ng-idle-example](https://github.com/HackedByChinese/ng2-idle-example.git) for source and instructions on how to get going.
+
 ## Design Considerations
 The primary application of this module is to detect when users are idle. It can also be used to warn users of an impending timeout, and then time them out. The core of this module is the `Idle` service which does its best - based on your configuration - to detect when a user is active or idle and pass that information on to your application so it can respond appropriately.
 
+### Modularization
+The core functionality can be found in the `@ng-idle/core` package via [npm](https://www.npmjs.com).
+
+Additional modules to extend functionality:
+
+* `@ng-idle/keepalive` (see below)
+
 ### Extensible Keepalive Integration
-In a common use case where it is used for session management, you may need to signal to the server periodically that the user is still logged in and active. If you need that functionality, `ng2-idle` can **optionally** integrate with [ng2-idle-keepalive](https://github.com/HackedByChinese/ng2-idle-keepalive). `ng2-idle` will instruct `ng2-idle-keepalive` to ping while the user is active, and stop once they go idle or time out. When the user resumes activity or the idle state is reset, it will ping immediately and then resume pinging. **Please note** that keepalive integration is optional, and you must install and configure `ng2-idle-keepalive` separately to get this functionality. You can implement your own by extending `KeepaliveSvc` and configuring it as a provider in your application for the `KeepaliveSvc` class.
+In a common use case where it is used for session management, you may need to signal to the server periodically that the user is still logged in and active. If you need that functionality, `@ng-idle` can **optionally** integrate with `@ng-idle/keepalive`. `@ng-idle` will instruct `@ng-idle/keepalive` to ping while the user is active, and stop once they go idle or time out. When the user resumes activity or the idle state is reset, it will ping immediately and then resume pinging. **Please note** that keepalive integration is optional, and you must install and configure `@ng-idle/keepalive` separately to get this functionality. You can implement your own by extending `KeepaliveSvc` and configuring it as a provider in your application for the `KeepaliveSvc` class.
 
 ### Extensible Interrupts
 An interrupt is any source of input (typically from the user, but could be things like other tabs or an event) that can be used to signal to `Idle` that the idle watch should be interrupted or reset. Unlike `ng-idle`, these sources are not hardcoded; you can extend `InterruptSource` or any of the built-in sources to suit your purposes. This feature is also useful to handle input noise that may plague your particular use case. It can also be used to target specific elements on a page rather than the whole document or window. The following sources come built into this package:
@@ -36,21 +53,12 @@ The dependency injector in Angular 2 supports a hierarchical injection strategy.
 ### Example Use Case
 For example, consider an email application. For increased security, the application may wish to determine when the user is inactive and log them out, giving them a chance to extend their session if they are still at the computer and just got distracted. Additionally, for even better security the server may issue the user's session a security token that expires after 5 minutes of inactivity. The user may take much more time than that to type out their email and send it. It would be frustrating to find you are logged out when you were actively using the software!
 
-`ng2-idle` can detect that the user is clicking, typing, touching, scrolling, etc. and know that the user is still active. It can work with `ng2-idle-keepalive` to ping the server every few minutes to keep them logged in. In this case, as long as the user is doing something, they stay logged in. If they step away from the computer, we can present a warning dialog, and then after a countdown, log them out.
-
-## Getting Started
-Please visit [ng2-idle-example](https://github.com/HackedByChinese/ng2-idle-example.git) for source and instructions on how to get started.
+`@ng-idle/core` can detect that the user is clicking, typing, touching, scrolling, etc. and know that the user is still active. It can work with `@ng-idle/keepalive` to ping the server every few minutes to keep them logged in. In this case, as long as the user is doing something, they stay logged in. If they step away from the computer, we can present a warning dialog, and then after a countdown, log them out.
 
 ## Developing
 **Note** This project was developed using NodeJS 5.5 and NPM 3.3.12. You may experience problems using older versions. Try [NVM](https://github.com/creationix/nvm) or similar to manage different versions of Node concurrently.
 
 This repository uses TypeScript (with Typings as the definition manager), Gulp, tslint, eslint (for JS files used in Gulp tasks), Karma, and Jasmine.
-
-To run Gulp tasks, you'll need to install the `gulp-cli`.
-
-```
- npm install -g gulp-cli
-```
 
 Once you have cloned the repository, install all packages.
 
@@ -61,31 +69,25 @@ Once you have cloned the repository, install all packages.
 You can now build and run tests.
 
 ```
- gulp test
+ npm test
 ```
 
-If you want to continuously build and test, first execute this task in a _separate window_:
+You can also continuously run tests as you make changes.
 
 ```
- gulp build:dev:watch
-```
-
-Then run this task:
-
-```
- gulp test:watch
+npm run watch:test
 ```
 
 If you wish to prepare a branch for a pull request, run this command and fix any errors:
 
 ```
- gulp build
+ npm run lint
 ```
 
 You can use `clang-format` to automatically correct most style errors and then commit the results:
 
 ```
- gulp clang:format
+ npm run format
 ```
 
 ## Contributing

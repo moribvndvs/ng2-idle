@@ -27,7 +27,7 @@ Once you have determined that you have an unreported problem, please use the fol
 
 - Overview of the Issue - Include any non-minified stack trace and other runtime errors that are available and relevant to the issue.
 - Use Case - Explain why this is a bug for you
-- Angular 2 and `ng2-idle` version(s) - Is this an issue with Angular 2, or a regression bug in this module?
+- Angular 2 and `@ng-idle` version(s) - Is this an issue with Angular 2, or a regression bug in this module?
 - Reproduce the Error - Please, please, please **provide a working example** either by including a Plunker or JSFiddle, or an unambiguous set of steps! Doing the footwork up front will allow me to replicate and fix the problem faster.
 - Related Issues - Please note any related issues, if any.
 - Suggest a Fix - If you have an idea of what's causing the problem (line of code or a commit), please point it out.

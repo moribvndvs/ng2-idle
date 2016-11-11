@@ -1,4 +1,4 @@
-import {IdleExpiry} from '../idleexpiry';
+import {IdleExpiry} from '@ng-idle/core';
 
 export class MockExpiry extends IdleExpiry {
   public lastDate: Date;

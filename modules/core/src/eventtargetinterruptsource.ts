@@ -11,7 +11,7 @@ export class EventTargetInterruptSource extends InterruptSource {
   private eventSrc: Array<Observable<any>> = new Array;
   private eventSubscription: Array<Subscription> = new Array;
 
-  constructor(protected target, protected events: string, protected throttleDelay = 500) {
+  constructor(protected target: any, protected events: string, protected throttleDelay = 500) {
     super(null, null);
 
     let self = this;

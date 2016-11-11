@@ -1,4 +1,4 @@
-import {KeepaliveSvc} from '../keepalivesvc';
+import {KeepaliveSvc} from '@ng-idle/core';
 
 export class MockKeepaliveSvc extends KeepaliveSvc {
   isRunning: boolean = false;

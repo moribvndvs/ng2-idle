@@ -48,6 +48,8 @@ export class Idle implements OnDestroy {
   public onTimeout: EventEmitter<number> = new EventEmitter<number>();
   public onInterrupt: EventEmitter<any> = new EventEmitter;
 
+  [key: string]: any;
+
   constructor(private expiry: IdleExpiry, @Optional() keepaliveSvc?: KeepaliveSvc) {
     if (keepaliveSvc) {
       this.keepaliveSvc = keepaliveSvc;

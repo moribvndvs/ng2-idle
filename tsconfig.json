@@ -1,23 +1,37 @@
 {
-    "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
-        "declaration": false,
-        "noImplicitAny": false,
-        "removeComments": true,
-        "noLib": false,
-        "emitDecoratorMetadata": true,
-        "experimentalDecorators": true,
-        "sourceMap": true,
-        "moduleResolution": "node"
+  "compilerOptions": {
+    "target": "es5",
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": true,
+    "noEmitHelpers": true,
+    "strictNullChecks": false,
+    "baseUrl": "./modules",
+    "paths": {
+      "@ng-idle/core": ["../modules/core"]
     },
-    "types": [
-      "jasmine"
+    "lib": [
+      "dom",
+      "es6"
     ],
-    "exclude": [
-        "typings/browser.d.ts",
-        "typings/browser/**",
-        "node_modules",
-        "dist"
+    "types": [
+      "jasmine",
+      "node",
+      "source-map",
+      "webpack"
     ]
+  },
+  "exclude": [
+    "node_modules",
+    "dist"
+  ],
+  "awesomeTypescriptLoaderOptions": {
+    "forkChecker": true,
+    "useWebpackText": true
+  },
+  "compileOnSave": false,
+  "buildOnSave": false
 }

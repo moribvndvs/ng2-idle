@@ -7,11 +7,12 @@ const clangFormat = require('gulp-clang-format');
 const runSequence = require('run-sequence');
 
 gulp.task('tslint', () => {
-  return gulp.src(config.PATHS.src.tsAll)
+  return gulp.src(config.PATHS.src.ts)
     .pipe(tslint({
-      configuration: require('../../tslint.json')
+      configuration: require('../../tslint.json'),
+      formatter: 'verbose'
     }))
-    .pipe(tslint.report('verbose'));
+    .pipe(tslint.report());
 });
 
 gulp.task('eslint', () => {
@@ -24,13 +25,13 @@ gulp.task('eslint', () => {
 });
 
 gulp.task('clang:check', () => {
-  return gulp.src(config.PATHS.src.tsAll)
+  return gulp.src(config.PATHS.src.ts)
      .pipe(clangFormat.checkFormat('file', undefined,
       {verbose: true, fail: true}));
 });
 
 gulp.task('clang:format', () => {
-  return gulp.src(config.PATHS.src.tsAll)
+  return gulp.src(config.PATHS.src.ts)
      .pipe(clangFormat.format('file'))
      .pipe(gulp.dest(config.PATHS.src.base));
 });
