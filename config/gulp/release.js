@@ -36,6 +36,8 @@ gulp.task('release:package', function fixPackage() {
 
         if (folder !== 'keepalive') {
           delete json.peerDependencies["@angular/http"];
+        } else {
+          json.peerDependencies['@ng-idle/core'] = '^' + config.pkg.version;
         }
 
         return json;
