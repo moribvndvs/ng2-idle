@@ -1,3 +1,18 @@
+<a name="2.0.0-beta.1"></a>
+# [2.0.0-beta.1](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.18...v2.0.0-beta.1) (2016-11-14)
+
+
+### Code Refactoring
+
+* **core:** modularize core ([3f0868a](https://github.com/HackedByChinese/ng2-idle/commit/3f0868a))
+
+
+### BREAKING CHANGES
+
+* core: This repository has been refactored to follow the @angular model of modularization so that it can be maintained more easily. You will need to change your import statements from 'ng2-idle' to '@ng-idle/core'.
+
+
+
 <a name="1.0.0-alpha.18"></a>
 # [1.0.0-alpha.18](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2016-11-04)
 
