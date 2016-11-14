@@ -7,8 +7,14 @@
 * **core:** modularize core ([3f0868a](https://github.com/HackedByChinese/ng2-idle/commit/3f0868a))
 
 
+### Features
+
+* **keepalive:** merge ng2-idle-keepalive into [@ng](https://github.com/ng)-idle/keepalive ([7702d9d](https://github.com/HackedByChinese/ng2-idle/commit/7702d9d))
+
+
 ### BREAKING CHANGES
 
+* keepalive: Modules have been changed from Ng2IdleModule and Ng2IdleKeepaliveModule to NgIdleModule and NgIdleKeepaliveModule, respectively. Additionally, keepalive imports should now be @ng-idle/keepalive.
 * core: This repository has been refactored to follow the @angular model of modularization so that it can be maintained more easily. You will need to change your import statements from 'ng2-idle' to '@ng-idle/core'.
 
 
