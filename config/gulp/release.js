@@ -32,6 +32,12 @@ gulp.task('release:package', function fixPackage() {
     return gulp.src(src)
       .pipe(jeditor(function(json) {
         json.version = config.pkg.version;
+        json.peerDependencies = Object.assign({}, config.pkg.dependencies);
+
+        if (folder !== 'keepalive') {
+          delete json.peerDependencies["@angular/http"];
+        }
+
         return json;
       }))
       .pipe(gulp.dest(dest));
