@@ -53,7 +53,6 @@
     "gulp-tslint": "^6.1.1",
     "gulp-typescript": "^3.1.1",
     "gulp-util": "^3.0.7",
-    "gulp-watch": "^4.3.5",
     "istanbul-instrumenter-loader": "0.2.0",
     "jasmine-core": "^2.4.1",
     "json-loader": "^0.5.4",
@@ -81,6 +80,7 @@
   "dependencies": {
     "@angular/common": "^2.0.0",
     "@angular/core": "^2.0.0",
+    "@angular/http": "^2.0.0",
     "rxjs": "5.0.0-beta.12",
     "zone.js": "^0.6.25"
   },

@@ -1,0 +1,28 @@
+{
+  "name": "@ng-idle/keepalive",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "ng-idle for Angular 2 keepalive module",
+  "main": "bundles/keepalive.umd.js",
+  "module": "index.js",
+  "typings": "index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HackedByChinese/ng2-idle.git"
+  },
+  "keywords": [
+    "angular2",
+    "ng2-idle",
+    "ng-idle",
+    "idle",
+    "inactive",
+    "timeout",
+    "session",
+    "keepalive"
+  ],
+  "author": "Mike Grabski <me@mikegrabski.com> (http://mikegrabski.com/)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HackedByChinese/ng2-idle.git/issues"
+  },
+  "homepage": "https://github.com/HackedByChinese/ng2-idle.git#readme"
+}

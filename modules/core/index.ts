@@ -13,4 +13,4 @@ export * from './src/simpleexpiry';
 export const DEFAULT_INTERRUPTSOURCES: any[] = [new DocumentInterruptSource(
     'mousemove keydown DOMMouseScroll mousewheel mousedown touchstart touchmove scroll')];
 
-export {Ng2IdleModule} from './src/module';
+export {NgIdleModule} from './src/module';

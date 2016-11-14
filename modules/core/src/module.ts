@@ -5,10 +5,10 @@ import {IdleExpiry} from './idleexpiry';
 import {SimpleExpiry} from './simpleexpiry';
 
 @NgModule()
-export class Ng2IdleModule {
+export class NgIdleModule {
   static forRoot(): ModuleWithProviders {
     return {
-      ngModule: Ng2IdleModule,
+      ngModule: NgIdleModule,
       providers: [SimpleExpiry, {provide: IdleExpiry, useExisting: SimpleExpiry}, Idle]
     };
   }
