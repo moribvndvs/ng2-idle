@@ -14,7 +14,8 @@
     "rimraf": "rimraf",
     "release": "gulp release",
     "prerelease": "npm run lint && npm run build",
-    "format": "gulp clang:format"
+    "format": "gulp clang:format",
+    "coverage": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "repository": {
     "type": "git",
@@ -36,6 +37,7 @@
     "@types/webpack": "^1.12.35",
     "awesome-typescript-loader": "^2.2.1",
     "core-js": "^2.4.1",
+    "coveralls": "^2.11.15",
     "cz-conventional-changelog": "^1.1.6",
     "eslint": "^1.10.3",
     "eslint-config-google": "^0.3.0",
@@ -70,13 +72,13 @@
     "rollup": "^0.36.3",
     "rollup-plugin-uglify": "^1.0.1",
     "run-sequence": "^1.1.5",
+    "rxjs": "5.0.0-beta.12",
     "source-map-loader": "^0.1.5",
     "ts-helpers": "^1.1.2",
     "tslint": "^3.15.0",
     "tslint-loader": "^2.1.5",
     "typescript": "^2.0.9",
     "webpack": "2.1.0-beta.25",
-    "rxjs": "5.0.0-beta.12",
     "zone.js": "^0.6.25"
   },
   "dependencies": {
