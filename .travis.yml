@@ -10,6 +10,8 @@ before_install:
 before_script:
   - sh -e /etc/init.d/xvfb start
 
+after_success: 'npm run coverage'
+
 addons:
   apt:
     sources:
