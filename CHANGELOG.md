@@ -1,3 +1,13 @@
+<a name="2.0.0-beta.3"></a>
+# [2.0.0-beta.3](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2016-11-21)
+
+
+### Features
+
+* **aot:** add AOT support ([cc99199](https://github.com/HackedByChinese/ng2-idle/commit/cc99199))
+
+
+
 <a name="2.0.0-beta.2"></a>
 # [2.0.0-beta.2](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2016-11-15)
 
