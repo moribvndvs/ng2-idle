@@ -35,3 +35,4 @@ typings
 
 # Build artifacts
 dist
+.tmp

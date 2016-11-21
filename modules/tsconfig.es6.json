@@ -1,0 +1,36 @@
+{
+  "compilerOptions": {
+    "module": "es6",
+    "target": "es6",
+    "noImplicitAny": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "outDir": "../.tmp/esm",
+    "baseUrl": "./",
+    "sourceMap": true,
+    "removeComments": false,
+    "moduleResolution": "node",
+    "declaration": true,
+    "lib": [
+      "es2015",
+      "dom"
+    ],
+    "types": [
+      "jasmine"
+    ],
+    "paths": {
+      "@ng-idle/core": ["./core"]
+    }
+  },
+  "angularCompilerOptions": {
+    "genDir": "../.tmp",
+    "debug": false,
+    "skipMetadataEmit": false
+  },
+  "include": [
+    "./**/*.ts"
+  ],
+  "exclude": [
+    "./**/*.spec.ts"
+  ]
+}

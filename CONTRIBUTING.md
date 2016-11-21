@@ -1,4 +1,4 @@
-# Contributing to ng2-idle
+# Contributing to @ng-idle
 
 This guide will describe how _you_ can contribute to this module.
 

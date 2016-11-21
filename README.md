@@ -58,8 +58,6 @@ For example, consider an email application. For increased security, the applicat
 ## Developing
 **Note** This project was developed using NodeJS 5.5 and NPM 3.3.12. You may experience problems using older versions. Try [NVM](https://github.com/creationix/nvm) or similar to manage different versions of Node concurrently.
 
-This repository uses TypeScript (with Typings as the definition manager), Gulp, tslint, eslint (for JS files used in Gulp tasks), Karma, and Jasmine.
-
 Once you have cloned the repository, install all packages.
 
 ```
@@ -81,7 +79,7 @@ npm run watch:test
 If you wish to prepare a branch for a pull request, run this command and fix any errors:
 
 ```
- npm run lint
+ npm run build
 ```
 
 You can use `clang-format` to automatically correct most style errors and then commit the results:
