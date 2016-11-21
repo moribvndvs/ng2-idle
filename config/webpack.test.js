@@ -76,7 +76,7 @@ module.exports = function (options) {
           enforce: 'pre',
           test: /\.ts$/,
           loader: 'tslint-loader',
-          exclude: [root('node_modules')]
+          exclude: [root('../node_modules')]
         },
 
         /**
@@ -91,8 +91,8 @@ module.exports = function (options) {
           loader: 'source-map-loader',
           exclude: [
             // these packages have problems with their sourcemaps
-            root('node_modules/rxjs'),
-            root('node_modules/@angular')
+            root('../node_modules/rxjs'),
+            root('../node_modules/@angular')
           ]
         },
 
