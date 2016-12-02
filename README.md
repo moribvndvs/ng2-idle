@@ -8,6 +8,10 @@ Authored by **Mike Grabski** @HackedByChinese me@mikegrabski.com
 
 Licensed under MIT
 
+## Demo
+
+Visit https://hackedbychinese.github.io/ng2-idle to view a simple example with quick start instructions.
+
 ## Quick start
 
 `@ng-idle` is shipped via [npm](https://www.npmjs.com). You can install the package using the following command:
