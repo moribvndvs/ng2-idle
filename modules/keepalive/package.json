@@ -20,7 +20,7 @@
     "keepalive"
   ],
   "author": "Mike Grabski <me@mikegrabski.com> (http://mikegrabski.com/)",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/HackedByChinese/ng2-idle.git/issues"
   },
