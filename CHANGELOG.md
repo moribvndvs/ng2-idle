@@ -1,3 +1,10 @@
+<a name="2.0.0-beta.4"></a>
+# [2.0.0-beta.4](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2016-12-02)
+
+## License
+
+* **LICENSE** change license to Apache-2.0 ([f8caa10](https://github.com/HackedByChinese/ng2-idle/commit/f8caa10))
+
 <a name="2.0.0-beta.3"></a>
 # [2.0.0-beta.3](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2016-11-21)
 
