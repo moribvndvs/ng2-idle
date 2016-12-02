@@ -6,7 +6,7 @@ A module for responding to idle users in Angular2 applications. This is a rewrit
 ## License
 Authored by **Mike Grabski** @HackedByChinese me@mikegrabski.com
 
-Licensed under MIT
+See [LICENSE](https://github.com/HackedByChinese/ng2-idle/blob/master/LICENSE) for licensing details.
 
 ## Demo
 
