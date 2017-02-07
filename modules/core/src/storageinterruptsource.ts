@@ -13,7 +13,7 @@ export class StorageInterruptSource extends WindowInterruptSource {
    * @param event - The original event object.
    * @return True if the event should be filtered (don't cause an interrupt); otherwise, false.
    */
-  filterEvent(event: any): boolean {
+  filterEvent(event: StorageEvent): boolean {
     if (event.key === 'ng2Idle.expiry') {
       return false;
     }
