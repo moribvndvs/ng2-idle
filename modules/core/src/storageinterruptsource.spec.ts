@@ -37,4 +37,25 @@ describe('core/StorageInterruptSource', () => {
 
        expect(source.onInterrupt.emit).not.toHaveBeenCalled();
      }));
+
+  it('does not emit onInterrupt event when attached and key is not ng2Idle.expiry and event is fired', fakeAsync(() => {
+       let source = new StorageInterruptSource();
+       spyOn(source.onInterrupt, 'emit').and.callThrough();
+       source.attach();
+
+       let init: StorageEventInit = {
+         key: 'ng2Idle.otherKey',
+         oldValue: null,
+         newValue: '',
+         url: 'http://localhost:4200/'
+       };
+
+       let expected = new StorageEvent('storage', init);
+
+       window.dispatchEvent(expected);
+
+       expect(source.onInterrupt.emit).not.toHaveBeenCalled();
+
+       source.detach();
+     }));
 });
