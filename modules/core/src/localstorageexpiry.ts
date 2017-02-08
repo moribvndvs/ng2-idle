@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Optional } from '@angular/core';
 import { IdleExpiry } from './idleexpiry';
 import { LocalStorage } from './localstorage';
 
@@ -8,6 +8,8 @@ import { LocalStorage } from './localstorage';
  */
 @Injectable()
 export class LocalStorageExpiry extends IdleExpiry {
+
+  private expiryKey: string = 'expiry';
 
   constructor(private localStorage: LocalStorage) {
     super();
@@ -26,8 +28,26 @@ export class LocalStorageExpiry extends IdleExpiry {
     return this.getExpiry();
   }
 
+  /*
+   * Gets the expiry key name.
+   * @return The name of the expiry key.
+   */
+  getExpiryKey(): string {
+    return this.expiryKey;
+  }
+
+  /*
+   * Sets the expiry key name.
+   * @param The name of the expiry key.
+   */
+  setExpiryKey(key: string): void {
+    if (key) {
+      this.expiryKey = key;
+    }
+  }
+
   private getExpiry(): Date {
-    let expiry: string = this.localStorage.getItem('expiry');
+    let expiry: string = this.localStorage.getItem(this.expiryKey);
     if (expiry) {
       return new Date(parseInt(expiry, 10));
     } else {
@@ -36,7 +56,7 @@ export class LocalStorageExpiry extends IdleExpiry {
   }
 
   private setExpiry(value: Date) {
-    this.localStorage.setItem('expiry', value.getTime().toString());
+    this.localStorage.setItem(this.expiryKey, value.getTime().toString());
   }
 
 }

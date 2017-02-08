@@ -14,7 +14,7 @@ export class StorageInterruptSource extends WindowInterruptSource {
    * @return True if the event should be filtered (don't cause an interrupt); otherwise, false.
    */
   filterEvent(event: StorageEvent): boolean {
-    if (event.key === 'ng2Idle.expiry') {
+    if (event.key.indexOf('ng2Idle.') >= 0) {
       return false;
     }
     return true;

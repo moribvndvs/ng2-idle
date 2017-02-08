@@ -11,6 +11,7 @@ export * from './src/storageinterruptsource';
 export * from './src/keepalivesvc';
 export * from './src/idleexpiry';
 export * from './src/simpleexpiry';
+export * from './src/localstorage';
 export * from './src/localstorageexpiry';
 
 export const DEFAULT_INTERRUPTSOURCES: any[] = [new DocumentInterruptSource(

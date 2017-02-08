@@ -11,8 +11,8 @@ describe('core/StorageInterruptSource', () => {
 
        let init: StorageEventInit = {
          key: 'ng2Idle.expiry',
-         oldValue: null,
          newValue: '',
+         oldValue: null,
          url: 'http://localhost:4200/'
        };
 
@@ -44,9 +44,9 @@ describe('core/StorageInterruptSource', () => {
        source.attach();
 
        let init: StorageEventInit = {
-         key: 'ng2Idle.otherKey',
-         oldValue: null,
+         key: 'otherKey',
          newValue: '',
+         oldValue: null,
          url: 'http://localhost:4200/'
        };
 

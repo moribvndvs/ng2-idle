@@ -21,6 +21,24 @@ describe('core/LocalStorageExpiry', () => {
     expect(service.last()).toEqual(expected);
   }));
 
+  it('setExpiryKey() sets the key name of expiry', inject([LocalStorageExpiry], (service: LocalStorageExpiry) => {
+    expect(service.getExpiryKey()).toBe('expiry');
+    service.setExpiryKey('name');
+    expect(service.getExpiryKey()).toBe('name');
+  }));
+
+  it('setExpiryKey() doesn\'t set expiry key name if param is null', inject([LocalStorageExpiry], (service: LocalStorageExpiry) => {
+    expect(service.getExpiryKey()).toBe('expiry');
+    service.setExpiryKey(null);
+    expect(service.getExpiryKey()).toBe('expiry');
+  }));
+
+  it('setExpiryKey() doesn\'t set expiry key name if param is empty', inject([LocalStorageExpiry], (service: LocalStorageExpiry) => {
+    expect(service.getExpiryKey()).toBe('expiry');
+    service.setExpiryKey('');
+    expect(service.getExpiryKey()).toBe('expiry');
+  }));
+
 });
 
 function testBedConfiguration() {
