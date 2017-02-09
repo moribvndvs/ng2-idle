@@ -1,3 +1,14 @@
+<a name="2.0.0-beta.5"></a>
+# [2.0.0-beta.5](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2017-02-09)
+
+The new default expiry is now LocalStorageExpiry, and StorageInterruptSource has been added to the default module providers. This in effect makes idle coordination between tabs the new default (rather than `SimpleExpiry`). This makes the defaults more like the original `ng-idle`. You can of course override the `IdleExpiry` provider and go back to `SimpleExpiry` or use your own. Special thanks to @rousseaufiliong for porting that functionality.
+
+### Features
+
+* prevent timing out one tab or window if another tab have activity ([#33](https://github.com/HackedByChinese/ng2-idle/issues/33)) ([3ab086d](https://github.com/HackedByChinese/ng2-idle/commit/3ab086d))
+
+
+
 <a name="2.0.0-beta.4"></a>
 # [2.0.0-beta.4](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2016-12-02)
 
