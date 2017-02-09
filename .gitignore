@@ -36,3 +36,6 @@ typings
 # Build artifacts
 dist
 .tmp
+
+# VS Code config
+.vscode

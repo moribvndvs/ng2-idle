@@ -5,6 +5,7 @@ import {Interrupt} from './interrupt';
 import {InterruptArgs} from './interruptargs';
 import {InterruptSource} from './interruptsource';
 import {KeepaliveSvc} from './keepalivesvc';
+import {LocalStorageExpiry} from './localstorageexpiry';
 
 
 /*
@@ -54,6 +55,18 @@ export class Idle implements OnDestroy {
     if (keepaliveSvc) {
       this.keepaliveSvc = keepaliveSvc;
       this.keepaliveEnabled = true;
+    }
+  }
+
+  /*
+   * Sets the expiry key name for localStorage.
+   * @param The name of the expiry key.
+   */
+  setExpiryKey(key: string): void {
+    if (this.expiry instanceof LocalStorageExpiry) {
+      this.expiry.setExpiryKey(key);
+    } else {
+      throw new Error('Cannot set expiry key name because no LocalStorageExpiry has been provided.');
     }
   }
 

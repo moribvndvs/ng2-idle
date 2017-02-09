@@ -17,6 +17,10 @@ describe('core/IdleExpiry', () => {
     expect(instance.id()).toBe(expected);
   });
 
+  it('id() when empty value should throw error', () => {
+    expect(() => { instance.id(''); }).toThrowError('A value must be specified for the ID.');
+  });
+
   it('id() returns default value', () => {
     let expected = new Date();
     jasmine.clock().mockDate(expected);
