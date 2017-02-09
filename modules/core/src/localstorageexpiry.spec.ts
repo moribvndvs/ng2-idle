@@ -21,6 +21,12 @@ describe('core/LocalStorageExpiry', () => {
     expect(service.last()).toEqual(expected);
   }));
 
+  it('last() remove value and return null if param is null', inject([LocalStorageExpiry], (service: LocalStorageExpiry) => {
+    let expected = null;
+    expect(service.last(expected)).toEqual(expected);
+    expect(service.last()).toEqual(expected);
+  }));
+
   it('setExpiryKey() sets the key name of expiry', inject([LocalStorageExpiry], (service: LocalStorageExpiry) => {
     expect(service.getExpiryKey()).toBe('expiry');
     service.setExpiryKey('name');

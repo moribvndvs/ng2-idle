@@ -56,7 +56,11 @@ export class LocalStorageExpiry extends IdleExpiry {
   }
 
   private setExpiry(value: Date) {
-    this.localStorage.setItem(this.expiryKey, value.getTime().toString());
+    if (value) {
+      this.localStorage.setItem(this.expiryKey, value.getTime().toString());
+    } else {
+      this.localStorage.removeItem(this.expiryKey);
+    }
   }
 
 }
