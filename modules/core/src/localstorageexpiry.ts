@@ -1,4 +1,4 @@
-import { Injectable, Optional } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { IdleExpiry } from './idleexpiry';
 import { LocalStorage } from './localstorage';
 
