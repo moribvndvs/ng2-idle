@@ -231,9 +231,18 @@ export class Idle implements OnDestroy {
 
     this.running = true;
 
-    this.idleHandle = setInterval(() => {
-      this.toggleState();
-    }, this.idle * 1000);
+    let watchFn = () => {
+      let now: Date = this.expiry.now();
+      let diff: Number = this.expiry.last().getTime() - now.getTime() - (timeout * 1000);
+      if (diff > 0) {
+        this.safeClearInterval('idleHandle');
+        this.idleHandle = setInterval(watchFn, diff);
+      } else {
+        this.toggleState();
+      }
+    };
+
+    this.idleHandle = setInterval(watchFn, this.idle * 1000);
   }
 
   /*

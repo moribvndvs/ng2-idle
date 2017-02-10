@@ -203,6 +203,7 @@ describe('core/Idle', () => {
         expect(expiry.last())
           .toEqual(
           new Date(now.getTime() + ((instance.getIdle() + instance.getTimeout()) * 1000)));
+        instance.stop();
       });
 
       it('watch() should attach all interrupts', () => {
@@ -231,16 +232,41 @@ describe('core/Idle', () => {
         expect(source.isAttached).toBe(false);
       });
 
+      it('watch() should not idle after IdleInterval has fired if timeout has not elapsed', fakeAsync(() => {
+        let source = new MockInterruptSource();
+
+        instance.setTimeout(3);
+        instance.setInterrupts([source]);
+
+        expiry.mockNow = new Date();
+        instance.watch();
+
+        expect(source.isAttached).toBe(true);
+
+        expiry.mockNow = new Date(expiry.now().getTime() + 30000);
+        expiry.last(new Date(expiry.now().getTime() + 33000));
+        tick(30000);
+        console.log(`${expiry.last()}`);
+
+        expect(instance.isIdling()).toBe(false);
+        expect(source.isAttached).toBe(true);
+
+        instance.stop();
+      }));
+
       it('watch() should attach all interrupts when resuming after timeout', fakeAsync(() => {
         let source = new MockInterruptSource();
 
         instance.setTimeout(3);
         instance.setInterrupts([source]);
+
+        expiry.mockNow = new Date();
         instance.watch();
 
         expect(source.isAttached).toBe(true);
 
-        tick(3000);
+        expiry.mockNow = new Date(expiry.now().getTime() + instance.getIdle() * 1000);
+        tick(30000);
         tick(1000);
         tick(1000);
         tick(1000);
@@ -271,13 +297,16 @@ describe('core/Idle', () => {
       it('watch(true) should not set expiry', () => {
         instance.watch(true);
         expect(expiry.last()).toBeUndefined();
+        instance.stop();
       });
 
       it('isIdle() should return true when idle interval elapses, and false after stop() is called',
         fakeAsync(() => {
+          expiry.mockNow = new Date();
           instance.watch();
           expect(instance.isIdling()).toBe(false);
 
+          expiry.mockNow = new Date(expiry.now().getTime() + instance.getIdle() * 1000);
           tick(3000);
 
           expect(instance.isIdling()).toBe(true);
@@ -290,8 +319,10 @@ describe('core/Idle', () => {
         let source = new MockInterruptSource();
 
         instance.setInterrupts([source]);
+        expiry.mockNow = new Date();
         instance.watch();
 
+        expiry.mockNow = new Date(expiry.now().getTime() + ((instance.getIdle()) * 1000));
         tick(3000);
 
         expect(instance.isIdling()).toBe(true);
@@ -304,7 +335,10 @@ describe('core/Idle', () => {
       it('emits an onIdleStart event when the user becomes idle', fakeAsync(() => {
         spyOn(instance.onIdleStart, 'emit').and.callThrough();
 
+        expiry.mockNow = new Date();
         instance.watch();
+
+        expiry.mockNow = new Date(expiry.now().getTime() + instance.getIdle() * 1000);
         tick(3000);
 
         expect(instance.onIdleStart.emit).toHaveBeenCalledTimes(1);
@@ -315,7 +349,10 @@ describe('core/Idle', () => {
       it('emits an onIdleEnd event when the user returns from idle', fakeAsync(() => {
         spyOn(instance.onIdleEnd, 'emit').and.callThrough();
 
+        expiry.mockNow = new Date();
         instance.watch();
+
+        expiry.mockNow = new Date(expiry.now().getTime() + instance.getIdle() * 1000);
         tick(3000);
         expect(instance.isIdling()).toBe(true);
 
@@ -330,7 +367,10 @@ describe('core/Idle', () => {
         spyOn(instance.onTimeout, 'emit').and.callThrough();
 
         instance.setTimeout(3);
+        expiry.mockNow = new Date();
         instance.watch();
+
+        expiry.mockNow = new Date(expiry.now().getTime() + instance.getIdle() * 1000);
         tick(3000);
         expect(instance.isIdling()).toBe(true);
 
@@ -348,7 +388,10 @@ describe('core/Idle', () => {
         spyOn(instance.onTimeout, 'emit').and.callThrough();
 
         instance.setTimeout(3);
+        expiry.mockNow = new Date();
         instance.watch();
+
+        expiry.mockNow = new Date(expiry.now().getTime() + instance.getIdle() * 1000);
         tick(3000);
         expect(instance.isIdling()).toBe(true);
 
@@ -365,7 +408,10 @@ describe('core/Idle', () => {
         spyOn(instance.onTimeoutWarning, 'emit').and.callThrough();
 
         instance.setTimeout(false);
+        expiry.mockNow = new Date();
         instance.watch();
+
+        expiry.mockNow = new Date(expiry.now().getTime() + instance.getIdle() * 1000);
         tick(3000);
         expect(instance.isIdling()).toBe(true);
 
@@ -380,7 +426,10 @@ describe('core/Idle', () => {
         spyOn(instance.onTimeout, 'emit').and.callThrough();
 
         instance.setTimeout(false);
+        expiry.mockNow = new Date();
         instance.watch();
+
+        expiry.mockNow = new Date(expiry.now().getTime() + instance.getIdle() * 1000);
         tick(3000);
         expect(instance.isIdling()).toBe(true);
 
@@ -399,6 +448,7 @@ describe('core/Idle', () => {
 
         expect(instance.watch).not.toHaveBeenCalled();
         expect(instance.onInterrupt.emit).not.toHaveBeenCalled();
+        instance.stop();
       });
 
       it('interrupt() emits onInterrupt event and include event arguments', () => {
@@ -409,14 +459,19 @@ describe('core/Idle', () => {
         instance.interrupt(false, expected);
 
         expect(instance.onInterrupt.emit).toHaveBeenCalledWith(expected);
+        instance.stop();
       });
 
       it('interrupt() with the force parameter set to true calls watch()', fakeAsync(() => {
         instance.setAutoResume(AutoResume.disabled);
         instance.setIdle(3);
 
+        let now = new Date();
+        expiry.mockNow = now;
         instance.watch();
         spyOn(instance, 'watch').and.callThrough();
+
+        expiry.mockNow = new Date(expiry.now().getTime() + instance.getIdle() * 1000);
         tick(3000);
 
         expect(instance.isIdling()).toBe(true);
@@ -433,8 +488,12 @@ describe('core/Idle', () => {
           instance.setAutoResume(AutoResume.disabled);
           instance.setIdle(3);
 
+          let now = new Date();
+          expiry.mockNow = now;
           instance.watch();
           spyOn(instance, 'watch').and.callThrough();
+
+          expiry.mockNow = new Date(expiry.now().getTime() + instance.getIdle() * 1000);
           tick(3000);
 
           expect(instance.isIdling()).toBe(true);
@@ -468,8 +527,12 @@ describe('core/Idle', () => {
         instance.setAutoResume(AutoResume.idle);
         instance.setIdle(3);
 
+        let now = new Date();
+        expiry.mockNow = now;
         instance.watch();
         spyOn(instance, 'watch').and.callThrough();
+
+        expiry.mockNow = new Date(expiry.now().getTime() + instance.getIdle() * 1000);
         tick(3000);
 
         expect(instance.isIdling()).toBe(true);
@@ -486,8 +549,12 @@ describe('core/Idle', () => {
           instance.setAutoResume(AutoResume.notIdle);
           instance.setIdle(3);
 
+          let now = new Date();
+          expiry.mockNow = now;
           instance.watch();
           spyOn(instance, 'watch').and.callThrough();
+
+          expiry.mockNow = new Date(expiry.now().getTime() + instance.getIdle() * 1000);
           tick(2000);
 
           expect(instance.isIdling()).toBe(false);
@@ -504,8 +571,11 @@ describe('core/Idle', () => {
           instance.setAutoResume(AutoResume.notIdle);
           instance.setIdle(3);
 
+          expiry.mockNow = new Date();
           instance.watch();
           spyOn(instance, 'watch').and.callThrough();
+
+          expiry.mockNow = new Date(expiry.now().getTime() + instance.getIdle() * 1000);
           tick(3000);
 
           expect(instance.isIdling()).toBe(true);
@@ -528,6 +598,7 @@ describe('core/Idle', () => {
         instance.interrupt();
 
         expect(instance.watch).not.toHaveBeenCalled();
+        instance.stop();
       });
 
       it('interrupt(true) should call watch(true)', () => {
@@ -536,6 +607,7 @@ describe('core/Idle', () => {
 
         instance.interrupt(true);
         expect(instance.watch).toHaveBeenCalledWith(true);
+        instance.stop();
       });
 
       it('triggering an interrupt source should call interrupt()', fakeAsync(() => {
@@ -579,10 +651,12 @@ describe('core/Idle', () => {
 
     let instance: Idle;
     let svc: MockKeepaliveSvc;
+    let expiry: MockExpiry;
 
-    beforeEach(inject([Idle, KeepaliveSvc], (idle: Idle, keepaliveSvc: MockKeepaliveSvc) => {
+    beforeEach(inject([Idle, KeepaliveSvc, MockExpiry], (idle: Idle, keepaliveSvc: MockKeepaliveSvc, mockExpiry: MockExpiry) => {
       instance = idle;
       svc = keepaliveSvc;
+      expiry = mockExpiry;
 
       instance.setIdle(3);
       instance.setTimeout(3);
@@ -624,8 +698,11 @@ describe('core/Idle', () => {
       }));
 
       it('should stop keepalive when idle', fakeAsync(() => {
+        expiry.mockNow = new Date();
         instance.watch();
         expect(svc.isRunning).toBe(true);
+
+        expiry.mockNow = new Date(expiry.now().getTime() + instance.getIdle() * 1000);
         tick(3000);
 
         expect(instance.isIdling()).toBe(true);
@@ -636,8 +713,11 @@ describe('core/Idle', () => {
       }));
 
       it('should stop keepalive when timed out', fakeAsync(() => {
+        expiry.mockNow = new Date();
         instance.watch();
         expect(svc.isRunning).toBe(true);
+
+        expiry.mockNow = new Date(expiry.now().getTime() + instance.getIdle() * 1000);
         tick(3000);
         tick(1000);
         tick(1000);
@@ -653,8 +733,12 @@ describe('core/Idle', () => {
       it('should immediately ping and restart keepalive when user returns from idle',
         fakeAsync(() => {
           spyOn(svc, 'ping').and.callThrough();
+          let now = new Date();
+          expiry.mockNow = now;
           instance.watch();
           expect(svc.isRunning).toBe(true);
+
+          expiry.mockNow = new Date(expiry.now().getTime() + instance.getIdle() * 1000);
           tick(3000);
 
           expect(instance.isIdling()).toBe(true);
