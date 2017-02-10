@@ -30,6 +30,22 @@ describe('core/IdleExpiry', () => {
     expect(actual).toEqual(expected);
   });
 
+  it('idling() returns the current value', () => {
+    expect(instance.idling()).toBeFalsy();
+  });
+
+  it('idling() sets the specified value', () => {
+    let expected = true;
+    expect(instance.idling(expected)).toEqual(expected);
+    expect(instance.idling()).toEqual(expected);
+  });
+
+  it('idling() with null param return null', () => {
+    let expected = null;
+    expect(instance.idling(expected)).toEqual(expected);
+    expect(instance.idling()).toEqual(expected);
+  });
+
   it('isExpired() returns true if last() is less than or equal to now', () => {
     let date = new Date();
     instance.last(date);
@@ -52,4 +68,5 @@ describe('core/IdleExpiry', () => {
     instance.last(null);
     expect(instance.isExpired()).toBe(false);
   });
+
 });

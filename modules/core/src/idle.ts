@@ -59,12 +59,13 @@ export class Idle implements OnDestroy {
   }
 
   /*
-   * Sets the expiry key name for localStorage.
-   * @param The name of the expiry key.
+   * Sets the idle name for localStorage.
+   * Important to set if multiple instances of Idle with LocalStorageExpiry
+   * @param The name of the idle.
    */
-  setExpiryKey(key: string): void {
+  setIdleName(key: string): void {
     if (this.expiry instanceof LocalStorageExpiry) {
-      this.expiry.setExpiryKey(key);
+      this.expiry.setIdleName(key);
     } else {
       throw new Error('Cannot set expiry key name because no LocalStorageExpiry has been provided.');
     }
@@ -247,7 +248,7 @@ export class Idle implements OnDestroy {
     this.safeClearInterval('idleHandle');
     this.safeClearInterval('timeoutHandle');
 
-    this.idling = false;
+    this.setIdling(false);
     this.running = false;
 
     this.expiry.last(null);
@@ -264,7 +265,7 @@ export class Idle implements OnDestroy {
     this.safeClearInterval('idleHandle');
     this.safeClearInterval('timeoutHandle');
 
-    this.idling = true;
+    this.setIdling(true);
     this.running = false;
     this.countdown = 0;
 
@@ -288,13 +289,18 @@ export class Idle implements OnDestroy {
     this.onInterrupt.emit(eventArgs);
 
     if (force === true || this.autoResume === AutoResume.idle ||
-        (this.autoResume === AutoResume.notIdle && !this.idling)) {
+        (this.autoResume === AutoResume.notIdle && !this.expiry.idling())) {
       this.watch(force);
     }
   }
 
+  private setIdling(value: boolean): void {
+    this.idling = value;
+    this.expiry.idling(value);
+  }
+
   private toggleState(): void {
-    this.idling = !this.idling;
+    this.setIdling(!this.idling);
 
     if (this.idling) {
       this.onIdleStart.emit(null);

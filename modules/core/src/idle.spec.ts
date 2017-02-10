@@ -19,9 +19,9 @@ describe('core/Idle', () => {
         { providers: [LocalStorageExpiry, LocalStorage, { provide: IdleExpiry, useExisting: LocalStorageExpiry }, Idle] });
     });
 
-    it('setExpiryKey() should set expiry key name', inject([Idle, LocalStorageExpiry], (idle: Idle, exp: LocalStorageExpiry) => {
-      idle.setExpiryKey('newKeyName');
-      expect((exp as LocalStorageExpiry).getExpiryKey()).toBe('newKeyName');
+    it('setIdleName() should set idle name', inject([Idle, LocalStorageExpiry], (idle: Idle, exp: LocalStorageExpiry) => {
+      idle.setIdleName('demo');
+      expect((exp as LocalStorageExpiry).getIdleName()).toBe('demo');
     }));
   });
 
@@ -63,9 +63,9 @@ describe('core/Idle', () => {
         expect(actual).toEqual(expected);
       });
 
-      it('setExpiryKey() when expiry is not instance of LocalStorageExpiry should throw error', () => {
+      it('setIdleName() when expiry is not instance of LocalStorageExpiry should throw error', () => {
         expect(() => {
-          instance.setExpiryKey('newKeyName');
+          instance.setIdleName('demo');
         })
           .toThrowError(
           'Cannot set expiry key name because no LocalStorageExpiry has been provided.');

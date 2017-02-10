@@ -9,7 +9,7 @@ import { LocalStorage } from './localstorage';
 @Injectable()
 export class LocalStorageExpiry extends IdleExpiry {
 
-  private expiryKey: string = 'expiry';
+  private idleName: string = 'main';
 
   constructor(private localStorage: LocalStorage) {
     super();
@@ -28,26 +28,33 @@ export class LocalStorageExpiry extends IdleExpiry {
     return this.getExpiry();
   }
 
-  /*
-   * Gets the expiry key name.
-   * @return The name of the expiry key.
-   */
-  getExpiryKey(): string {
-    return this.expiryKey;
+  idling(value?: boolean): boolean {
+    if (value !== void 0) {
+      this.setIdling(value);
+    }
+    return this.getIdling();
   }
 
   /*
-   * Sets the expiry key name.
-   * @param The name of the expiry key.
+   * Gets the idle name.
+   * @return The name of the idle.
    */
-  setExpiryKey(key: string): void {
+  getIdleName(): string {
+    return this.idleName;
+  }
+
+  /*
+   * Sets the idle name.
+   * @param The name of the idle.
+   */
+  setIdleName(key: string): void {
     if (key) {
-      this.expiryKey = key;
+      this.idleName = key;
     }
   }
 
   private getExpiry(): Date {
-    let expiry: string = this.localStorage.getItem(this.expiryKey);
+    let expiry: string = this.localStorage.getItem(this.idleName + '.expiry');
     if (expiry) {
       return new Date(parseInt(expiry, 10));
     } else {
@@ -57,9 +64,26 @@ export class LocalStorageExpiry extends IdleExpiry {
 
   private setExpiry(value: Date) {
     if (value) {
-      this.localStorage.setItem(this.expiryKey, value.getTime().toString());
+      this.localStorage.setItem(this.idleName + '.expiry', value.getTime().toString());
     } else {
-      this.localStorage.removeItem(this.expiryKey);
+      this.localStorage.removeItem(this.idleName + '.expiry');
+    }
+  }
+
+  private getIdling(): boolean {
+    let idling: string = this.localStorage.getItem(this.idleName + '.idling');
+    if (idling) {
+      return idling === 'true';
+    } else {
+      return false;
+    }
+  }
+
+  private setIdling(value: boolean) {
+    if (value) {
+      this.localStorage.setItem(this.idleName + '.idling', value.toString());
+    } else {
+      this.localStorage.setItem(this.idleName + '.idling', 'false');
     }
   }
 
