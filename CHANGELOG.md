@@ -1,3 +1,14 @@
+<a name="2.0.0-beta.6"></a>
+# [2.0.0-beta.6](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.5...v2.0.0-beta.6) (2017-02-14)
+
+
+### Bug Fixes
+
+* AutoResume.notIdle with LocalStorageExpiry wasn't working well ([935ade9](https://github.com/HackedByChinese/ng2-idle/commit/935ade9))
+* bugfix when last() with null value throws exception ([5b3d175](https://github.com/HackedByChinese/ng2-idle/commit/5b3d175))
+
+
+
 <a name="2.0.0-beta.5"></a>
 # [2.0.0-beta.5](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2017-02-09)
 
