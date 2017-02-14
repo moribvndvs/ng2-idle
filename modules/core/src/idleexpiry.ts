@@ -3,9 +3,11 @@
  */
 export abstract class IdleExpiry {
   protected idValue: any;
+  protected idlingValue: boolean;
 
   constructor() {
     this.idValue = new Date();
+    this.idlingValue = false;
   }
 
   /*
@@ -31,6 +33,19 @@ export abstract class IdleExpiry {
    * @return The last expiry value.
    */
   abstract last(value?: Date): Date;
+
+  /*
+   * Gets or sets the idling value.
+   * @param value - The value to set.
+   * @return The idling value.
+   */
+  idling(value?: boolean): boolean {
+    if (value !== void 0) {
+      this.idlingValue = value;
+    }
+
+    return this.idlingValue;
+  }
 
   /*
    * Returns the current Date.

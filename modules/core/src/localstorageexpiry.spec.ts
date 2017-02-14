@@ -21,22 +21,50 @@ describe('core/LocalStorageExpiry', () => {
     expect(service.last()).toEqual(expected);
   }));
 
-  it('setExpiryKey() sets the key name of expiry', inject([LocalStorageExpiry], (service: LocalStorageExpiry) => {
-    expect(service.getExpiryKey()).toBe('expiry');
-    service.setExpiryKey('name');
-    expect(service.getExpiryKey()).toBe('name');
+  it('last() remove value and return null if param is null', inject([LocalStorageExpiry], (service: LocalStorageExpiry) => {
+    let expected = null;
+    expect(service.last(expected)).toEqual(expected);
+    expect(service.last()).toEqual(expected);
   }));
 
-  it('setExpiryKey() doesn\'t set expiry key name if param is null', inject([LocalStorageExpiry], (service: LocalStorageExpiry) => {
-    expect(service.getExpiryKey()).toBe('expiry');
-    service.setExpiryKey(null);
-    expect(service.getExpiryKey()).toBe('expiry');
+  it('idling() returns the current value', inject([LocalStorageExpiry], (service: LocalStorageExpiry) => {
+    expect(service.idling()).toBeFalsy();
   }));
 
-  it('setExpiryKey() doesn\'t set expiry key name if param is empty', inject([LocalStorageExpiry], (service: LocalStorageExpiry) => {
-    expect(service.getExpiryKey()).toBe('expiry');
-    service.setExpiryKey('');
-    expect(service.getExpiryKey()).toBe('expiry');
+  it('idling() sets the specified value', inject([LocalStorageExpiry], (service: LocalStorageExpiry) => {
+    let expected = true;
+    expect(service.idling(expected)).toEqual(expected);
+    expect(service.idling()).toEqual(expected);
+  }));
+
+  it('idling() with null param return false', inject([LocalStorageExpiry], (service: LocalStorageExpiry) => {
+    let expected = false;
+    expect(service.idling(null)).toEqual(expected);
+    expect(service.idling()).toEqual(expected);
+  }));
+
+  it('last() return false if param is null', inject([LocalStorageExpiry], (service: LocalStorageExpiry) => {
+    let expected = false;
+    expect(service.idling(null)).toEqual(expected);
+    expect(service.idling()).toEqual(expected);
+  }));
+
+  it('setIdleName() sets the key name of expiry', inject([LocalStorageExpiry], (service: LocalStorageExpiry) => {
+    expect(service.getIdleName()).toBe('main');
+    service.setIdleName('demo');
+    expect(service.getIdleName()).toBe('demo');
+  }));
+
+  it('setIdleName() doesn\'t set expiry key name if param is null', inject([LocalStorageExpiry], (service: LocalStorageExpiry) => {
+    expect(service.getIdleName()).toBe('main');
+    service.setIdleName(null);
+    expect(service.getIdleName()).toBe('main');
+  }));
+
+  it('setIdleName() doesn\'t set expiry key name if param is empty', inject([LocalStorageExpiry], (service: LocalStorageExpiry) => {
+    expect(service.getIdleName()).toBe('main');
+    service.setIdleName('');
+    expect(service.getIdleName()).toBe('main');
   }));
 
 });
