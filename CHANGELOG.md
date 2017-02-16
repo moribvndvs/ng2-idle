@@ -1,3 +1,13 @@
+<a name="2.0.0-beta.7"></a>
+# [2.0.0-beta.7](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2017-02-16)
+
+
+### Bug Fixes
+
+* **core:** check expiry before toggling idle state ([6702c36](https://github.com/HackedByChinese/ng2-idle/commit/6702c36)), closes [#37](https://github.com/HackedByChinese/ng2-idle/issues/37)
+
+
+
 <a name="2.0.0-beta.6"></a>
 # [2.0.0-beta.6](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.5...v2.0.0-beta.6) (2017-02-14)
 
