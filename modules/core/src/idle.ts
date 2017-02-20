@@ -36,7 +36,7 @@ export class Idle implements OnDestroy {
   private autoResume: AutoResume = AutoResume.idle;
   private interrupts: Array<Interrupt> = new Array;
   private running: boolean = false;
-  private idling: boolean = false;
+  private idling: boolean;
   private idleHandle: any;
   private timeoutHandle: any;
   private countdown: number;
@@ -56,6 +56,7 @@ export class Idle implements OnDestroy {
       this.keepaliveSvc = keepaliveSvc;
       this.keepaliveEnabled = true;
     }
+    this.setIdling(false);
   }
 
   /*
