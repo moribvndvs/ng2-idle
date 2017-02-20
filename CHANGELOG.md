@@ -1,3 +1,13 @@
+<a name="2.0.0-beta.8"></a>
+# [2.0.0-beta.8](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.7...v2.0.0-beta.8) (2017-02-20)
+
+
+### Bug Fixes
+
+* Initialize localStorage idling value to false in constructor ([ab71433](https://github.com/HackedByChinese/ng2-idle/commit/ab71433))
+
+
+
 <a name="2.0.0-beta.7"></a>
 # [2.0.0-beta.7](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2017-02-16)
 
