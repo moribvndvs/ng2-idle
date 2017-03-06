@@ -404,6 +404,27 @@ describe('core/Idle', () => {
         instance.stop();
       }));
 
+      it('emits an onInterrupt event when the countdown ticks and expiry last has been updated', fakeAsync(() => {
+        spyOn(instance.onInterrupt, 'emit').and.callThrough();
+
+        instance.setTimeout(3);
+        expiry.mockNow = new Date();
+        instance.watch();
+
+        expiry.mockNow = new Date(expiry.now().getTime() + instance.getIdle() * 1000);
+        tick(3000);
+        expect(instance.isIdling()).toBe(true);
+
+        tick(1000);  // going once
+        tick(1000);  // going twice
+        expiry.last(new Date(expiry.now().getTime() + 6000));
+        tick(1000);  // going thrice
+
+        expect(instance.onInterrupt.emit).toHaveBeenCalledTimes(1);
+
+        instance.stop();
+      }));
+
       it('does not emit an onTimeoutWarning when timeout is disabled', fakeAsync(() => {
         spyOn(instance.onTimeoutWarning, 'emit').and.callThrough();
 
