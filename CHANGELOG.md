@@ -1,3 +1,13 @@
+<a name="2.0.0-beta.9"></a>
+# [2.0.0-beta.9](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2017-03-20)
+
+
+### Bug Fixes
+
+* **idle:** check expiry on timeout doCountdown ([e23233d](https://github.com/HackedByChinese/ng2-idle/commit/e23233d))
+
+
+
 <a name="2.0.0-beta.8"></a>
 # [2.0.0-beta.8](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.7...v2.0.0-beta.8) (2017-02-20)
 
