@@ -2,7 +2,7 @@
   "name": "ng-idle-src",
   "version": "2.0.0-beta.9",
   "private": true,
-  "description": "A module for responding to idle users in Angular 2 applications.",
+  "description": "A module for responding to idle users in Angular 2+ applications.",
   "scripts": {
     "clean": "npm cache clean && rimraf node_modules && rimraf coverage && rimraf dist && rimraf .tmp",
     "clean:dist": "rimraf dist && rimraf .tmp",
