@@ -11,7 +11,7 @@ This guide will describe how _you_ can contribute to this module.
 
 ## <a name="getting-help"></a> Getting Help
 
-Questions and comments for AngularJS should be directed [here][angularhelp].
+Questions and comments for Angular should be directed [here][angularhelp].
 
 I ask that you do not use GitHub Issues to ask questions. Instead, please use [Gitter] or [StackOverflow] for help.
 
@@ -103,8 +103,8 @@ Please follow these steps to submit a pull request:
 * After cloning the [repo][githubrepo], install the dev dependencies using `npm install`.
 * Check out a work branch for your changes. `npm checkout -b my-fix master`.
 * Make your changes, **including test cases**.
-* Run `gulp test`. Ensure all tests pass.
-* Run `gulp build` and correct any linting warnings or errors. You can use `gulp clang:format` to automatically fix most style errors.
+* Run `npm test`. Ensure all tests pass.
+* Run `npm run build` and correct any linting warnings or errors.
 * Commit using the [Git Commit Guidelines](#committing).
 * Submit a pull request to `ng2-idle:master`.
 * I will review your PR, and may suggest changes. If changes are suggested:

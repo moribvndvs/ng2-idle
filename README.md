@@ -52,7 +52,7 @@ By default, a `LocalStorageExpiry` type is provided, which will just keep track 
 
 ### Multiple Idle Instance Support
 The dependency injector in Angular 2+ supports a hierarchical injection strategy. This allows you to create an instance of `Idle` at whatever scope you need, and there can be more than one instance. This allows you two have two separate watches, for example, on two different elements on the page.  
-If you use the default expiry (`LocalStorageExpiry`), you will need to define a name for each idle with `Idle.setIdleName('yourIdleName')`, otherwise the same key will be used in the localStorage and this feature will not work as expected. 
+If you use the default expiry (`LocalStorageExpiry`), you will need to define a name for each idle with `Idle.setIdleName('yourIdleName')`, otherwise the same key will be used in the localStorage and this feature will not work as expected.
 
 ### Example Use Case
 For example, consider an email application. For increased security, the application may wish to determine when the user is inactive and log them out, giving them a chance to extend their session if they are still at the computer and just got distracted. Additionally, for even better security the server may issue the user's session a security token that expires after 5 minutes of inactivity. The user may take much more time than that to type out their email and send it. It would be frustrating to find you are logged out when you were actively using the software!
@@ -86,11 +86,6 @@ If you wish to prepare a branch for a pull request, run this command and fix any
  npm run build
 ```
 
-You can use `clang-format` to automatically correct most style errors and then commit the results:
-
-```
- npm run format
-```
 
 ## Contributing
 See the [contributing guide](https://github.com/HackedByChinese/ng2-idle/blob/master/CONTRIBUTING.md).

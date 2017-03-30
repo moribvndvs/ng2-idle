@@ -22,7 +22,6 @@
     "changelog": "node_modules/.bin/conventional-changelog -i ./CHANGELOG.md -s -p angular",
     "test": "node_modules/.bin/karma start",
     "watch:test": "npm run test -- --auto-watch --no-single-run",
-    "format": "gulp clang:format",
     "coverage": "cat ./coverage/lcov.info | ./node_modules/.bin/coveralls"
   },
   "repository": {
