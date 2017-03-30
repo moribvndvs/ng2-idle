@@ -1,6 +1,6 @@
 {
   "name": "ng-idle-src",
-  "version": "2.0.0-beta.9",
+  "version": "2.0.0-beta.10",
   "private": true,
   "description": "A module for responding to idle users in Angular 2+ applications.",
   "scripts": {

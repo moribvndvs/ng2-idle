@@ -1,3 +1,11 @@
+<a name="2.0.0-beta.10"></a>
+# [2.0.0-beta.10](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2017-03-30)
+
+
+### Chores
+
+* **deps**: support Angular 4 in addition to Angular 2
+
 <a name="2.0.0-beta.9"></a>
 # [2.0.0-beta.9](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2017-03-20)
 
