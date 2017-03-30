@@ -1,7 +1,7 @@
 {
   "name": "@ng-idle/core",
   "version": "0.0.0-PLACEHOLDER",
-  "description": "ng-idle for Angular 2 core module",
+  "description": "ng-idle for Angular 2+ core module",
   "main": "bundles/core.umd.js",
   "module": "index.js",
   "typings": "index.d.ts",
@@ -10,6 +10,7 @@
     "url": "git+https://github.com/HackedByChinese/ng2-idle.git"
   },
   "keywords": [
+    "angular",
     "angular2",
     "ng2-idle",
     "ng-idle",
