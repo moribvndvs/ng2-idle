@@ -31,16 +31,16 @@ export enum AutoResume {
  */
 @Injectable()
 export class Idle implements OnDestroy {
-  private idle: number = 20 * 60;   // in seconds
-  private timeoutVal: number = 30;  // in seconds
+  private idle: number = 20 * 60;  // in seconds
+  private timeoutVal = 30;         // in seconds
   private autoResume: AutoResume = AutoResume.idle;
   private interrupts: Array<Interrupt> = new Array;
-  private running: boolean = false;
+  private running = false;
   private idling: boolean;
   private idleHandle: any;
   private timeoutHandle: any;
   private countdown: number;
-  private keepaliveEnabled: boolean = false;
+  private keepaliveEnabled = false;
   private keepaliveSvc: KeepaliveSvc;
 
   public onIdleStart: EventEmitter<any> = new EventEmitter;
@@ -68,7 +68,8 @@ export class Idle implements OnDestroy {
     if (this.expiry instanceof LocalStorageExpiry) {
       this.expiry.setIdleName(key);
     } else {
-      throw new Error('Cannot set expiry key name because no LocalStorageExpiry has been provided.');
+      throw new Error(
+          'Cannot set expiry key name because no LocalStorageExpiry has been provided.');
     }
   }
 

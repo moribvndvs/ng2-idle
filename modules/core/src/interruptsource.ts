@@ -6,7 +6,7 @@ import {InterruptArgs} from './interruptargs';
  * A base for classes that act as a source for interrupts.
  */
 export abstract class InterruptSource {
-  isAttached: boolean = false;
+  isAttached = false;
 
   public onInterrupt: EventEmitter<InterruptArgs> = new EventEmitter<InterruptArgs>();
 

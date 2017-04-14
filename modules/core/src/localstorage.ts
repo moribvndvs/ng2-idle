@@ -1,12 +1,11 @@
-import { Injectable } from '@angular/core';
-import { AlternativeStorage } from './alternativestorage';
+import {Injectable} from '@angular/core';
+import {AlternativeStorage} from './alternativestorage';
 
 /*
  * Represents a localStorage store.
  */
 @Injectable()
 export class LocalStorage {
-
   private storage: Storage;
 
   constructor() {
@@ -15,7 +14,8 @@ export class LocalStorage {
 
   /*
    * Safari, in Private Browsing Mode, looks like it supports localStorage but all calls to setItem
-   * throw QuotaExceededError. We're going to detect this and just silently drop any calls to setItem
+   * throw QuotaExceededError. We're going to detect this and just silently drop any calls to
+   * setItem
    * to avoid the entire page breaking, without having to do a check at each usage of Storage.
    */
   private getStorage(): Storage {
@@ -35,7 +35,7 @@ export class LocalStorage {
    * @param value - The value to get.
    * @return The current value.
    */
-  getItem(key: string): string | null {
+  getItem(key: string): string|null {
     return this.storage.getItem('ng2Idle.' + key);
   }
 
@@ -46,7 +46,7 @@ export class LocalStorage {
    */
   removeItem(key: string): void {
     this.storage.removeItem('ng2Idle.' + key);
-  };
+  }
 
   /*
    * Sets an item in the storage.
@@ -56,7 +56,7 @@ export class LocalStorage {
    */
   setItem(key: string, data: string): void {
     this.storage.setItem('ng2Idle.' + key, data);
-  };
+  }
 
   /*
    * Represents the storage, commonly use for testing purposes.
@@ -67,5 +67,4 @@ export class LocalStorage {
   _wrapped(): Storage {
     return this.storage;
   }
-
 }
