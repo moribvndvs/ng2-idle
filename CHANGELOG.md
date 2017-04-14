@@ -1,3 +1,10 @@
+<a name="2.0.0-beta.11"></a>
+# [2.0.0-beta.11](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.10...v2.0.0-beta.11) (2017-04-14)
+
+### Refactor
+
+* updated imports of rxjs to only import the operators and types used.
+
 <a name="2.0.0-beta.10"></a>
 # [2.0.0-beta.10](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2017-03-30)
 
