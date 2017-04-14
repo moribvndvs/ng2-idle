@@ -1,4 +1,4 @@
-import {Subscription} from 'rxjs/Rx';
+import {Subscription} from 'rxjs/Subscription';
 
 import {InterruptArgs} from './interruptargs';
 import {InterruptSource} from './interruptsource';
