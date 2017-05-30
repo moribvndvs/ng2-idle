@@ -235,9 +235,7 @@ export class Idle implements OnDestroy {
     this.running = true;
 
     let watchFn = () => {
-      let now: Date = this.expiry.now();
-      let last: Date = this.expiry.last() || now;
-      let diff: Number = last.getTime() - now.getTime() - (timeout * 1000);
+      let diff = this.getExpiryDiff(timeout);
       if (diff > 0) {
         this.safeClearInterval('idleHandle');
         this.idleHandle = setInterval(watchFn, diff);
@@ -344,11 +342,15 @@ export class Idle implements OnDestroy {
     }
   }
 
-  private doCountdown(): void {
-    let timeout = !this.timeoutVal ? 0 : this.timeoutVal;
+  private getExpiryDiff(timeout: number): number {
     let now: Date = this.expiry.now();
     let last: Date = this.expiry.last() || now;
-    let diff: Number = last.getTime() - now.getTime() - (timeout * 1000);
+    return last.getTime() - now.getTime() - (timeout * 1000);
+  }
+
+  private doCountdown(): void {
+    let timeout = !this.timeoutVal ? 0 : this.timeoutVal;
+    let diff = this.getExpiryDiff(timeout);
     if (diff > 0) {
       this.safeClearInterval('timeoutHandle');
       this.interrupt(true);
