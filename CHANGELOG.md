@@ -1,3 +1,13 @@
+<a name="2.0.0-beta.12"></a>
+# [2.0.0-beta.12](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.11...v2.0.0-beta.12) (2017-05-30)
+
+
+### Bug Fixes
+
+* **idle:** use expiry.now() if expiry.last() returns null ([06fcb36](https://github.com/HackedByChinese/ng2-idle/commit/06fcb36)), closes [#54](https://github.com/HackedByChinese/ng2-idle/issues/54)
+
+
+
 <a name="2.0.0-beta.11"></a>
 # [2.0.0-beta.11](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.10...v2.0.0-beta.11) (2017-04-14)
 
