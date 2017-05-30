@@ -346,6 +346,21 @@ describe('core/Idle', () => {
         instance.stop();
       }));
 
+      it('emits an onIdleStart event if there was no "last" expiry set.', fakeAsync(() => {
+        spyOn(instance.onIdleStart, 'emit').and.callThrough();
+
+        expiry.mockNow = new Date();
+        instance.watch();
+
+        expiry.mockNow = new Date(expiry.now().getTime() + instance.getIdle() * 1000);
+        expiry.last(null);
+        tick(3000);
+
+        expect(instance.onIdleStart.emit).toHaveBeenCalledTimes(1);
+
+        instance.stop();
+      }));
+
       it('emits an onIdleEnd event when the user returns from idle', fakeAsync(() => {
         spyOn(instance.onIdleEnd, 'emit').and.callThrough();
 
