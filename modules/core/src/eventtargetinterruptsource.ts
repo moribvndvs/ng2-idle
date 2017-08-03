@@ -7,6 +7,23 @@ import {Subscription} from 'rxjs/Subscription';
 import {InterruptArgs} from './interruptargs';
 import {InterruptSource} from './interruptsource';
 
+/**
+ * Options for EventTargetInterruptSource
+ */
+export interface EventTargetInterruptOptions {
+  /**
+   * The number of milliseconds to throttle the events coming from the target.
+   */
+  throttleDelay?: number;
+
+  /**
+   * Whether or not to use passive event listeners.
+   * Note: you need to detect if the browser supports passive listeners, and only set this to true if it does.
+   */
+  passive?: boolean;
+}
+
+const defaultThrottleDelay = 500;
 
 /*
  * An interrupt source on an EventTarget object, such as a Window or HTMLElement.
@@ -14,14 +31,30 @@ import {InterruptSource} from './interruptsource';
 export class EventTargetInterruptSource extends InterruptSource {
   private eventSrc: Array<Observable<any>> = new Array;
   private eventSubscription: Array<Subscription> = new Array;
+  protected throttleDelay: number;
+  protected passive: boolean;
 
-  constructor(protected target: any, protected events: string, protected throttleDelay = 500) {
+  constructor(protected target: any, protected events: string, options?: number | EventTargetInterruptOptions) {
     super(null, null);
+
+    if (typeof options === 'number') {
+      options = {throttleDelay: options, passive: false};
+    }
+
+    options = options || { throttleDelay: defaultThrottleDelay, passive: false};
+
+    if (options.throttleDelay === undefined || options.throttleDelay === null) {
+      options.throttleDelay = defaultThrottleDelay;
+    }
+
+    this.throttleDelay = options.throttleDelay;
+    this.passive = !!options.passive;
 
     let self = this;
 
     events.split(' ').forEach(function(event) {
-      let src = Observable.fromEvent(target, event);
+      const opts = self.passive ? { passive: true } : null;
+      let src = Observable.fromEvent(target, event, opts);
 
       if (self.throttleDelay > 0) {
         src = src.throttleTime(self.throttleDelay);
@@ -59,5 +92,13 @@ export class EventTargetInterruptSource extends InterruptSource {
    */
   protected filterEvent(event: any): boolean {
     return false;
+  }
+
+  /**
+   * Returns the current options being used.
+   * @return {EventTargetInterruptOptions} The current option values.
+   */
+  get options(): EventTargetInterruptOptions {
+    return {throttleDelay: this.throttleDelay, passive: this.passive};
   }
 }

@@ -97,4 +97,40 @@ describe('core/EventTargetInterruptSource', () => {
        // need to detach and do one full iteration to remove throttle timers or test will fail
        source.detach();
      }));
+
+   it('should set default options', () => {
+       const target = {};
+       const source = new EventTargetInterruptSource(target, 'click');
+       const {throttleDelay, passive} = source.options;
+
+       expect(passive).toBeFalsy();
+       expect(throttleDelay).toBe(500);
+     });
+
+   it('should set passive flag', () => {
+       const target = {};
+       const source = new EventTargetInterruptSource(target, 'click', {passive: true});
+       const {throttleDelay, passive} = source.options;
+
+       expect(passive).toBeTruthy();
+       expect(throttleDelay).toBe(500);
+     });
+
+   it('should set throttleDelay', () => {
+       const target = {};
+       const source = new EventTargetInterruptSource(target, 'click', {throttleDelay: 1000});
+       const {throttleDelay, passive} = source.options;
+
+       expect(passive).toBeFalsy();
+       expect(throttleDelay).toBe(1000);
+     });
+
+   it('should set both options', () => {
+       const target = {};
+       const source = new EventTargetInterruptSource(target, 'click', {throttleDelay: 1000, passive: true});
+       const {throttleDelay, passive} = source.options;
+
+       expect(passive).toBeTruthy();
+       expect(throttleDelay).toBe(1000);
+     });
 });

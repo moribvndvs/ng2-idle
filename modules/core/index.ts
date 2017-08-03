@@ -1,5 +1,6 @@
-import {DocumentInterruptSource} from './src/documentinterruptsource';
-import {StorageInterruptSource} from './src/storageinterruptsource';
+import { DocumentInterruptSource } from './src/documentinterruptsource';
+import { EventTargetInterruptOptions } from './src/eventtargetinterruptsource';
+import { StorageInterruptSource } from './src/storageinterruptsource';
 
 export * from './src/idle';
 export * from './src/interruptargs';
@@ -14,7 +15,12 @@ export * from './src/simpleexpiry';
 export * from './src/localstorage';
 export * from './src/localstorageexpiry';
 
-export const DEFAULT_INTERRUPTSOURCES: any[] = [new DocumentInterruptSource(
-    'mousemove keydown DOMMouseScroll mousewheel mousedown touchstart touchmove scroll'), new StorageInterruptSource()];
+export function createDefaultInterruptSources(options?: EventTargetInterruptOptions) {
+  return [new DocumentInterruptSource(
+    'mousemove keydown DOMMouseScroll mousewheel mousedown touchstart touchmove scroll', options),
+  new StorageInterruptSource()];
+}
 
-export {NgIdleModule} from './src/module';
+export const DEFAULT_INTERRUPTSOURCES: any[] = createDefaultInterruptSources();
+
+export { NgIdleModule } from './src/module';
