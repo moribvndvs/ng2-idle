@@ -1,7 +1,7 @@
 // clang-format off
 import {async, fakeAsync, inject, TestBed, tick} from '@angular/core/testing';
-import {BaseRequestOptions, Http, HttpModule, Request, RequestMethod, Response, ResponseOptions} from '@angular/http';
-import {MockBackend} from '@angular/http/testing';
+import {HttpRequest, HttpResponse, HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 
 import {Keepalive} from './keepalive';
 
@@ -9,21 +9,21 @@ describe('keepalive/Keepalive', () => {
 
   beforeEach(
       () => {
-        TestBed.configureTestingModule({imports: [HttpModule],
-          providers: [BaseRequestOptions, MockBackend, Keepalive, {deps: [MockBackend, BaseRequestOptions],
-              provide: Http,
-              useFactory:
-                  (backend, defaultOptions) => { return new Http(backend, defaultOptions); }
-              }]});
+        TestBed.configureTestingModule({imports: [HttpClientTestingModule, HttpClientModule],
+          providers: [Keepalive]});
       });
 
   let instance: Keepalive;
+  let httpMock: HttpTestingController;
 
-  beforeEach(inject([Keepalive], keepalive => { instance = keepalive; }));
+  beforeEach(inject([Keepalive, HttpTestingController], (keepalive, httpTestingController) => {
+    instance = keepalive;
+    httpMock = httpTestingController;
+  }));
 
   describe('runtime config', () => {
     it('request() should set and return a Request', () => {
-      let expected = new Request({method: RequestMethod.Get, url: 'http://test.com'});
+      let expected = new HttpRequest('GET', 'http://test.com');
 
       let actual = instance.request(expected);
 
@@ -34,7 +34,7 @@ describe('keepalive/Keepalive', () => {
       let expected = 'http://test.com/2';
       let actual = instance.request(expected);
 
-      expect(actual.method).toEqual(RequestMethod.Get);
+      expect(actual.method).toEqual('GET');
       expect(actual.url).toEqual(actual.url);
     });
 
@@ -92,34 +92,29 @@ describe('keepalive/Keepalive', () => {
 
   describe('using an HTTP request', () => {
 
-    let request = new Request({method: RequestMethod.Get, url: 'https://test.com'});
-    let backend: MockBackend;
+    let request = new HttpRequest('GET', 'https://test.com');
 
-    beforeEach(inject([Keepalive, MockBackend], (keepalive, mockBackend) => {
-      backend = mockBackend;
-      instance = keepalive;
+    beforeEach(() => {
+      instance = TestBed.get(Keepalive);
       instance.request(request);
-    }));
-
-    afterEach(() => {
-      // TODO: should be throwing if no expected requests are made
-      backend.resolveAllConnections();
-      backend.verifyNoPendingRequests();
     });
 
-    it('ping() should fire request and emit onPingResponse event', async(() => {
-      backend.connections.subscribe(connection => {
-          expect(connection.request.url).toBe(request.url);
+    afterEach(() => {
+      httpMock.verify();
+    });
 
-          connection.mockRespond(new ResponseOptions({status: 200}));
-        });
+    it('ping() should fire request and emit onPingResponse event', () => {
+      let actualResponse: HttpResponse<{}>;
 
-      instance.onPingResponse.subscribe((response: Response) => {
-          expect(response.status).toBe(200);
-        });
+      instance.onPingResponse.subscribe((response: HttpResponse<{}>) => {
+        actualResponse = response;
+      });
 
       instance.ping();
-    }));
+
+      httpMock.expectOne(request.url).flush(null, {status: 200, statusText: 'OK'});
+      expect(actualResponse.status).toBe(200);
+    });
   });
 
   describe('on an interval', () => {

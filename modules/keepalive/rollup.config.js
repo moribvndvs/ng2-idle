@@ -9,7 +9,7 @@ export default {
   moduleName: 'ngidle.keepalive',
   globals: {
     '@angular/core': 'ng.core',
-    '@angular/http': 'ng.http',
+    '@angular/common/http': 'ng.http',
     'rxjs/Rx': 'Rx',
     '@ng-idle/core': 'ng.core'
   },

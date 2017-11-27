@@ -1,7 +1,7 @@
 # Introduction
 [![Join the chat at https://gitter.im/HackedByChinese/ng2-idle](https://badges.gitter.im/HackedByChinese/ng2-idle.svg)](https://gitter.im/HackedByChinese/ng2-idle?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/HackedByChinese/ng2-idle.svg?branch=master)](https://travis-ci.org/HackedByChinese/ng2-idle) [![Coverage Status](https://coveralls.io/repos/github/HackedByChinese/ng2-idle/badge.svg?branch=master)](https://coveralls.io/github/HackedByChinese/ng2-idle?branch=master)
 
-A module for responding to idle users in Angular 2+ applications. This is a rewrite of the [ng-idle module](https://github.com/HackedByChinese/ng-idle); however if you are using Angular 1, you must use that module.
+A module for responding to idle users in Angular 4+ applications. This is a rewrite of the [ng-idle module](https://github.com/HackedByChinese/ng-idle); however if you are using Angular 1, you must use that module.
 
 ## License
 Authored by **Mike Grabski** @HackedByChinese me@mikegrabski.com
@@ -51,7 +51,7 @@ Another feature ported from `ng-idle` is the ability to store an expiry value in
 By default, a `LocalStorageExpiry` type is provided, which will just keep track of the expiry in the localStorage. It will fulfill all purposes mentioned above. If you don't want to support multiple tabs or windows, you can use `SimpleExpiry`. In other words, `SimpleExpiry` does not coordinate last activity between tabs or windows. If you want to store the expiry value in another store, like cookies, you'll need to use or create an implementation that supports that. You can create your own by extending `IdleExpiry` or `SimpleExpiry` and configuring it as a provider for the `IdleExpiry` class.
 
 ### Multiple Idle Instance Support
-The dependency injector in Angular 2+ supports a hierarchical injection strategy. This allows you to create an instance of `Idle` at whatever scope you need, and there can be more than one instance. This allows you two have two separate watches, for example, on two different elements on the page.  
+The dependency injector in Angular 4+ supports a hierarchical injection strategy. This allows you to create an instance of `Idle` at whatever scope you need, and there can be more than one instance. This allows you two have two separate watches, for example, on two different elements on the page.  
 If you use the default expiry (`LocalStorageExpiry`), you will need to define a name for each idle with `Idle.setIdleName('yourIdleName')`, otherwise the same key will be used in the localStorage and this feature will not work as expected.
 
 ### Example Use Case
