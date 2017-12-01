@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable, OnDestroy, Optional} from '@angular/core';
+import {EventEmitter, Injectable, NgZone, OnDestroy, Optional} from '@angular/core';
 
 import {IdleExpiry} from './idleexpiry';
 import {Interrupt} from './interrupt';
@@ -51,7 +51,7 @@ export class Idle implements OnDestroy {
 
   [key: string]: any;
 
-  constructor(private expiry: IdleExpiry, @Optional() keepaliveSvc?: KeepaliveSvc) {
+  constructor(private expiry: IdleExpiry, private zone: NgZone, @Optional() keepaliveSvc?: KeepaliveSvc) {
     if (keepaliveSvc) {
       this.keepaliveSvc = keepaliveSvc;
       this.keepaliveEnabled = true;
@@ -69,7 +69,7 @@ export class Idle implements OnDestroy {
       this.expiry.setIdleName(key);
     } else {
       throw new Error(
-          'Cannot set expiry key name because no LocalStorageExpiry has been provided.');
+        'Cannot set expiry key name because no LocalStorageExpiry has been provided.');
     }
   }
 
@@ -89,7 +89,7 @@ export class Idle implements OnDestroy {
   setKeepaliveEnabled(value: boolean): boolean {
     if (!this.keepaliveSvc) {
       throw new Error(
-          'Cannot enable keepalive integration because no KeepaliveSvc has been provided.');
+        'Cannot enable keepalive integration because no KeepaliveSvc has been provided.');
     }
 
     return this.keepaliveEnabled = value;
@@ -235,16 +235,27 @@ export class Idle implements OnDestroy {
     this.running = true;
 
     let watchFn = () => {
-      let diff = this.getExpiryDiff(timeout);
-      if (diff > 0) {
-        this.safeClearInterval('idleHandle');
-        this.idleHandle = setInterval(watchFn, diff);
-      } else {
-        this.toggleState();
-      }
+      this.zone.run(() => {
+        let diff = this.getExpiryDiff(timeout);
+        if (diff > 0) {
+          this.safeClearInterval('idleHandle');
+          this.setIdleIntervalOutsideOfZone(watchFn, diff);
+        } else {
+          this.toggleState();
+        }
+      });
     };
 
-    this.idleHandle = setInterval(watchFn, this.idle * 1000);
+    this.setIdleIntervalOutsideOfZone(watchFn, this.idle * 1000);
+  }
+
+  /*
+   * Allows protractor tests to call waitForAngular without hanging
+   */
+  setIdleIntervalOutsideOfZone(watchFn: () => void, frequency: number): void {
+    this.zone.runOutsideAngular(() => {
+      this.idleHandle = setInterval(watchFn, frequency);
+    });
   }
 
   /*
@@ -299,7 +310,7 @@ export class Idle implements OnDestroy {
     this.onInterrupt.emit(eventArgs);
 
     if (force === true || this.autoResume === AutoResume.idle ||
-        (this.autoResume === AutoResume.notIdle && !this.expiry.idling())) {
+      (this.autoResume === AutoResume.notIdle && !this.expiry.idling())) {
       this.watch(force);
     }
   }
@@ -319,8 +330,8 @@ export class Idle implements OnDestroy {
       if (this.timeoutVal > 0) {
         this.countdown = this.timeoutVal;
         this.doCountdown();
-        this.timeoutHandle = setInterval(() => {
-          this.doCountdown();
+        this.setTimoutIntervalOutsideZone(() => {
+          this.doCountdownInZone();
         }, 1000);
       }
     } else {
@@ -330,6 +341,14 @@ export class Idle implements OnDestroy {
     }
 
     this.safeClearInterval('idleHandle');
+  }
+
+  private setTimoutIntervalOutsideZone(intervalFn: () => void, frequency: number) {
+    this.zone.runOutsideAngular(() => {
+      this.timeoutHandle = setInterval(() => {
+        intervalFn();
+      }, frequency);
+    });
   }
 
   private toggleInterrupts(resume: boolean): void {
@@ -346,6 +365,12 @@ export class Idle implements OnDestroy {
     let now: Date = this.expiry.now();
     let last: Date = this.expiry.last() || now;
     return last.getTime() - now.getTime() - (timeout * 1000);
+  }
+
+  private doCountdownInZone(): void {
+    this.zone.run(() => {
+      this.doCountdown();
+    });
   }
 
   private doCountdown(): void {
