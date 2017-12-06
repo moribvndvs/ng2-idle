@@ -101,7 +101,7 @@ Please follow these steps to submit a pull request:
 
 * Look through existing [GitHub pull requests][githubprs] to see if a similar pull request already exists, to avoid duplicating efforts.
 * After cloning the [repo][githubrepo], install the dev dependencies using `npm install`.
-* Check out a work branch for your changes. `npm checkout -b my-fix master`.
+* Check out a work branch for your changes. `git checkout -b my-fix master`.
 * Make your changes, **including test cases**.
 * Run `npm test`. Ensure all tests pass.
 * Run `npm run build` and correct any linting warnings or errors.
