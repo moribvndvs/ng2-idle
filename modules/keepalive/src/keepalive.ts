@@ -91,7 +91,7 @@ export class Keepalive extends KeepaliveSvc implements OnDestroy {
    * Stops pinging on an interval.
    */
   stop(): void {
-    if (this.pingHandle) {
+    if (this.hasPingHandle()) {
       clearInterval(this.pingHandle);
       this.pingHandle = null;
     }
@@ -109,6 +109,10 @@ export class Keepalive extends KeepaliveSvc implements OnDestroy {
    * @return True if the service will ping at the specified interval; otherwise, false.
    */
   isRunning(): boolean {
-    return !!this.pingHandle;
+    return this.hasPingHandle();
+  }
+
+  private hasPingHandle(): boolean {
+    return this.pingHandle !== null && typeof this.pingHandle !== 'undefined';
   }
 }
