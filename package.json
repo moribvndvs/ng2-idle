@@ -2,7 +2,7 @@
   "name": "ng-idle-src",
   "version": "2.0.0-beta.12",
   "private": true,
-  "description": "A module for responding to idle users in Angular 2+ applications.",
+  "description": "A module for responding to idle users in Angular 4+ applications.",
   "scripts": {
     "clean": "npm cache clean && rimraf node_modules && rimraf coverage && rimraf dist && rimraf .tmp",
     "clean:dist": "rimraf dist && rimraf .tmp",
@@ -35,17 +35,17 @@
   },
   "homepage": "https://github.com/HackedByChinese/ng2-idle.git#readme",
   "devDependencies": {
-    "@angular/compiler": "^2.0.0 || ^4.0.0",
-    "@angular/compiler-cli": "^2.0.0 || ^4.0.0",
-    "@angular/platform-browser": "^2.0.0 || ^4.0.0",
-    "@angular/platform-browser-dynamic": "^2.0.0 || ^4.0.0",
+    "@angular/compiler": "^4.0.0 || ^5.0.0",
+    "@angular/compiler-cli": "^4.0.0 || ^5.0.0",
+    "@angular/platform-browser": "^4.0.0 || ^5.0.0",
+    "@angular/platform-browser-dynamic": "^4.0.0 || ^5.0.0",
     "@types/jasmine": "^2.5.37",
     "@types/node": "^6.0.46",
     "@types/source-map": "^0.1.29",
     "@types/webpack": "^1.12.35",
     "awesome-typescript-loader": "^3.0.3",
     "conventional-changelog-cli": "^1.2.0",
-    "core-js": "^2.4.1",
+    "core-js": "^2.5.1",
     "coveralls": "^2.11.15",
     "cz-conventional-changelog": "^1.1.6",
     "istanbul-instrumenter-loader": "0.2.0",
@@ -62,19 +62,18 @@
     "rimraf": "^2.5.4",
     "rollup": "^0.36.3",
     "rollup-plugin-uglify": "^1.0.1",
-    "rxjs": "^5.2.0",
+    "rxjs": "^5.5.2",
     "source-map-loader": "^0.1.5",
     "ts-helpers": "^1.1.2",
     "tslint": "^5.1.0",
     "tslint-loader": "^3.5.2",
-    "typescript": "2.1.5",
+    "typescript": "~2.4.2",
     "webpack": "2.1.0-beta.25",
-    "zone.js": "^0.7.8 || ^0.8.4"
+    "zone.js": "0.8.18"
   },
   "dependencies": {
-    "@angular/common": "^2.0.0 || ^4.0.0",
-    "@angular/core": "^2.0.0 || ^4.0.0",
-    "@angular/http": "^2.0.0 || ^4.0.0"
+    "@angular/common": "^4.0.0 || ^5.0.0",
+    "@angular/core": "^4.0.0 || ^5.0.0"
   },
   "config": {
     "commitizen": {

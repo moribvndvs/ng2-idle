@@ -371,7 +371,8 @@ export class Idle implements OnDestroy {
   }
 
   private safeClearInterval(handleName: string): void {
-    if (this[handleName]) {
+    const handle = this[handleName];
+    if (handle !== null && typeof handle !== 'undefined') {
       clearInterval(this[handleName]);
       this[handleName] = null;
     }
