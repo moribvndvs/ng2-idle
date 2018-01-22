@@ -1,6 +1,6 @@
 import uglify from 'rollup-plugin-uglify';
 
-var ugly = process.env.MODE === 'ugly';
+var ugly = process.env.npm_config_mode === 'ugly';
 
 export default {
   entry: 'dist/core/testing/index.js',
