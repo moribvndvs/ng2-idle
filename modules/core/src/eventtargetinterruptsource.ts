@@ -1,11 +1,11 @@
 import 'rxjs/add/operator/throttleTime';
 import 'rxjs/add/observable/fromEvent';
 
-import {Observable} from 'rxjs/Observable';
-import {Subscription} from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
-import {InterruptArgs} from './interruptargs';
-import {InterruptSource} from './interruptsource';
+import { InterruptArgs } from './interruptargs';
+import { InterruptSource } from './interruptsource';
 
 /**
  * Options for EventTargetInterruptSource
@@ -38,10 +38,10 @@ export class EventTargetInterruptSource extends InterruptSource {
     super(null, null);
 
     if (typeof options === 'number') {
-      options = {throttleDelay: options, passive: false};
+      options = { throttleDelay: options, passive: false };
     }
 
-    options = options || { throttleDelay: defaultThrottleDelay, passive: false};
+    options = options || { throttleDelay: defaultThrottleDelay, passive: false };
 
     if (options.throttleDelay === undefined || options.throttleDelay === null) {
       options.throttleDelay = defaultThrottleDelay;
@@ -52,7 +52,7 @@ export class EventTargetInterruptSource extends InterruptSource {
 
     let self = this;
 
-    events.split(' ').forEach(function(event) {
+    events.split(' ').forEach(function (event) {
       const opts = self.passive ? { passive: true } : null;
       let src = Observable.fromEvent(target, event, opts);
 
@@ -63,7 +63,7 @@ export class EventTargetInterruptSource extends InterruptSource {
       self.eventSrc.push(src);
     });
 
-    let handler = function(innerArgs: any): void {
+    let handler = function (innerArgs: any): void {
       if (self.filterEvent(innerArgs)) {
         return;
       }
@@ -99,6 +99,6 @@ export class EventTargetInterruptSource extends InterruptSource {
    * @return {EventTargetInterruptOptions} The current option values.
    */
   get options(): EventTargetInterruptOptions {
-    return {throttleDelay: this.throttleDelay, passive: this.passive};
+    return { throttleDelay: this.throttleDelay, passive: this.passive };
   }
 }
