@@ -63,4 +63,22 @@ describe('core/DocumentInterruptSource', () => {
 
     source.detach();
   }));
+
+
+  it('should emit onInterrupt event on webkit real mousemove events', fakeAsync(() => {
+    let source = new DocumentInterruptSource('mousemove');
+    spyOn(source.onInterrupt, 'emit').and.callThrough();
+    source.attach();
+
+    let expected: any = new Event('mousemove');
+
+    expected.movementX = 7;
+    expected.movementY = 16;
+
+    document.documentElement.dispatchEvent(expected);
+
+    expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
+
+    source.detach();
+  }));
 });
