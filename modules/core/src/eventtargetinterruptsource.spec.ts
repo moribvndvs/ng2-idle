@@ -74,9 +74,8 @@ describe('core/EventTargetInterruptSource', () => {
     document.body.dispatchEvent(new Event('click'));
     expect(source.onInterrupt.emit).toHaveBeenCalledTimes(3);
 
-    // need to detach and do one full iteration to remove throttle timers or test will fail
+    // need to detach to remove throttle timers or test will fail
     source.detach();
-    tick(500);
   }));
 
   it('should not throttle target events if throttleDelay is 0', fakeAsync(() => {
@@ -94,7 +93,7 @@ describe('core/EventTargetInterruptSource', () => {
     document.body.dispatchEvent(new Event('click'));
     expect(source.onInterrupt.emit).toHaveBeenCalledTimes(3);
 
-    // need to detach and do one full iteration to remove throttle timers or test will fail
+    // need to detach to remove throttle timers or test will fail
     source.detach();
   }));
 
