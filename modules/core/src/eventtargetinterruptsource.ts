@@ -1,11 +1,13 @@
+import 'rxjs/add/operator/filter';
 import 'rxjs/add/operator/throttleTime';
 import 'rxjs/add/observable/fromEvent';
+import 'rxjs/add/observable/merge';
 
-import {Observable} from 'rxjs/Observable';
-import {Subscription} from 'rxjs/Subscription';
+import { Observable } from 'rxjs/Observable';
+import { Subscription } from 'rxjs/Subscription';
 
-import {InterruptArgs} from './interruptargs';
-import {InterruptSource} from './interruptsource';
+import { InterruptArgs } from './interruptargs';
+import { InterruptSource } from './interruptsource';
 
 /**
  * Options for EventTargetInterruptSource
@@ -29,8 +31,8 @@ const defaultThrottleDelay = 500;
  * An interrupt source on an EventTarget object, such as a Window or HTMLElement.
  */
 export class EventTargetInterruptSource extends InterruptSource {
-  private eventSrc: Array<Observable<any>> = new Array;
-  private eventSubscription: Array<Subscription> = new Array;
+  private eventSrc: Observable<any>;
+  private eventSubscription: Subscription = new Subscription();
   protected throttleDelay: number;
   protected passive: boolean;
 
@@ -38,10 +40,10 @@ export class EventTargetInterruptSource extends InterruptSource {
     super(null, null);
 
     if (typeof options === 'number') {
-      options = {throttleDelay: options, passive: false};
+      options = { throttleDelay: options, passive: false };
     }
 
-    options = options || { throttleDelay: defaultThrottleDelay, passive: false};
+    options = options || { throttleDelay: defaultThrottleDelay, passive: false };
 
     if (options.throttleDelay === undefined || options.throttleDelay === null) {
       options.throttleDelay = defaultThrottleDelay;
@@ -50,39 +52,19 @@ export class EventTargetInterruptSource extends InterruptSource {
     this.throttleDelay = options.throttleDelay;
     this.passive = !!options.passive;
 
-    let self = this;
+    const opts = this.passive ? { passive: true } : null;
+    const fromEvents = events.split(' ').map(eventName => Observable.fromEvent<any>(target, eventName, opts));
+    this.eventSrc = Observable.merge(...fromEvents);
+    this.eventSrc = this.eventSrc.filter(innerArgs => !this.filterEvent(innerArgs));
+    if (this.throttleDelay > 0) {
+      this.eventSrc = this.eventSrc.throttleTime(this.throttleDelay);
+    }
 
-    events.split(' ').forEach(function(event) {
-      const opts = self.passive ? { passive: true } : null;
-      let src = Observable.fromEvent(target, event, opts);
+    let handler = (innerArgs: any) => this.onInterrupt.emit(new InterruptArgs(this, innerArgs));
 
-      if (self.throttleDelay > 0) {
-        src = src.throttleTime(self.throttleDelay);
-      }
+    this.attachFn = () => this.eventSubscription = this.eventSrc.subscribe(handler);
 
-      self.eventSrc.push(src);
-    });
-
-    let handler = function(innerArgs: any): void {
-      if (self.filterEvent(innerArgs)) {
-        return;
-      }
-      let args = new InterruptArgs(this, innerArgs);
-      self.onInterrupt.emit(args);
-    };
-
-    this.attachFn = () => {
-      this.eventSrc.forEach((src: Observable<any>) => {
-        self.eventSubscription.push(src.subscribe(handler));
-      });
-    };
-
-    this.detachFn = () => {
-      this.eventSubscription.forEach((sub: Subscription) => {
-        sub.unsubscribe();
-      });
-      this.eventSubscription.length = 0;
-    };
+    this.detachFn = () => this.eventSubscription.unsubscribe();
   }
 
   /*
@@ -99,6 +81,6 @@ export class EventTargetInterruptSource extends InterruptSource {
    * @return {EventTargetInterruptOptions} The current option values.
    */
   get options(): EventTargetInterruptOptions {
-    return {throttleDelay: this.throttleDelay, passive: this.passive};
+    return { throttleDelay: this.throttleDelay, passive: this.passive };
   }
 }
