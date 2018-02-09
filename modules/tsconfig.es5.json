@@ -17,7 +17,8 @@
       "dom"
     ],
     "types": [
-      "jasmine"
+      "jasmine",
+      "zone.js"
     ],
     "paths": {
       "@ng-idle/core": ["./core"]
