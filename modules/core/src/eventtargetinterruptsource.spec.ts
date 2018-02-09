@@ -32,6 +32,31 @@ describe('core/EventTargetInterruptSource', () => {
       source.detach();
     }));
 
+
+  it('emits onInterrupt event outside the angular zone', fakeAsync(() => {
+    let fakeNgZone = Zone.current.fork({
+      name: 'angular',
+      properties: {
+        isAngularZone: true
+      }
+    });
+
+    fakeNgZone.run(() => {
+      let source = new EventTargetInterruptSource(document.body, 'click');
+
+      source.onInterrupt.subscribe(arg => {
+        expect(Zone.current.get('isAngularZone')).toBeFalsy();
+      });
+
+      source.attach();
+      let expected = new Event('click');
+      document.body.dispatchEvent(expected);
+      source.detach();
+    });
+  }));
+
+
+
   it('does not emit onInterrupt event when detached and event is fired', fakeAsync(() => {
     let source = new EventTargetInterruptSource(document.body, 'click');
     spyOn(source.onInterrupt, 'emit').and.callThrough();

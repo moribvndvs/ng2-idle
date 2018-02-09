@@ -23,7 +23,8 @@
       "jasmine",
       "node",
       "source-map",
-      "webpack"
+      "webpack",
+      "zone.js"
     ]
   },
   "exclude": [
