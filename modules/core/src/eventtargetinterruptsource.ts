@@ -64,6 +64,13 @@ export class EventTargetInterruptSource extends InterruptSource {
 
     this.attachFn = () => this.eventSubscription = this.eventSrc.subscribe(handler);
 
+    // If the current zone is the 'angular' zone (a.k.a. NgZone) then bind the attachFn to its parent
+    // The parent zone is usually the '<root>' zone but it can also be 'long-stack-trace-zone' in debug mode
+    // In tests, the current zone is typically a 'ProxyZone' created by async/fakeAsync (from @angular/core/testing)
+    if (Zone.current.get('isAngularZone') === true) {
+      this.attachFn = Zone.current.parent.wrap(this.attachFn, Zone.current.name);
+    }
+
     this.detachFn = () => this.eventSubscription.unsubscribe();
   }
 
