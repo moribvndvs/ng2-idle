@@ -1,5 +1,5 @@
 import {EventEmitter, Injectable, OnDestroy} from '@angular/core';
-import {Http, Request, RequestMethod, Response} from '@angular/http';
+import {HttpClient, HttpRequest, HttpResponse} from '@angular/common/http';
 import {KeepaliveSvc} from '@ng-idle/core';
 
 
@@ -8,7 +8,7 @@ import {KeepaliveSvc} from '@ng-idle/core';
  */
 @Injectable()
 export class Keepalive extends KeepaliveSvc implements OnDestroy {
-  private pingRequest: Request;
+  private pingRequest: HttpRequest<any>;
   private pingInterval: number = 10 * 60;
   private pingHandle: any;
 
@@ -20,13 +20,13 @@ export class Keepalive extends KeepaliveSvc implements OnDestroy {
   /*
    * An event emitted when the service has pinged an HTTP endpoint and received a response.
    */
-  public onPingResponse: EventEmitter<Response> = new EventEmitter<Response>();
+  public onPingResponse: EventEmitter<HttpResponse<any>> = new EventEmitter<HttpResponse<any>>();
 
   /*
    * Initializes a new instance of Keepalive
    * @param http - The HTTP service.
    */
-  constructor(private http: Http) {
+  constructor(private http: HttpClient) {
     super();
   }
 
@@ -35,10 +35,10 @@ export class Keepalive extends KeepaliveSvc implements OnDestroy {
    * @param url - The URL or Request object to use when pinging.
    * @return The current Request used when pinging.
    */
-  request(url?: string|Request): Request {
+  request<T>(url?: string | HttpRequest<T>): HttpRequest<T> {
     if (typeof url === 'string') {
-      this.pingRequest = new Request({method: RequestMethod.Get, url: url});
-    } else if (url instanceof Request) {
+      this.pingRequest = new HttpRequest<T>('GET', url);
+    } else if (url instanceof HttpRequest) {
       this.pingRequest = url;
     } else if (url === null) {
       this.pingRequest = null;
@@ -70,7 +70,7 @@ export class Keepalive extends KeepaliveSvc implements OnDestroy {
   ping(): void {
     this.onPing.emit(null);
     if (this.pingRequest) {
-      this.http.request(this.pingRequest).subscribe((response: Response) => {
+      this.http.request(this.pingRequest).subscribe((response: HttpResponse<any>) => {
         this.onPingResponse.emit(response);
       });
     }
@@ -91,7 +91,7 @@ export class Keepalive extends KeepaliveSvc implements OnDestroy {
    * Stops pinging on an interval.
    */
   stop(): void {
-    if (this.pingHandle) {
+    if (this.hasPingHandle()) {
       clearInterval(this.pingHandle);
       this.pingHandle = null;
     }
@@ -109,6 +109,10 @@ export class Keepalive extends KeepaliveSvc implements OnDestroy {
    * @return True if the service will ping at the specified interval; otherwise, false.
    */
   isRunning(): boolean {
-    return !!this.pingHandle;
+    return this.hasPingHandle();
+  }
+
+  private hasPingHandle(): boolean {
+    return this.pingHandle !== null && typeof this.pingHandle !== 'undefined';
   }
 }

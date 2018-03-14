@@ -1,3 +1,23 @@
+<a name="2.0.0-beta.13"></a>
+# [2.0.0-beta.13](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.12...v2.0.0-beta.13) (2017-12-17)
+
+
+### Chores
+
+* **deps:** support Angular 5, remove [@angular](https://github.com/angular)/http references ([731ebfb](https://github.com/HackedByChinese/ng2-idle/commit/731ebfb))
+
+
+### Features
+
+* **EventTargetInterruptSource:** constructor takes options that include flag for using passive even ([a5e24eb](https://github.com/HackedByChinese/ng2-idle/commit/a5e24eb))
+
+
+### BREAKING CHANGES
+
+* **deps:** Support for Angular 2.x dropped due to missing @angular/common/http dependency
+
+
+
 <a name="2.0.0-beta.12"></a>
 # [2.0.0-beta.12](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.11...v2.0.0-beta.12) (2017-05-30)
 

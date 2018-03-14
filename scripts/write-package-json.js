@@ -14,9 +14,7 @@ modules.map(function(module) {
   pkg.version = basePkg.version;
   pkg.peerDependencies = Object.assign({}, basePkg.dependencies);
 
-  if (module !== 'keepalive') {
-    delete pkg.peerDependencies["@angular/http"];
-  } else {
+  if (module === 'keepalive') {
     pkg.peerDependencies['@ng-idle/core'] = '^' + basePkg.version;
   }
 

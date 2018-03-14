@@ -1,6 +1,6 @@
 import uglify from 'rollup-plugin-uglify';
 
-var ugly = process.env.MODE === 'ugly';
+var ugly = process.env.npm_config_mode === 'ugly';
 
 export default {
   entry: 'dist/keepalive/index.js',
@@ -9,7 +9,7 @@ export default {
   moduleName: 'ngidle.keepalive',
   globals: {
     '@angular/core': 'ng.core',
-    '@angular/http': 'ng.http',
+    '@angular/common/http': 'ng.http',
     'rxjs/Rx': 'Rx',
     '@ng-idle/core': 'ng.core'
   },

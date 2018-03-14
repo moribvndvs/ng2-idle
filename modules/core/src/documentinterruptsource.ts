@@ -1,4 +1,4 @@
-import {EventTargetInterruptOptions, EventTargetInterruptSource} from './eventtargetinterruptsource';
+import { EventTargetInterruptOptions, EventTargetInterruptSource } from './eventtargetinterruptsource';
 
 /*
  * An interrupt source that uses events on the document element (html tag).
@@ -16,11 +16,11 @@ export class DocumentInterruptSource extends EventTargetInterruptSource {
   filterEvent(event: any): boolean {
     // some browser bad input hacks
     if (event.type === 'mousemove'
-        // fix for Chrome destop notifications
-        && ((event.originalEvent && event.originalEvent.movementX === 0 &&
-             event.originalEvent.movementY === 0)
-            // fix for webkit fake mousemove
-            || (event.movementX !== void 0 && !event.movementX || !event.movementY))) {
+      // fix for Chrome destop notifications
+      && ((event.originalEvent && event.originalEvent.movementX === 0 &&
+        event.originalEvent.movementY === 0)
+        // fix for webkit fake mousemove
+        || (event.movementX !== void 0 && !event.movementX || !event.movementY))) {
       return true;
     }
 
