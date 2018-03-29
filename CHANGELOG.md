@@ -1,3 +1,19 @@
+<a name="2.0.0-beta.15"></a>
+# [2.0.0-beta.15](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.14...v2.0.0-beta.15) (2018-03-29)
+
+
+### Bug Fixes
+
+* **E2E tests in Protractor:** Change to setInterval to run outside of angular zone ([d8599d7](https://github.com/HackedByChinese/ng2-idle/commit/d8599d7))
+* **Unit Tests:** Change to restrict zone.js version ([93258e2](https://github.com/HackedByChinese/ng2-idle/commit/93258e2))
+
+
+### BREAKING CHANGES
+
+* **E2E tests in Protractor:** idle constructor has additional paramter
+
+
+
 <a name="2.0.0-beta.14"></a>
 # [2.0.0-beta.14](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.13...v2.0.0-beta.14) (2018-03-29)
 
