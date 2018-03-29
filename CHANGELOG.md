@@ -1,3 +1,13 @@
+<a name="2.0.0-beta.14"></a>
+# [2.0.0-beta.14](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.13...v2.0.0-beta.14) (2018-03-29)
+
+
+### Bug Fixes
+
+* **InterruptSource:** attach outside Angular ([c94fc9a](https://github.com/HackedByChinese/ng2-idle/commit/c94fc9a))
+
+
+
 <a name="2.0.0-beta.13"></a>
 # [2.0.0-beta.13](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.12...v2.0.0-beta.13) (2017-12-17)
 
