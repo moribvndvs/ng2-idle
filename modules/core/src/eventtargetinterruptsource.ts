@@ -53,6 +53,9 @@ export class EventTargetInterruptSource extends InterruptSource {
     this.passive = !!options.passive;
 
     const opts = this.passive ? { passive: true } : null;
+    if(target == null) { 
+      return;
+    }
     const fromEvents = events.split(' ').map(eventName => Observable.fromEvent<any>(target, eventName, opts));
     this.eventSrc = Observable.merge(...fromEvents);
     this.eventSrc = this.eventSrc.filter(innerArgs => !this.filterEvent(innerArgs));
