@@ -6,7 +6,7 @@ import {EventTargetInterruptOptions, EventTargetInterruptSource} from './eventta
  * An interrupt source on the Window object.
  */
 export class WindowInterruptSource extends EventTargetInterruptSource {
-  constructor(events: string, options?: number | EventTargetInterruptOptions, @Inject(PLATFORM_ID) private platformId: any) {
+  constructor(events: string, options?: number | EventTargetInterruptOptions, @Inject(PLATFORM_ID) private platformId?: any) {
     super(isPlatformBrowser(platformId) ? window : null, events, options);
   }
 }
