@@ -5,6 +5,8 @@ import {EventTargetInterruptOptions, EventTargetInterruptSource} from './eventta
  */
 export class WindowInterruptSource extends EventTargetInterruptSource {
   constructor(events: string, options?: number | EventTargetInterruptOptions) {
-    super(window, events, options);
+    if (typeof window !== 'undefined') {
+      super(window, events, options);
+    }
   }
 }

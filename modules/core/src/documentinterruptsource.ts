@@ -1,11 +1,13 @@
-import { EventTargetInterruptOptions, EventTargetInterruptSource } from './eventtargetinterruptsource';
+import {EventTargetInterruptOptions, EventTargetInterruptSource} from './eventtargetinterruptsource';
 
 /*
  * An interrupt source that uses events on the document element (html tag).
  */
 export class DocumentInterruptSource extends EventTargetInterruptSource {
   constructor(events: string, options?: number | EventTargetInterruptOptions) {
-    super(document.documentElement, events, options);
+    if (typeof document !== 'undefined') {
+      super(document.documentElement, events, options);
+    }
   }
 
   /*
