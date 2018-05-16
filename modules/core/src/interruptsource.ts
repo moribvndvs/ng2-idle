@@ -1,6 +1,7 @@
 import { EventEmitter } from '@angular/core';
 
 import { InterruptArgs } from './interruptargs';
+import 'zone.js';
 
 /*
  * A base for classes that act as a source for interrupts.
