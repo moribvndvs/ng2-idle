@@ -1,3 +1,19 @@
+<a name="6.0.0-beta.1"></a>
+# [6.0.0-beta.1](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.15...v6.0.0-beta.1) (2018-05-24)
+
+Note: The version scheme for this module has been changed to match the version of Angular it targets.
+
+### Chores
+
+* **deps:** update to Angular 6 and RxJs 6.1 ([4a71953](https://github.com/HackedByChinese/ng2-idle/commit/4a71953)), closes [#93](https://github.com/HackedByChinese/ng2-idle/issues/93) [#94](https://github.com/HackedByChinese/ng2-idle/issues/94)
+
+
+### BREAKING CHANGES
+
+* **deps:** This version is only compatible with Angular 6.
+
+
+
 <a name="2.0.0-beta.15"></a>
 # [2.0.0-beta.15](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.14...v2.0.0-beta.15) (2018-03-29)
 
