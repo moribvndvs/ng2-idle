@@ -62,13 +62,7 @@ For example, consider an email application. For increased security, the applicat
 ## Developing
 **Note** This project was developed using NodeJS 5.5 and NPM 3.3.12. You may experience problems using older versions. Try [NVM](https://github.com/creationix/nvm) or similar to manage different versions of Node concurrently.
 
-Once you have cloned the repository, install all packages. If you are using `npm`:
-
-```
- npm install
-```
-
-If you are using [Yarn](https://yarnpkg.com/en/):
+Once you have cloned the repository, install all packages using [Yarn](https://yarnpkg.com/en/):
 
 ```
 yarn install
@@ -77,19 +71,19 @@ yarn install
 You can now build and run tests.
 
 ```
- npm test
+ yarn test
 ```
 
 You can also continuously run tests as you make changes.
 
 ```
-npm run watch:test
+yarn watch:test
 ```
 
 If you wish to prepare a branch for a pull request, run this command and fix any errors:
 
 ```
- npm run build
+ yarn build
 ```
 
 
