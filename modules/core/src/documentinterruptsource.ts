@@ -1,11 +1,13 @@
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { EventTargetInterruptOptions, EventTargetInterruptSource } from './eventtargetinterruptsource';
 
 /*
  * An interrupt source that uses events on the document element (html tag).
  */
 export class DocumentInterruptSource extends EventTargetInterruptSource {
-  constructor(events: string, options?: number | EventTargetInterruptOptions) {
-    super(document.documentElement, events, options);
+  constructor(events: string, options?: number | EventTargetInterruptOptions, @Inject(PLATFORM_ID) private platformId?: any) {
+    super(isPlatformBrowser(platformId) ? document.documentElement : null, events, options);
   }
 
   /*
