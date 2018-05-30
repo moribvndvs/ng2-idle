@@ -1,7 +1,8 @@
 import { EventEmitter } from '@angular/core';
 
 import { InterruptArgs } from './interruptargs';
-import 'zone.js';
+/* ZONE JS IS ALREADY IMPORTED IN ANY ANGULAR 2+ PROJECT as NgZone, global variable side effects where we have duplicate zones*/
+// import 'zone.js';
 
 /*
  * A base for classes that act as a source for interrupts.

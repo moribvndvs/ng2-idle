@@ -1,8 +1,16 @@
-import { Observable, Subscription, fromEvent, merge } from 'rxjs';
-import { filter, throttleTime } from 'rxjs/operators';
+import { Observable, Subscription } from 'rxjs';
+/* for some reason the compile javascript cannot reference these rxjs functions unless you
+* specifiy where the rxjs import should point to. Angular 5  upgrade to 6.0.3 might be the reason why???
+*/
+import { fromEvent } from 'rxjs/observable/fromEvent';
+
+import { merge } from 'rxjs/observable/merge';
+import { filter, throttleTime , map} from 'rxjs/operators';
 
 import { InterruptArgs } from './interruptargs';
 import { InterruptSource } from './interruptsource';
+
+
 
 /**
  * Options for EventTargetInterruptSource
@@ -48,8 +56,17 @@ export class EventTargetInterruptSource extends InterruptSource {
     this.passive = !!options.passive;
 
     const opts = this.passive ? { passive: true } : null;
-    const fromEvents = events.split(' ').map(eventName => fromEvent<any>(target, eventName, opts));
-    this.eventSrc = merge(...fromEvents);
+    // const fromEvents = events.split(' ').map(eventName => fromEvent<any>(target, eventName, opts));
+    // prefer to pass the source through pipe
+    const tempObservableEvent = [];
+        events.split(' ').map((eventName) => {
+            const source = fromEvent(target , eventName , opts);
+            // tslint:disable-next-line:no-empty
+            const emitted = source.pipe(map(event => {}));
+            tempObservableEvent.push(emitted.source);
+        });
+    // this.eventSrc = merge(...fromEvents);
+    this.eventSrc = merge(...tempObservableEvent); // added , passed all test , works as before
     this.eventSrc = this.eventSrc.pipe(
       filter(innerArgs => !this.filterEvent(innerArgs))
     );
