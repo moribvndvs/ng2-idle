@@ -1,7 +1,17 @@
+<a name="6.0.0-beta.2"></a>
+# [6.0.0-beta.2](https://github.com/HackedByChinese/ng2-idle/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2018-05-31)
+
+
+### Bug Fixes
+
+* **InterruptSource:** remove extraneous zonejs import ([a49e1af](https://github.com/HackedByChinese/ng2-idle/commit/a49e1af)), closes [#99](https://github.com/HackedByChinese/ng2-idle/issues/99) [#101](https://github.com/HackedByChinese/ng2-idle/issues/101)
+
+
+
 <a name="6.0.0-beta.1"></a>
 # [6.0.0-beta.1](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.15...v6.0.0-beta.1) (2018-05-24)
 
-Note: The version scheme for this module has been changed to match the version of Angular it targets.
+Note: The version scheme for this module has been changed to match the version of Angular it targets. Use an @ng-idle@2.0.0 build if you are using Angular 5.
 
 ### Chores
 
