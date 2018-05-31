@@ -28,7 +28,7 @@ require('zone.js/dist/async-test');
 require('zone.js/dist/fake-async-test');
 
 // RxJS
-require('rxjs/Rx');
+require('rxjs');
 
 var testing = require('@angular/core/testing');
 var browser = require('@angular/platform-browser-dynamic/testing');
