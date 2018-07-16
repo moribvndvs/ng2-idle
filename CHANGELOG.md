@@ -1,3 +1,13 @@
+<a name="6.0.0-beta.3"></a>
+# [6.0.0-beta.3](https://github.com/HackedByChinese/ng2-idle/compare/v6.0.0-beta.2...v6.0.0-beta.3) (2018-07-16)
+
+
+### Bug Fixes
+
+* **core:** check key on storage event argument exists ([2fc712d](https://github.com/HackedByChinese/ng2-idle/commit/2fc712d))
+
+
+
 <a name="6.0.0-beta.2"></a>
 # [6.0.0-beta.2](https://github.com/HackedByChinese/ng2-idle/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2018-05-31)
 
