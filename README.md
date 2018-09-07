@@ -14,12 +14,17 @@ Visit https://hackedbychinese.github.io/ng2-idle to view a simple example with q
 
 ## Quick start
 
-`@ng-idle` is shipped via [npm](https://www.npmjs.com). You can install the package using the following command:
+`@ng-idle` is shipped via [npm](https://www.npmjs.com). You can install the package using the following command for Angular 6:
 
 ```
 npm install --save @ng-idle/core
 ```
 
+For Angular 5, use:
+
+```
+npm install --save @ng-idle/core@2.0.0-beta.15 
+```
 Integrating and configuring the package into your application requires a few more steps. Please visit [@ng-idle-example](https://github.com/HackedByChinese/ng2-idle-example.git) for source and instructions on how to get going.
 
 ## Design Considerations
@@ -30,7 +35,9 @@ The core functionality can be found in the `@ng-idle/core` package via [npm](htt
 
 Additional modules to extend functionality:
 
-* `@ng-idle/keepalive` (see below)
+* `@ng-idle/keepalive` (Angular 6) (see below)
+
+* `@ng-idle/keepalive@2.0.0-beta.15` (Angular 5) (see below)
 
 ### Extensible Keepalive Integration
 In a common use case where it is used for session management, you may need to signal to the server periodically that the user is still logged in and active. If you need that functionality, `@ng-idle` can **optionally** integrate with `@ng-idle/keepalive`. `@ng-idle` will instruct `@ng-idle/keepalive` to ping while the user is active, and stop once they go idle or time out. When the user resumes activity or the idle state is reset, it will ping immediately and then resume pinging. **Please note** that keepalive integration is optional, and you must install and configure `@ng-idle/keepalive` separately to get this functionality. You can implement your own by extending `KeepaliveSvc` and configuring it as a provider in your application for the `KeepaliveSvc` class.
