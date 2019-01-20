@@ -3,6 +3,31 @@
 
 A module for responding to idle users in Angular applications. This is a rewrite of the [ng-idle module](https://github.com/HackedByChinese/ng-idle); however if you are using Angular 1, you must use that module.
 
+## MAINTAINERS WANTED
+
+The Angular community needs you! I'm looking for a new developer or team to take over maintenance of this module. These are the responsibilities any interested candidates should consider:
+
+- Now: Complete beta process (major remaining item is to make it compatible with SSR)
+- Now: Update demo and add API documentation
+- Ongoing: Bug fixes
+- Ongoing: New releases for new versions of Angular
+- Later: Refactor to simplify API and reduce package size
+- Later: Add support for non-browser environments?
+
+Ideally, a candidate:
+
+- Has experience building applications in Angular 5+
+- Is an active Angular developer and tuned into the Angular release schedule
+- Loves open source and the Angular community
+- Is committed to releasing modular and lightweight (as possible) packages
+- Has working understanding of DOM events, JavaScript timers and intervals, Web Storage API, and cookies
+- Understands testing using Karma and Jasmine, and is committed to a high percentage of code coverage
+- Has working understanding of the [contributing guide](https://github.com/HackedByChinese/ng2-idle/blob/master/CONTRIBUTING.md), is willing to accept contributions from others, and can use Github and related tools effectively
+- Has time to triage and answer tickets, or delegate to others
+- Has basic understanding of NPM for releasing packages
+
+Please get in touch if you are interested!
+
 ## License
 Authored by **Mike Grabski** @HackedByChinese me@mikegrabski.com
 
