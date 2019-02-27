@@ -1,6 +1,6 @@
-import {EventEmitter, Injectable, OnDestroy} from '@angular/core';
-import {HttpClient, HttpRequest, HttpResponse} from '@angular/common/http';
-import {KeepaliveSvc} from '@ng-idle/core';
+import { EventEmitter, Injectable, OnDestroy } from '@angular/core';
+import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
+import { KeepaliveSvc } from '@ng-idle/core';
 
 
 /**
@@ -70,9 +70,14 @@ export class Keepalive extends KeepaliveSvc implements OnDestroy {
   ping(): void {
     this.onPing.emit(null);
     if (this.pingRequest) {
-      this.http.request(this.pingRequest).subscribe((response: HttpResponse<any>) => {
-        this.onPingResponse.emit(response);
-      });
+      this.http.request(this.pingRequest).subscribe(
+        (response: HttpResponse<any>) => {
+          this.onPingResponse.emit(response);
+        },
+        (error: HttpResponse<any>) => {
+          this.onPingResponse.emit(error);
+        }
+      );
     }
   }
 
