@@ -106,14 +106,49 @@ describe('keepalive/Keepalive', () => {
     it('ping() should fire request and emit onPingResponse event', () => {
       let actualResponse: HttpResponse<{}>;
 
-      instance.onPingResponse.subscribe((response: HttpResponse<{}>) => {
-        actualResponse = response;
-      });
+      instance.onPingResponse.subscribe(
+        (response: HttpResponse<{}>) => {
+          actualResponse = response;
+        },
+        (error: HttpResponse<{}>) => {
+          actualResponse = error;
+        });
 
       instance.ping();
 
       httpMock.expectOne(request.url).flush(null, {status: 200, statusText: 'OK'});
       expect(actualResponse.status).toBe(200);
+    });
+  });
+
+  describe('using an HTTP request that results in error', () => {
+
+    let request = new HttpRequest('GET', 'https://test.com/404');
+
+    beforeEach(() => {
+      instance = TestBed.get(Keepalive);
+      instance.request(request);
+    });
+
+    afterEach(() => {
+      httpMock.verify();
+    });
+
+    it('ping() should fire request and emit onPingResponse event', () => {
+      let actualResponse: HttpResponse<{}>;
+
+      instance.onPingResponse.subscribe(
+        (response: HttpResponse<{}>) => {
+          actualResponse = response;
+        },
+        (error: HttpResponse<{}>) => {
+          actualResponse = error;
+        });
+
+      instance.ping();
+
+      httpMock.expectOne(request.url).flush(null, {status: 404, statusText: 'Error'});
+      expect(actualResponse.status).toBe(404);
     });
   });
 
