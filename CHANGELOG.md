@@ -1,3 +1,13 @@
+<a name="6.0.0-beta.4"></a>
+# [6.0.0-beta.4](https://github.com/HackedByChinese/ng2-idle/compare/v6.0.0-beta.3...v6.0.0-beta.4) (2019-03-19)
+
+
+### Bug Fixes
+
+* **keepalive:** return actual response or error in onPingResponse ([0741ae2](https://github.com/HackedByChinese/ng2-idle/commit/0741ae2)), closes [#118](https://github.com/HackedByChinese/ng2-idle/issues/118)
+
+
+
 <a name="6.0.0-beta.3"></a>
 # [6.0.0-beta.3](https://github.com/HackedByChinese/ng2-idle/compare/v6.0.0-beta.2...v6.0.0-beta.3) (2018-07-16)
 
