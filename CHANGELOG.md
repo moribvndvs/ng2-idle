@@ -1,3 +1,13 @@
+<a name="6.0.0-beta.5"></a>
+# [6.0.0-beta.5](https://github.com/HackedByChinese/ng2-idle/compare/v6.0.0-beta.4...v6.0.0-beta.5) (2019-04-04)
+
+
+### Bug Fixes
+
+* **keepalive:** Run keepalive setInterval outside NgZone ([04e3d4c](https://github.com/HackedByChinese/ng2-idle/commit/04e3d4c)), closes [#113](https://github.com/HackedByChinese/ng2-idle/issues/113)
+
+
+
 <a name="6.0.0-beta.4"></a>
 # [6.0.0-beta.4](https://github.com/HackedByChinese/ng2-idle/compare/v6.0.0-beta.3...v6.0.0-beta.4) (2019-03-19)
 
