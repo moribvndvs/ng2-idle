@@ -1,4 +1,4 @@
-import { EventEmitter, Injectable, OnDestroy } from '@angular/core';
+import { EventEmitter, Injectable, NgZone, OnDestroy } from '@angular/core';
 import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
 import { KeepaliveSvc } from '@ng-idle/core';
 
@@ -26,7 +26,7 @@ export class Keepalive extends KeepaliveSvc implements OnDestroy {
    * Initializes a new instance of Keepalive
    * @param http - The HTTP service.
    */
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private zone: NgZone) {
     super();
   }
 
@@ -87,9 +87,13 @@ export class Keepalive extends KeepaliveSvc implements OnDestroy {
   start(): void {
     this.stop();
 
-    this.pingHandle = setInterval(() => {
-      this.ping();
-    }, this.pingInterval * 1000);
+    this.zone.runOutsideAngular(() => {
+      this.pingHandle = setInterval(() => {
+        this.zone.run(() => {
+          this.ping();
+        });
+      }, this.pingInterval * 1000);
+    });
   }
 
   /*
