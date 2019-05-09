@@ -1,249 +1,226 @@
+<a name="7.0.0-beta.1"></a>
+
+# [7.0.0-beta.1](https://github.com/HackedByChinese/ng2-idle/compare/v6.0.0-beta.5...v7.0.0-beta.1) (2019-05-09)
+
+### Chores
+
+- **deps:** update to Angular 7
+
+### BREAKING CHANGES
+
+- **deps:** This version is only compatible with Angular 7. If you are still using Angular 6, use @ng-idle@6.0.0-beta.5 or upgrade to Angular 7.
+
 <a name="6.0.0-beta.5"></a>
+
 # [6.0.0-beta.5](https://github.com/HackedByChinese/ng2-idle/compare/v6.0.0-beta.4...v6.0.0-beta.5) (2019-04-04)
 
-
 ### Bug Fixes
 
-* **keepalive:** Run keepalive setInterval outside NgZone ([04e3d4c](https://github.com/HackedByChinese/ng2-idle/commit/04e3d4c)), closes [#113](https://github.com/HackedByChinese/ng2-idle/issues/113)
-
-
+- **keepalive:** Run keepalive setInterval outside NgZone ([04e3d4c](https://github.com/HackedByChinese/ng2-idle/commit/04e3d4c)), closes [#113](https://github.com/HackedByChinese/ng2-idle/issues/113)
 
 <a name="6.0.0-beta.4"></a>
+
 # [6.0.0-beta.4](https://github.com/HackedByChinese/ng2-idle/compare/v6.0.0-beta.3...v6.0.0-beta.4) (2019-03-19)
 
-
 ### Bug Fixes
 
-* **keepalive:** return actual response or error in onPingResponse ([0741ae2](https://github.com/HackedByChinese/ng2-idle/commit/0741ae2)), closes [#118](https://github.com/HackedByChinese/ng2-idle/issues/118)
-
-
+- **keepalive:** return actual response or error in onPingResponse ([0741ae2](https://github.com/HackedByChinese/ng2-idle/commit/0741ae2)), closes [#118](https://github.com/HackedByChinese/ng2-idle/issues/118)
 
 <a name="6.0.0-beta.3"></a>
+
 # [6.0.0-beta.3](https://github.com/HackedByChinese/ng2-idle/compare/v6.0.0-beta.2...v6.0.0-beta.3) (2018-07-16)
 
-
 ### Bug Fixes
 
-* **core:** check key on storage event argument exists ([2fc712d](https://github.com/HackedByChinese/ng2-idle/commit/2fc712d))
-
-
+- **core:** check key on storage event argument exists ([2fc712d](https://github.com/HackedByChinese/ng2-idle/commit/2fc712d))
 
 <a name="6.0.0-beta.2"></a>
-# [6.0.0-beta.2](https://github.com/HackedByChinese/ng2-idle/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2018-05-31)
 
+# [6.0.0-beta.2](https://github.com/HackedByChinese/ng2-idle/compare/v6.0.0-beta.1...v6.0.0-beta.2) (2018-05-31)
 
 ### Bug Fixes
 
-* **InterruptSource:** remove extraneous zonejs import ([a49e1af](https://github.com/HackedByChinese/ng2-idle/commit/a49e1af)), closes [#99](https://github.com/HackedByChinese/ng2-idle/issues/99) [#101](https://github.com/HackedByChinese/ng2-idle/issues/101)
-
-
+- **InterruptSource:** remove extraneous zonejs import ([a49e1af](https://github.com/HackedByChinese/ng2-idle/commit/a49e1af)), closes [#99](https://github.com/HackedByChinese/ng2-idle/issues/99) [#101](https://github.com/HackedByChinese/ng2-idle/issues/101)
 
 <a name="6.0.0-beta.1"></a>
+
 # [6.0.0-beta.1](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.15...v6.0.0-beta.1) (2018-05-24)
 
 Note: The version scheme for this module has been changed to match the version of Angular it targets. Use an @ng-idle@2.0.0 build if you are using Angular 5.
 
 ### Chores
 
-* **deps:** update to Angular 6 and RxJs 6.1 ([4a71953](https://github.com/HackedByChinese/ng2-idle/commit/4a71953)), closes [#93](https://github.com/HackedByChinese/ng2-idle/issues/93) [#94](https://github.com/HackedByChinese/ng2-idle/issues/94)
-
+- **deps:** update to Angular 6 and RxJs 6.1 ([4a71953](https://github.com/HackedByChinese/ng2-idle/commit/4a71953)), closes [#93](https://github.com/HackedByChinese/ng2-idle/issues/93) [#94](https://github.com/HackedByChinese/ng2-idle/issues/94)
 
 ### BREAKING CHANGES
 
-* **deps:** This version is only compatible with Angular 6.
-
-
+- **deps:** This version is only compatible with Angular 6.
 
 <a name="2.0.0-beta.15"></a>
-# [2.0.0-beta.15](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.14...v2.0.0-beta.15) (2018-03-29)
 
+# [2.0.0-beta.15](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.14...v2.0.0-beta.15) (2018-03-29)
 
 ### Bug Fixes
 
-* **E2E tests in Protractor:** Change to setInterval to run outside of angular zone ([d8599d7](https://github.com/HackedByChinese/ng2-idle/commit/d8599d7))
-* **Unit Tests:** Change to restrict zone.js version ([93258e2](https://github.com/HackedByChinese/ng2-idle/commit/93258e2))
-
+- **E2E tests in Protractor:** Change to setInterval to run outside of angular zone ([d8599d7](https://github.com/HackedByChinese/ng2-idle/commit/d8599d7))
+- **Unit Tests:** Change to restrict zone.js version ([93258e2](https://github.com/HackedByChinese/ng2-idle/commit/93258e2))
 
 ### BREAKING CHANGES
 
-* **E2E tests in Protractor:** idle constructor has additional paramter
-
-
+- **E2E tests in Protractor:** idle constructor has additional paramter
 
 <a name="2.0.0-beta.14"></a>
-# [2.0.0-beta.14](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.13...v2.0.0-beta.14) (2018-03-29)
 
+# [2.0.0-beta.14](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.13...v2.0.0-beta.14) (2018-03-29)
 
 ### Bug Fixes
 
-* **InterruptSource:** attach outside Angular ([c94fc9a](https://github.com/HackedByChinese/ng2-idle/commit/c94fc9a))
-
-
+- **InterruptSource:** attach outside Angular ([c94fc9a](https://github.com/HackedByChinese/ng2-idle/commit/c94fc9a))
 
 <a name="2.0.0-beta.13"></a>
-# [2.0.0-beta.13](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.12...v2.0.0-beta.13) (2017-12-17)
 
+# [2.0.0-beta.13](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.12...v2.0.0-beta.13) (2017-12-17)
 
 ### Chores
 
-* **deps:** support Angular 5, remove [@angular](https://github.com/angular)/http references ([731ebfb](https://github.com/HackedByChinese/ng2-idle/commit/731ebfb))
-
+- **deps:** support Angular 5, remove [@angular](https://github.com/angular)/http references ([731ebfb](https://github.com/HackedByChinese/ng2-idle/commit/731ebfb))
 
 ### Features
 
-* **EventTargetInterruptSource:** constructor takes options that include flag for using passive even ([a5e24eb](https://github.com/HackedByChinese/ng2-idle/commit/a5e24eb))
-
+- **EventTargetInterruptSource:** constructor takes options that include flag for using passive even ([a5e24eb](https://github.com/HackedByChinese/ng2-idle/commit/a5e24eb))
 
 ### BREAKING CHANGES
 
-* **deps:** Support for Angular 2.x dropped due to missing @angular/common/http dependency
-
-
+- **deps:** Support for Angular 2.x dropped due to missing @angular/common/http dependency
 
 <a name="2.0.0-beta.12"></a>
-# [2.0.0-beta.12](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.11...v2.0.0-beta.12) (2017-05-30)
 
+# [2.0.0-beta.12](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.11...v2.0.0-beta.12) (2017-05-30)
 
 ### Bug Fixes
 
-* **idle:** use expiry.now() if expiry.last() returns null ([06fcb36](https://github.com/HackedByChinese/ng2-idle/commit/06fcb36)), closes [#54](https://github.com/HackedByChinese/ng2-idle/issues/54)
-
-
+- **idle:** use expiry.now() if expiry.last() returns null ([06fcb36](https://github.com/HackedByChinese/ng2-idle/commit/06fcb36)), closes [#54](https://github.com/HackedByChinese/ng2-idle/issues/54)
 
 <a name="2.0.0-beta.11"></a>
+
 # [2.0.0-beta.11](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.10...v2.0.0-beta.11) (2017-04-14)
 
 ### Refactor
 
-* updated imports of rxjs to only import the operators and types used.
+- updated imports of rxjs to only import the operators and types used.
 
 <a name="2.0.0-beta.10"></a>
-# [2.0.0-beta.10](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2017-03-30)
 
+# [2.0.0-beta.10](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.9...v2.0.0-beta.10) (2017-03-30)
 
 ### Chores
 
-* **deps**: support Angular 4 in addition to Angular 2
+- **deps**: support Angular 4 in addition to Angular 2
 
 <a name="2.0.0-beta.9"></a>
+
 # [2.0.0-beta.9](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.8...v2.0.0-beta.9) (2017-03-20)
 
-
 ### Bug Fixes
 
-* **idle:** check expiry on timeout doCountdown ([e23233d](https://github.com/HackedByChinese/ng2-idle/commit/e23233d))
-
-
+- **idle:** check expiry on timeout doCountdown ([e23233d](https://github.com/HackedByChinese/ng2-idle/commit/e23233d))
 
 <a name="2.0.0-beta.8"></a>
+
 # [2.0.0-beta.8](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.7...v2.0.0-beta.8) (2017-02-20)
 
-
 ### Bug Fixes
 
-* Initialize localStorage idling value to false in constructor ([ab71433](https://github.com/HackedByChinese/ng2-idle/commit/ab71433))
-
-
+- Initialize localStorage idling value to false in constructor ([ab71433](https://github.com/HackedByChinese/ng2-idle/commit/ab71433))
 
 <a name="2.0.0-beta.7"></a>
+
 # [2.0.0-beta.7](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.6...v2.0.0-beta.7) (2017-02-16)
 
-
 ### Bug Fixes
 
-* **core:** check expiry before toggling idle state ([6702c36](https://github.com/HackedByChinese/ng2-idle/commit/6702c36)), closes [#37](https://github.com/HackedByChinese/ng2-idle/issues/37)
-
-
+- **core:** check expiry before toggling idle state ([6702c36](https://github.com/HackedByChinese/ng2-idle/commit/6702c36)), closes [#37](https://github.com/HackedByChinese/ng2-idle/issues/37)
 
 <a name="2.0.0-beta.6"></a>
-# [2.0.0-beta.6](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.5...v2.0.0-beta.6) (2017-02-14)
 
+# [2.0.0-beta.6](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.5...v2.0.0-beta.6) (2017-02-14)
 
 ### Bug Fixes
 
-* AutoResume.notIdle with LocalStorageExpiry wasn't working well ([935ade9](https://github.com/HackedByChinese/ng2-idle/commit/935ade9))
-* bugfix when last() with null value throws exception ([5b3d175](https://github.com/HackedByChinese/ng2-idle/commit/5b3d175))
-
-
+- AutoResume.notIdle with LocalStorageExpiry wasn't working well ([935ade9](https://github.com/HackedByChinese/ng2-idle/commit/935ade9))
+- bugfix when last() with null value throws exception ([5b3d175](https://github.com/HackedByChinese/ng2-idle/commit/5b3d175))
 
 <a name="2.0.0-beta.5"></a>
+
 # [2.0.0-beta.5](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.4...v2.0.0-beta.5) (2017-02-09)
 
 The new default expiry is now LocalStorageExpiry, and StorageInterruptSource has been added to the default module providers. This in effect makes idle coordination between tabs the new default (rather than `SimpleExpiry`). This makes the defaults more like the original `ng-idle`. You can of course override the `IdleExpiry` provider and go back to `SimpleExpiry` or use your own. Special thanks to @rousseaufiliong for porting that functionality.
 
 ### Features
 
-* prevent timing out one tab or window if another tab have activity ([#33](https://github.com/HackedByChinese/ng2-idle/issues/33)) ([3ab086d](https://github.com/HackedByChinese/ng2-idle/commit/3ab086d))
-
-
+- prevent timing out one tab or window if another tab have activity ([#33](https://github.com/HackedByChinese/ng2-idle/issues/33)) ([3ab086d](https://github.com/HackedByChinese/ng2-idle/commit/3ab086d))
 
 <a name="2.0.0-beta.4"></a>
+
 # [2.0.0-beta.4](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.3...v2.0.0-beta.4) (2016-12-02)
 
 ## License
 
-* **LICENSE** change license to Apache-2.0 ([f8caa10](https://github.com/HackedByChinese/ng2-idle/commit/f8caa10))
+- **LICENSE** change license to Apache-2.0 ([f8caa10](https://github.com/HackedByChinese/ng2-idle/commit/f8caa10))
 
 <a name="2.0.0-beta.3"></a>
-# [2.0.0-beta.3](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2016-11-21)
 
+# [2.0.0-beta.3](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.2...v2.0.0-beta.3) (2016-11-21)
 
 ### Features
 
-* **aot:** add AOT support ([cc99199](https://github.com/HackedByChinese/ng2-idle/commit/cc99199))
-
-
+- **aot:** add AOT support ([cc99199](https://github.com/HackedByChinese/ng2-idle/commit/cc99199))
 
 <a name="2.0.0-beta.2"></a>
-# [2.0.0-beta.2](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2016-11-15)
 
+# [2.0.0-beta.2](https://github.com/HackedByChinese/ng2-idle/compare/v2.0.0-beta.1...v2.0.0-beta.2) (2016-11-15)
 
 ### Bug Fixes
 
-* **core, keepalive:** emit helpers for es5 compatibility ([ed30b6b](https://github.com/HackedByChinese/ng2-idle/commit/ed30b6b))
-
-
+- **core, keepalive:** emit helpers for es5 compatibility ([ed30b6b](https://github.com/HackedByChinese/ng2-idle/commit/ed30b6b))
 
 <a name="2.0.0-beta.1"></a>
-# [2.0.0-beta.1](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.18...v2.0.0-beta.1) (2016-11-14)
 
+# [2.0.0-beta.1](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.18...v2.0.0-beta.1) (2016-11-14)
 
 ### Code Refactoring
 
-* **core:** modularize core ([3f0868a](https://github.com/HackedByChinese/ng2-idle/commit/3f0868a))
-
+- **core:** modularize core ([3f0868a](https://github.com/HackedByChinese/ng2-idle/commit/3f0868a))
 
 ### Features
 
-* **keepalive:** merge ng2-idle-keepalive into [@ng](https://github.com/ng)-idle/keepalive ([7702d9d](https://github.com/HackedByChinese/ng2-idle/commit/7702d9d))
-
+- **keepalive:** merge ng2-idle-keepalive into [@ng](https://github.com/ng)-idle/keepalive ([7702d9d](https://github.com/HackedByChinese/ng2-idle/commit/7702d9d))
 
 ### BREAKING CHANGES
 
-* keepalive: Modules have been changed from Ng2IdleModule and Ng2IdleKeepaliveModule to NgIdleModule and NgIdleKeepaliveModule, respectively. Additionally, keepalive imports should now be @ng-idle/keepalive.
-* core: This repository has been refactored to follow the @angular model of modularization so that it can be maintained more easily. You will need to change your import statements from 'ng2-idle' to '@ng-idle/core'.
-
-
+- keepalive: Modules have been changed from Ng2IdleModule and Ng2IdleKeepaliveModule to NgIdleModule and NgIdleKeepaliveModule, respectively. Additionally, keepalive imports should now be @ng-idle/keepalive.
+- core: This repository has been refactored to follow the @angular model of modularization so that it can be maintained more easily. You will need to change your import statements from 'ng2-idle' to '@ng-idle/core'.
 
 <a name="1.0.0-alpha.18"></a>
-# [1.0.0-alpha.18](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2016-11-04)
 
+# [1.0.0-alpha.18](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.17...v1.0.0-alpha.18) (2016-11-04)
 
 ### Features
 
-* **module:** add Ng2IdleModule ([b0d6372](https://github.com/HackedByChinese/ng2-idle/commit/b0d6372)), closes [#3](https://github.com/HackedByChinese/ng2-idle/issues/3) [#10](https://github.com/HackedByChinese/ng2-idle/issues/10) [#22](https://github.com/HackedByChinese/ng2-idle/issues/22) [#23](https://github.com/HackedByChinese/ng2-idle/issues/23) [#24](https://github.com/HackedByChinese/ng2-idle/issues/24)
+- **module:** add Ng2IdleModule ([b0d6372](https://github.com/HackedByChinese/ng2-idle/commit/b0d6372)), closes [#3](https://github.com/HackedByChinese/ng2-idle/issues/3) [#10](https://github.com/HackedByChinese/ng2-idle/issues/10) [#22](https://github.com/HackedByChinese/ng2-idle/issues/22) [#23](https://github.com/HackedByChinese/ng2-idle/issues/23) [#24](https://github.com/HackedByChinese/ng2-idle/issues/24)
 
 ### BREAKING CHANGES
 
 This change removes the core.ts. Instead, you should create an app module using `NgModule` and import the new `Ng2IdleModule`.
 
-* Change any `import ... from 'ng2-idle/core';` to `import ... from 'ng2-idle';`
-* Create an AppModule using `NgModule` if you haven't already. `NgModule` was added in Angular2 RC.5
-* Use `Ng2Module.forRoot()` in your app module's `imports` declaration.
+- Change any `import ... from 'ng2-idle/core';` to `import ... from 'ng2-idle';`
+- Create an AppModule using `NgModule` if you haven't already. `NgModule` was added in Angular2 RC.5
+- Use `Ng2Module.forRoot()` in your app module's `imports` declaration.
 
 Example:
 
 **app.module.ts**
+
 ```
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -269,7 +246,9 @@ import { AppComponent } from './app.component';
 })
 export class AppModule { }
 ```
+
 **app.component.ts**
+
 ```
 import { Component } from '@angular/core';
 
@@ -288,159 +267,142 @@ export class AppComponent {
 ```
 
 <a name="1.0.0-alpha.17"></a>
+
 # [1.0.0-alpha.17](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.16...v1.0.0-alpha.17) (2016-11-02)
 
 ### Chores
 
-* **deps**: relax angular dependencies to minor version
-
+- **deps**: relax angular dependencies to minor version
 
 <a name="1.0.0-alpha.16"></a>
+
 # [1.0.0-alpha.16](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.15...v1.0.0-alpha.16) (2016-09-19)
 
 ### Chores
 
-* **deps**: update to angular@2.0.0
-
+- **deps**: update to angular@2.0.0
 
 <a name="1.0.0-alpha.15"></a>
+
 # [1.0.0-alpha.15](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.14...v1.0.0-alpha.15) (2016-08-23)
 
 ### Bug Fixes
 
-* **release:**: incorrect publishing
-
+- **release:**: incorrect publishing
 
 <a name="1.0.0-alpha.14"></a>
+
 # [1.0.0-alpha.14](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.13...v1.0.0-alpha.14) (2016-08-23)
 
 **DEPRECATED**
 
 ### Chores
 
-* **deps**: update to angular 2.0.0-rc.5
-
+- **deps**: update to angular 2.0.0-rc.5
 
 <a name="1.0.0-alpha.13"></a>
-# [1.0.0-alpha.13](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2016-06-30)
 
+# [1.0.0-alpha.13](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.12...v1.0.0-alpha.13) (2016-06-30)
 
 ### Chores
 
-* **deps**: update to angular 2.0.0-rc.4
+- **deps**: update to angular 2.0.0-rc.4
 
 <a name="1.0.0-alpha.12"></a>
+
 # [1.0.0-alpha.12](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.11...v1.0.0-alpha.12) (2016-06-22)
+
 Update to Angular 2.0.0-rc.3
 
-
-
 <a name="1.0.0-alpha.11"></a>
+
 # [1.0.0-alpha.11](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.10...v1.0.0-alpha.11) (2016-05-09)
 
-
 ### BREAKING CHANGES
+
 This release targets Angular2 RC.1. Angular2 RC.0 introduced breaking changes to how Angular is packaged. You will need to upgrade your application to RC.0 or later for this version of ng2-idle to work.
 
 <a name="1.0.0-alpha.10"></a>
+
 # [1.0.0-alpha.10](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.9...v1.0.0-alpha.10) (2016-04-06)
 
-
 ### Bug Fixes
 
-* **Idle:** do not pause interrupts when idle ([d8d600d](https://github.com/HackedByChinese/ng2-idle/commit/d8d600d)), closes [#4](https://github.com/HackedByChinese/ng2-idle/issues/4) [#5](https://github.com/HackedByChinese/ng2-idle/issues/5)
-
-
+- **Idle:** do not pause interrupts when idle ([d8d600d](https://github.com/HackedByChinese/ng2-idle/commit/d8d600d)), closes [#4](https://github.com/HackedByChinese/ng2-idle/issues/4) [#5](https://github.com/HackedByChinese/ng2-idle/issues/5)
 
 <a name="1.0.0-alpha.9"></a>
+
 # [1.0.0-alpha.9](https://github.com/HackedByChinese/ng2-idle/compare/v1.0.0-alpha.8...v1.0.0-alpha.9) (2016-03-25)
 
-
 ### Bug Fixes
 
-* **typings:** add ambient dev dependencies for es6-shim ([1a6fe2a](https://github.com/HackedByChinese/ng2-idle/commit/1a6fe2a))
-
-
+- **typings:** add ambient dev dependencies for es6-shim ([1a6fe2a](https://github.com/HackedByChinese/ng2-idle/commit/1a6fe2a))
 
 <a name="1.0.0-alpha.8"></a>
-# [1.0.0-alpha.8](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.7...v1.0.0-alpha.8) (2016-03-25)
 
+# [1.0.0-alpha.8](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.7...v1.0.0-alpha.8) (2016-03-25)
 
 ### Bug Fixes
 
-* **dependencies:** update to target Angular 2.0.0-beta.12 ([37bf7ad](https://github.com/HackedByChinese/ng2-idle/commit/37bf7ad))
-
-
+- **dependencies:** update to target Angular 2.0.0-beta.12 ([37bf7ad](https://github.com/HackedByChinese/ng2-idle/commit/37bf7ad))
 
 <a name="1.0.0-alpha.7"></a>
-# [1.0.0-alpha.7](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.6...v1.0.0-alpha.7) (2016-02-24)
 
+# [1.0.0-alpha.7](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.6...v1.0.0-alpha.7) (2016-02-24)
 
 ### Features
 
-* **EventTargetInterruptSource:** target events can be throttled over a specified duration ([174d2d0](https://github.com/HackedByChinese/ng2-idle/commit/174d2d0))
+- **EventTargetInterruptSource:** target events can be throttled over a specified duration ([174d2d0](https://github.com/HackedByChinese/ng2-idle/commit/174d2d0))
 
 ### Performance Improvements
 
-* **Idle:** interrupts are detached when state is idle or not running ([e0b2a1e](https://github.com/HackedByChinese/ng2-idle/commit/e0b2a1e))
-
-
+- **Idle:** interrupts are detached when state is idle or not running ([e0b2a1e](https://github.com/HackedByChinese/ng2-idle/commit/e0b2a1e))
 
 <a name="1.0.0-alpha.6"></a>
+
 # [1.0.0-alpha.6](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.5...v1.0.0-alpha.6) (2016-02-16)
 
-
 ### Features
 
-* **IdleExpiry:** add extensible timeout expiry support ([31be875](https://github.com/HackedByChinese/ng2-idle/commit/31be875))
-
-
+- **IdleExpiry:** add extensible timeout expiry support ([31be875](https://github.com/HackedByChinese/ng2-idle/commit/31be875))
 
 <a name="1.0.0-alpha.5"></a>
+
 # [1.0.0-alpha.5](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.4...v1.0.0-alpha.5) (2016-02-16)
 
-
 ### Bug Fixes
 
-* **Idle:** immediately ping and resume keepalive upon interrupting idle state ([62b47b2](https://github.com/HackedByChinese/ng2-idle/commit/62b47b2))
-
-
+- **Idle:** immediately ping and resume keepalive upon interrupting idle state ([62b47b2](https://github.com/HackedByChinese/ng2-idle/commit/62b47b2))
 
 <a name="1.0.0-alpha.4"></a>
+
 # [1.0.0-alpha.4](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.3...v1.0.0-alpha.4) (2016-02-16)
 
-
 ### Bug Fixes
 
-* **EventTargetInterruptSource:** subscribing to multiple events separated by space no longer breaks ([c552d07](https://github.com/HackedByChinese/ng2-idle/commit/c552d07))
-* **Idle:** setKeepaliveEnabled(false) no longer stops keepalive ([050a590](https://github.com/HackedByChinese/ng2-idle/commit/050a590))
-
-
+- **EventTargetInterruptSource:** subscribing to multiple events separated by space no longer breaks ([c552d07](https://github.com/HackedByChinese/ng2-idle/commit/c552d07))
+- **Idle:** setKeepaliveEnabled(false) no longer stops keepalive ([050a590](https://github.com/HackedByChinese/ng2-idle/commit/050a590))
 
 <a name="1.0.0-alpha.3"></a>
-# [1.0.0-alpha.3](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.2...v1.0.0-alpha.3) (2016-02-16)
 
+# [1.0.0-alpha.3](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.2...v1.0.0-alpha.3) (2016-02-16)
 
 ### Bug Fixes
 
-* **Build:** exclude postinstall task when installing production ([1db53ca](https://github.com/HackedByChinese/ng2-idle/commit/1db53ca))
-
-
+- **Build:** exclude postinstall task when installing production ([1db53ca](https://github.com/HackedByChinese/ng2-idle/commit/1db53ca))
 
 <a name="1.0.0-alpha.2"></a>
+
 # [1.0.0-alpha.2](https://github.com/HackedByChinese/ng2-idle/compare/1.0.0-alpha.1...v1.0.0-alpha.2) (2016-02-16)
 
-
 ### Features
 
-* **Keepalive:** implements optional keepalive integration ([5a727dd](https://github.com/HackedByChinese/ng2-idle/commit/5a727dd))
-
-
+- **Keepalive:** implements optional keepalive integration ([5a727dd](https://github.com/HackedByChinese/ng2-idle/commit/5a727dd))
 
 <a name="1.0.0-alpha.1"></a>
-# 1.0.0-alpha.1 (2016-02-11)
 
+# 1.0.0-alpha.1 (2016-02-11)
 
 ### Features
 
-* **Idle:** add service with basic features ([6db5d50](https://github.com/HackedByChinese/ng2-idle/commit/6db5d50))
+- **Idle:** add service with basic features ([6db5d50](https://github.com/HackedByChinese/ng2-idle/commit/6db5d50))
