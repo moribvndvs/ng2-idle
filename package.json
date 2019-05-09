@@ -35,10 +35,10 @@
   },
   "homepage": "https://github.com/HackedByChinese/ng2-idle.git#readme",
   "devDependencies": {
-    "@angular/compiler": "^6.0.0",
-    "@angular/compiler-cli": "^6.0.0",
-    "@angular/platform-browser": "^6.0.0",
-    "@angular/platform-browser-dynamic": "^6.0.0",
+    "@angular/compiler": "^7.0.0",
+    "@angular/compiler-cli": "^7.0.0",
+    "@angular/platform-browser": "^7.0.0",
+    "@angular/platform-browser-dynamic": "^7.0.0",
     "@types/jasmine": "^2.8.7",
     "@types/node": "^8.10.12",
     "@types/source-map": "^0.1.29",
@@ -62,18 +62,18 @@
     "rimraf": "^2.5.4",
     "rollup": "^0.36.3",
     "rollup-plugin-uglify": "^1.0.1",
-    "rxjs": "^6.1.0",
+    "rxjs": "^6.5.1",
     "source-map-loader": "^0.1.5",
     "ts-helpers": "^1.1.2",
     "tslint": "^5.10.0",
     "tslint-loader": "^3.5.2",
-    "typescript": "2.7.x",
+    "typescript": "3.2.4",
     "webpack": "^4.8.1",
-    "zone.js": "~0.8.26"
+    "zone.js": "~0.8.29"
   },
   "dependencies": {
-    "@angular/common": "^6.0.0",
-    "@angular/core": "^6.0.0"
+    "@angular/common": "^7.0.0",
+    "@angular/core": "^7.0.0"
   },
   "config": {
     "commitizen": {
