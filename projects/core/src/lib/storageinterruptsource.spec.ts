@@ -57,4 +57,18 @@ describe('core/StorageInterruptSource', () => {
 
     source.detach();
   }));
+
+  it('does not emit onInterrupt event when ssr is true', fakeAsync(() => {
+    const source = new StorageInterruptSource({ ssr: true });
+    spyOn(source.onInterrupt, 'emit').and.callThrough();
+
+    source.attach();
+
+    const expected = new StorageEvent('storage');
+    window.dispatchEvent(expected);
+
+    expect(source.onInterrupt.emit).not.toHaveBeenCalled();
+
+    source.detach();
+  }));
 });

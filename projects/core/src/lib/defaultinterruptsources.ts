@@ -10,8 +10,8 @@ export function createDefaultInterruptSources(
       'mousemove keydown DOMMouseScroll mousewheel mousedown touchstart touchmove scroll',
       options
     ),
-    new StorageInterruptSource()
+    new StorageInterruptSource(options)
   ];
 }
 
-export const DEFAULT_INTERRUPTSOURCES: any[] = createDefaultInterruptSources();
+export const DEFAULT_INTERRUPTSOURCES = createDefaultInterruptSources();

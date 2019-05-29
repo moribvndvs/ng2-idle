@@ -16,6 +16,19 @@ describe('core/DocumentInterruptSource', () => {
     source.detach();
   }));
 
+  it('does not emit events when ssr option is true', fakeAsync(() => {
+    const source = new DocumentInterruptSource('click', { ssr: true });
+    spyOn(source.onInterrupt, 'emit').and.callThrough();
+    source.attach();
+
+    const expected = new Event('click');
+    document.documentElement.dispatchEvent(expected);
+
+    expect(source.onInterrupt.emit).not.toHaveBeenCalled();
+
+    source.detach();
+  }));
+
   it('does not emit onInterrupt event when detached and event is fired', fakeAsync(() => {
     const source = new DocumentInterruptSource('click');
     spyOn(source.onInterrupt, 'emit').and.callThrough();
