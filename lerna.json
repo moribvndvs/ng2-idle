@@ -1,0 +1,12 @@
+{
+  "packages": ["projects/*"],
+  "version": "8.0.0",
+  "command": {
+    "publish": {
+      "conventionalCommits": true
+    },
+    "version": {
+      "message": "chore(release): release"
+    }
+  }
+}

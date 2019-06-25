@@ -20,6 +20,6 @@ addons:
       - g++-4.8
 
 cache:
-  yarn: true
+  yarn: false
   directories:
     - node_modules

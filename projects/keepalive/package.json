@@ -1,0 +1,30 @@
+{
+  "name": "@ng-idle/keepalive",
+  "version": "0.0.0-PLACEHOLDER",
+  "description": "Module that works with @ng-idle/core to keep a user session alive while user is active.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HackedByChinese/ng2-idle.git"
+  },
+  "keywords": [
+    "angular",
+    "angular2",
+    "ng2-idle",
+    "ng-idle",
+    "idle",
+    "inactive",
+    "timeout",
+    "session",
+    "keepalive"
+  ],
+  "author": "Mike Grabski <me@mikegrabski.com> (http://mikegrabski.com/)",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/HackedByChinese/ng2-idle.git/issues"
+  },
+  "homepage": "https://github.com/HackedByChinese/ng2-idle.git#readme",
+  "peerDependencies": {
+    "@angular/common": "^8.0.0",
+    "@angular/core": "^8.0.0"
+  }
+}

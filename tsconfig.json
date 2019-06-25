@@ -1,40 +1,23 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "target": "es5",
-    "module": "commonjs",
+    "baseUrl": "./",
+    "outDir": "./dist/out-tsc",
+    "sourceMap": true,
+    "declaration": false,
+    "module": "esnext",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "allowSyntheticDefaultImports": true,
-    "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
-    "sourceMap": true,
-    "noEmitHelpers": false,
-    "strictNullChecks": false,
-    "baseUrl": "./modules",
+    "importHelpers": true,
+    "target": "es2015",
+    "typeRoots": ["node_modules/@types"],
+    "lib": ["es2018", "dom"],
     "paths": {
-      "@ng-idle/core": ["../modules/core"]
-    },
-    "lib": [
-      "dom",
-      "es6"
-    ],
-    "types": [
-      "jasmine",
-      "node",
-      "source-map",
-      "webpack",
-      "zone.js"
-    ]
-  },
-  "exclude": [
-    "node_modules",
-    "dist"
-  ],
-  "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true,
-    "useWebpackText": true
-  },
-  "compileOnSave": false,
-  "buildOnSave": false
+      "@ng-idle/core": ["dist/core"],
+      "@ng-idle/core/*": ["dist/core/*"],
+      "@ng-idle/keepalive": ["dist/keepalive"],
+      "@ng-idle/keepalive/*": ["dist/keepalive/*"]
+    }
+  }
 }
