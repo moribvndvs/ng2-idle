@@ -84,7 +84,7 @@ describe('core/Idle', () => {
       });
 
       it('setIdle() should throw if argument is less than or equal to zero', () => {
-        const expected = new Error("'seconds' must be greater zero");
+        const expected = new Error('\'seconds\' must be greater zero');
 
         expect(() => {
           instance.setIdle(0);
@@ -117,15 +117,15 @@ describe('core/Idle', () => {
         expect(() => {
           instance.setTimeout(-1);
         }).toThrow(
-          new Error("'seconds' can only be 'false' or a positive number.")
+          new Error('\'seconds\' can only be \'false\' or a positive number.')
         );
       });
 
-      it("setTimeout() should throw if argument 'true'", () => {
+      it('setTimeout() should throw if argument \'true\'', () => {
         expect(() => {
           instance.setTimeout(true);
         }).toThrow(
-          new Error("'seconds' can only be 'false' or a positive number.")
+          new Error('\'seconds\' can only be \'false\' or a positive number.')
         );
       });
 

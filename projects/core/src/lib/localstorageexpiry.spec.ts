@@ -78,7 +78,7 @@ describe('core/LocalStorageExpiry', () => {
     }
   ));
 
-  it("setIdleName() doesn't set expiry key name if param is null", inject(
+  it('setIdleName() doesn\'t set expiry key name if param is null', inject(
     [LocalStorageExpiry],
     (service: LocalStorageExpiry) => {
       expect(service.getIdleName()).toBe('main');
@@ -87,7 +87,7 @@ describe('core/LocalStorageExpiry', () => {
     }
   ));
 
-  it("setIdleName() doesn't set expiry key name if param is empty", inject(
+  it('setIdleName() doesn\'t set expiry key name if param is empty', inject(
     [LocalStorageExpiry],
     (service: LocalStorageExpiry) => {
       expect(service.getIdleName()).toBe('main');

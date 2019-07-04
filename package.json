@@ -21,10 +21,11 @@
     "prebuild": "npm run clean:dist",
     "build": "ng build core && ng build keepalive",
     "pretest": "npm run build",
-    "test": "ng test core --watch=false --codeCoverage=true && ng test keepalive --watch=false --codeCoverage=true",
+    "test": "ng test core --watch=false --codeCoverage=true --browsers=ChromeHeadlessNoSandbox && ng test keepalive --watch=false --codeCoverage=true --browsers=ChromeHeadlessNoSandbox",
     "precoverage": "npm run clean:coverage && npm test",
     "coverage": "cat coverage/core/lcov.info coverage/keepalive/lcov.info | node_modules/.bin/coveralls",
-    "lint": "ng lint",
+    "lint": "ng lint core && ng lint keepalive",
+    "lint:fix": "ng lint core --fix=true && ng lint keepalive --fix=true",
     "e2e": "ng e2e"
   },
   "dependencies": {
