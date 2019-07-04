@@ -26,7 +26,8 @@
     "coverage": "cat coverage/core/lcov.info coverage/keepalive/lcov.info | node_modules/.bin/coveralls",
     "lint": "ng lint core && ng lint keepalive",
     "lint:fix": "ng lint core --fix=true && ng lint keepalive --fix=true",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "publish": "lerna publish --conventional-commits"
   },
   "dependencies": {
     "@angular/animations": "~8.0.0",
