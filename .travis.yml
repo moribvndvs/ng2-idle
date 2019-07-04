@@ -13,7 +13,7 @@ cache:
 install:
   - npm install
 
-before_script:
+before_install:
   - export NG_CLI_ANALYTICS=ci
 
 script:
