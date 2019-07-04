@@ -21,7 +21,7 @@
     "prebuild": "npm run clean:dist",
     "build": "ng build core && ng build keepalive",
     "pretest": "npm run build",
-    "test": "ng test core --watch=false --codeCoverage=true --browsers=ChromeHeadlessNoSandbox && ng test keepalive --watch=false --codeCoverage=true --browsers=ChromeHeadlessNoSandbox",
+    "test": "ng test core --watch=false --codeCoverage=true --browsers=ChromeHeadlessNoSandbox --progress=false && ng test keepalive --watch=false --codeCoverage=true --browsers=ChromeHeadlessNoSandbox --progress=false",
     "precoverage": "npm run clean:coverage && npm test",
     "coverage": "cat coverage/core/lcov.info coverage/keepalive/lcov.info | node_modules/.bin/coveralls",
     "lint": "ng lint core && ng lint keepalive",
