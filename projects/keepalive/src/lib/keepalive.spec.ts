@@ -172,62 +172,54 @@ describe('keepalive/Keepalive', () => {
       spyOn(instance, 'ping').and.callThrough();
     });
 
-    it('start() should schedule and ping at the specified interval', fakeAsync(
-      (): void => {
-        instance.start();
+    it('start() should schedule and ping at the specified interval', fakeAsync((): void => {
+      instance.start();
 
-        tick(1000);
-        expect(instance.ping).not.toHaveBeenCalled();
+      tick(1000);
+      expect(instance.ping).not.toHaveBeenCalled();
 
-        tick(4000);
-        expect(instance.ping).toHaveBeenCalledTimes(1);
+      tick(4000);
+      expect(instance.ping).toHaveBeenCalledTimes(1);
 
-        tick(5000);
-        expect(instance.ping).toHaveBeenCalledTimes(2);
+      tick(5000);
+      expect(instance.ping).toHaveBeenCalledTimes(2);
 
-        // must call stop to clear intervals, otherwise fake_async will
-        // throw "1 periodic timer(s) still in the queue."
-        instance.stop();
-      }
-    ) as any);
+      // must call stop to clear intervals, otherwise fake_async will
+      // throw "1 periodic timer(s) still in the queue."
+      instance.stop();
+    }));
 
-    it('stop() should cease pinging', fakeAsync(
-      (): void => {
-        instance.start();
-        instance.stop();
+    it('stop() should cease pinging', fakeAsync((): void => {
+      instance.start();
+      instance.stop();
 
-        tick(5000);
-        expect(instance.ping).not.toHaveBeenCalled();
-      }
-    ) as any);
+      tick(5000);
+      expect(instance.ping).not.toHaveBeenCalled();
+    }));
 
-    it('start() after calling start() cancels the previous interval', fakeAsync(
-      (): void => {
-        instance.start();
-        instance.interval(10);
-        instance.start();
+    it('start() after calling start() cancels the previous interval', fakeAsync((): void => {
+      instance.start();
+      instance.interval(10);
+      instance.start();
 
-        tick(5000);
-        expect(instance.ping).not.toHaveBeenCalled();
+      tick(5000);
+      expect(instance.ping).not.toHaveBeenCalled();
 
-        tick(5000);
-        expect(instance.ping).toHaveBeenCalledTimes(1);
+      tick(5000);
+      expect(instance.ping).toHaveBeenCalledTimes(1);
 
-        instance.stop();
-      }
-    ) as any);
+      instance.stop();
+    }));
 
-    it('ngOnDestroy() invokes stop()', fakeAsync(
-      (): void => {
-        spyOn(instance, 'stop').and.callThrough();
+    it('ngOnDestroy() invokes stop()', fakeAsync((): void => {
+      spyOn(instance, 'stop').and.callThrough();
 
-        instance.start();
+      instance.start();
 
-        instance.ngOnDestroy();
+      instance.ngOnDestroy();
 
-        expect(instance.stop).toHaveBeenCalled();
-      }
-    ) as any);
+      expect(instance.stop).toHaveBeenCalled();
+    }));
 
     it('isRunning() should return true after start() and false after stop()', () => {
       expect(instance.isRunning()).toBe(false);
