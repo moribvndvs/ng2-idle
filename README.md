@@ -118,7 +118,7 @@ You can now build and run all tests once with coverage.
  npm test
 ```
 
-You can also continuously run tests while you make changes to a project by executing `npm run ng test <project name>` or `ng test <project name>` if you have `ng-cli` installed globally.
+You can also continuously run tests while you make changes to a project by executing `npm run ng test <project name>` or `ng test <project name>` if you have `@angular/cli` installed globally.
 
 ```
 npm run ng test core
