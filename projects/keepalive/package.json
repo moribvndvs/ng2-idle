@@ -1,6 +1,6 @@
 {
   "name": "@ng-idle/keepalive",
-  "version": "8.0.0-beta.3",
+  "version": "8.0.0-beta.4",
   "description": "Module that works with @ng-idle/core to keep a user session alive while user is active.",
   "repository": {
     "type": "git",
