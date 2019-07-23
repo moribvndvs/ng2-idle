@@ -41,16 +41,10 @@ Visit https://hackedbychinese.github.io/ng2-idle to view a simple example with q
 
 ## Quick start
 
-`@ng-idle` is shipped via [npm](https://www.npmjs.com). You can install the package using the following command for Angular 6:
+`@ng-idle` is shipped via [npm](https://www.npmjs.com). You can install the package using the following command for the latest supported version of Angular:
 
 ```
 npm install --save @ng-idle/core
-```
-
-For Angular 5, use:
-
-```
-npm install --save @ng-idle/core@2.0.0-beta.15
 ```
 
 Integrating and configuring the package into your application requires a few more steps. Please visit [@ng-idle-example](https://github.com/HackedByChinese/ng2-idle-example.git) for source and instructions on how to get going.
@@ -65,9 +59,7 @@ The core functionality can be found in the `@ng-idle/core` package via [npm](htt
 
 Additional modules to extend functionality:
 
-- `@ng-idle/keepalive` (Angular 6) (see below)
-
-- `@ng-idle/keepalive@2.0.0-beta.15` (Angular 5) (see below)
+- `@ng-idle/keepalive` (see below)
 
 ### Extensible Keepalive Integration
 
