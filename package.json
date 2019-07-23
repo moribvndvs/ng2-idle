@@ -27,9 +27,10 @@
     "lint": "ng lint core && ng lint keepalive",
     "lint:fix": "ng lint core --fix=true && ng lint keepalive --fix=true",
     "e2e": "ng e2e",
+    "copy:info": "for d in ./dist/*; do cp LICENSE README.md $d; done",
     "prerelease": "npm run build",
     "release": "lerna version --conventional-commits",
-    "postrelease": "node scripts/postrelease.js && npm publish dist/core && npm publish dist/keepalive"
+    "postrelease": "npm run copy:info && node scripts/postrelease.js && npm publish dist/core && npm publish dist/keepalive"
   },
   "dependencies": {
     "@angular/animations": "~8.0.0",
