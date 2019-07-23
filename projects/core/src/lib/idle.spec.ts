@@ -84,7 +84,7 @@ describe('core/Idle', () => {
       });
 
       it('setIdle() should throw if argument is less than or equal to zero', () => {
-        const expected = new Error('\'seconds\' must be greater zero');
+        const expected = new Error("'seconds' must be greater zero");
 
         expect(() => {
           instance.setIdle(0);
@@ -117,15 +117,15 @@ describe('core/Idle', () => {
         expect(() => {
           instance.setTimeout(-1);
         }).toThrow(
-          new Error('\'seconds\' can only be \'false\' or a positive number.')
+          new Error("'seconds' can only be 'false' or a positive number.")
         );
       });
 
-      it('setTimeout() should throw if argument \'true\'', () => {
+      it("setTimeout() should throw if argument 'true'", () => {
         expect(() => {
           instance.setTimeout(true);
         }).toThrow(
-          new Error('\'seconds\' can only be \'false\' or a positive number.')
+          new Error("'seconds' can only be 'false' or a positive number.")
         );
       });
 
@@ -491,6 +491,32 @@ describe('core/Idle', () => {
         tick(1000);
         tick(1000);
         expect(instance.onTimeoutWarning.emit).not.toHaveBeenCalled();
+
+        instance.stop();
+      }));
+
+      it('does not emit an onTimeoutWarning if idle state is changed between intervals', fakeAsync(() => {
+        spyOn(instance.onTimeoutWarning, 'emit').and.callThrough();
+
+        instance.setTimeout(3);
+        expiry.mockNow = new Date();
+        instance.watch();
+
+        expiry.mockNow = new Date(
+          expiry.now().getTime() + instance.getIdle() * 1000
+        );
+        tick(3000);
+        // we're going to check that it's idling, then force it to not be
+        expect(instance.isIdling()).toBe(true);
+        // tslint:disable-next-line: no-string-literal
+        instance['idling'] = false;
+        expect(instance.isIdling()).toBe(false);
+
+        tick(1000);
+        tick(1000);
+        // countdown gets called immediately when transitioning to idle, so our event will be raised
+        //  once. it shouldn't get raised after that because we forced idling to false.
+        expect(instance.onTimeoutWarning.emit).toHaveBeenCalledTimes(1);
 
         instance.stop();
       }));

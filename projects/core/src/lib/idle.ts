@@ -125,7 +125,7 @@ export class Idle implements OnDestroy {
     } else if (typeof seconds === 'number' && seconds >= 0) {
       this.timeoutVal = seconds;
     } else {
-      throw new Error('\'seconds\' can only be \'false\' or a positive number.');
+      throw new Error("'seconds' can only be 'false' or a positive number.");
     }
 
     return this.timeoutVal;
@@ -146,7 +146,7 @@ export class Idle implements OnDestroy {
    */
   setIdle(seconds: number): number {
     if (seconds <= 0) {
-      throw new Error('\'seconds\' must be greater zero');
+      throw new Error("'seconds' must be greater zero");
     }
 
     return (this.idle = seconds);
@@ -397,6 +397,10 @@ export class Idle implements OnDestroy {
     if (diff > 0) {
       this.safeClearInterval('timeoutHandle');
       this.interrupt(true);
+      return;
+    }
+
+    if (!this.idling) {
       return;
     }
 

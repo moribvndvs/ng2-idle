@@ -35,7 +35,7 @@
     "object-literal-key-quotes": [true, "as-needed"],
     "object-literal-sort-keys": false,
     "ordered-imports": false,
-    "quotemark": [true, "single"],
+    "quotemark": [true, "single", "avoid-escape"],
     "trailing-comma": false,
     "component-class-suffix": true,
     "contextual-lifecycle": true,
