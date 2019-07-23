@@ -52,6 +52,7 @@ export abstract class IdleExpiry {
    * @return The current Date.
    */
   now(): Date {
+    /* istanbul ignore next */
     return new Date();
   }
 

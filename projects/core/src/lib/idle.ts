@@ -393,15 +393,10 @@ export class Idle implements OnDestroy {
   }
 
   private doCountdown(): void {
-    const timeout = !this.timeoutVal ? 0 : this.timeoutVal;
-    const diff = this.getExpiryDiff(timeout);
+    const diff = this.getExpiryDiff(this.timeoutVal);
     if (diff > 0) {
       this.safeClearInterval('timeoutHandle');
       this.interrupt(true);
-      return;
-    }
-
-    if (!this.idling) {
       return;
     }
 
