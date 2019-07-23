@@ -8,7 +8,7 @@
 /bazel-out
 
 # dependencies
-/node_modules
+node_modules
 
 # profiling files
 chrome-profiler-events.json
@@ -39,6 +39,7 @@ speed-measure-plugin.json
 npm-debug.log
 yarn-error.log
 testem.log
+lerna*.log
 /typings
 
 # System Files
