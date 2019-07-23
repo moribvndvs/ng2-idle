@@ -1,6 +1,8 @@
 {
-  "packages": ["projects/*"],
-  "version": "8.0.0",
+  "packages": [
+    "projects/*"
+  ],
+  "version": "8.0.0-beta.2",
   "command": {
     "publish": {
       "conventionalCommits": true
