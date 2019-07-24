@@ -94,6 +94,49 @@ For example, consider an email application. For increased security, the applicat
 
 `@ng-idle/core` can detect that the user is clicking, typing, touching, scrolling, etc. and know that the user is still active. It can work with `@ng-idle/keepalive` to ping the server every few minutes to keep them logged in. In this case, as long as the user is doing something, they stay logged in. If they step away from the computer, we can present a warning dialog, and then after a countdown, log them out.
 
+## Server-Side Rendering/Universal
+
+@ng-idle/core uses DOM events on various targets to detect user activity. However, when using SSR/Universal Rendering the app is not always running in the browser and thus may not have access to these DOM targets, causing your app to potentially crash or throw errors as it tries to use browser globals like `document` and `window` through @ng-idle.
+
+`EventTargetInterruptSource` and all the interrupt sources that derive from it (such as `DocumentInterruptSource`, `WindowInterruptSource`, and `StorageInterruptSource`) can receive an option when they are created called `ssr`. It will be your app's responsibility to detect whether your app is running in the browser or on the server by using [`isPlatformServer`](https://angular.io/api/common/isPlatformServer) (or inverting [`isPlatformBrowser`](https://angular.io/api/common/isPlatformBrowser), if you'd prefer) when creating your interrupt sources.
+
+```
+import { Component, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser, isPlatformServer } from '@angular/common';
+
+import { Idle, DocumentInterruptSource, createDefaultInterruptSources } from '@ng-idle/core';
+
+@Component({
+  selector: 'app-root',
+  templateUrl: './postfeed.component.html',
+  styleUrls: ['./postfeed.component.css']
+})
+export class AppComponent implements OnInit {
+
+  constructor(@Inject(PLATFORM_ID) private platform: Object, private idle: Idle) { }
+
+  ngOnInit() {
+    // configure idle normally
+    this.idle.setIdle(60 * 10);
+
+    // create your interrupts. DO NOT use DEFAULT_INTERRUPTSOURCES for ssr/univeral apps!
+    const myInterrupts = new DocumentInterruptSource({ ssr: isPlatformServer(platform) });
+    // OR, you can use createDefaultInterruptSources and pass in the ssr option
+    // const myInterrupts = createDefaultInterruptSources({ ssr: isPlatformServer(platform) });
+
+    // now set the interrupt sources
+    this.idle.setInterrupts(myInterrupts);
+
+    if (isPlatformBrowser(this.platform)) {
+      // only need to start watching if we're in the browser
+      this.idle.watch()
+    }
+  }
+}
+```
+
+**Note** `DEFAULT_INTERRUPTSOURCES` should NOT be used by ssr/universal apps. The value of this constant is equivalent to `createDefaultInterruptSources({ssr: false})` and thus will not work in your SSR app. You _may_ continue to use DEFAULT_INTERRUPTSOURCES` if you are **not** using SSR/universal rendering.
+
 ## Developing
 
 This project was developed using the NodeJS version found in the `.nvmrc` file. You may experience problems using older versions. Try [NVM](https://github.com/creationix/nvm) or similar to manage different versions of Node concurrently. If using NVM, you can execute `nvm install` to download and switch to the correct version.
