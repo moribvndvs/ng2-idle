@@ -120,7 +120,7 @@ export class AppComponent implements OnInit {
     this.idle.setIdle(60 * 10);
 
     // create your interrupts. DO NOT use DEFAULT_INTERRUPTSOURCES for ssr/univeral apps!
-    const myInterrupts = new DocumentInterruptSource({ ssr: isPlatformServer(platform) });
+    const myInterrupts = new DocumentInterruptSource('mousedown', { ssr: isPlatformServer(platform) });
     // OR, you can use createDefaultInterruptSources and pass in the ssr option
     // const myInterrupts = createDefaultInterruptSources({ ssr: isPlatformServer(platform) });
 
