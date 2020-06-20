@@ -9,7 +9,7 @@ import { LocalStorage } from './localstorage';
   providers: [LocalStorage]
 })
 export class NgIdleModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<NgIdleModule> {
     return {
       ngModule: NgIdleModule,
       providers: [

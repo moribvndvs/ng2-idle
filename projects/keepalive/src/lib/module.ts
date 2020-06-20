@@ -5,7 +5,7 @@ import { Keepalive } from './keepalive';
 
 @NgModule({ imports: [NgIdleModule.forRoot()] })
 export class NgIdleKeepaliveModule {
-  static forRoot(): ModuleWithProviders {
+  static forRoot(): ModuleWithProviders<NgIdleKeepaliveModule> {
     return {
       ngModule: NgIdleKeepaliveModule,
       providers: [Keepalive, { provide: KeepaliveSvc, useExisting: Keepalive }]
