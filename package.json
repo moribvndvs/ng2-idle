@@ -4,14 +4,14 @@
   "version": "9.0.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/HackedByChinese/ng2-idle.git"
+    "url": "git+https://github.com/moribvndvs/ng2-idle.git"
   },
-  "author": "Mike Grabski <me@mikegrabski.com> (http://mikegrabski.com/)",
+  "author": "Mike Grabski <mike@mgrab.ski>",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/HackedByChinese/ng2-idle.git/issues"
+    "url": "https://github.com/moribvndvs/ng2-idle.git/issues"
   },
-  "homepage": "https://github.com/HackedByChinese/ng2-idle.git#readme",
+  "homepage": "https://github.com/moribvndvs/ng2-idle.git#readme",
   "private": true,
   "scripts": {
     "clean:coverage": "rimraf coverage",
