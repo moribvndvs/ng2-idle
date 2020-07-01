@@ -1,8 +1,8 @@
 # Introduction
 
-[![Join the chat at https://gitter.im/HackedByChinese/ng2-idle](https://badges.gitter.im/HackedByChinese/ng2-idle.svg)](https://gitter.im/HackedByChinese/ng2-idle?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Build Status](https://travis-ci.org/moribvndvs/ng2-idle.svg?branch=master)](https://travis-ci.org/moribvndvs/ng2-idle) [![Coverage Status](https://coveralls.io/repos/github/moribvndvs/ng2-idle/badge.svg?branch=master)](https://coveralls.io/github/moribvndvs/ng2-idle?branch=master)
+[![Build Status](https://travis-ci.org/moribvndvs/ng2-idle.svg?branch=master)](https://travis-ci.org/moribvndvs/ng2-idle) [![Coverage Status](https://coveralls.io/repos/github/moribvndvs/ng2-idle/badge.svg?branch=master)](https://coveralls.io/github/moribvndvs/ng2-idle?branch=master)
 
-A module for responding to idle users in Angular applications. This is a rewrite of the [ng-idle module](https://github.com/HackedByChinese/ng-idle); however if you are using Angular 1, you must use that module.
+A module for responding to idle users in Angular applications. This is a rewrite of the [ng-idle module](https://github.com/moribvndvs/ng-idle); however if you are using Angular 1, you must use that module.
 
 ## MAINTAINERS WANTED
 
@@ -23,7 +23,7 @@ Ideally, a candidate:
 - Is committed to releasing modular and lightweight (as possible) packages
 - Has working understanding of DOM events, JavaScript timers and intervals, Web Storage API, and cookies
 - Understands testing using Karma and Jasmine, and is committed to a high percentage of code coverage
-- Has working understanding of the [contributing guide](https://github.com/HackedByChinese/ng2-idle/blob/master/CONTRIBUTING.md), is willing to accept contributions from others, and can use Github and related tools effectively
+- Has working understanding of the [contributing guide](https://github.com/moribvndvs/ng2-idle/blob/master/CONTRIBUTING.md), is willing to accept contributions from others, and can use Github and related tools effectively
 - Has time to triage and answer tickets, or delegate to others
 - Has basic understanding of NPM for releasing packages
 
@@ -31,13 +31,13 @@ Please get in touch if you are interested!
 
 ## License
 
-Authored by **Mike Grabski** @HackedByChinese me@mikegrabski.com
+Authored by **Mike Grabski** @moribvndvs
 
-See [LICENSE](https://github.com/HackedByChinese/ng2-idle/blob/master/LICENSE) for licensing details.
+See [LICENSE](https://github.com/moribvndvs/ng2-idle/blob/master/LICENSE) for licensing details.
 
 ## Demo
 
-Visit https://hackedbychinese.github.io/ng2-idle to view a simple example with quick start instructions.
+Visit https://moribvndvs.github.io/ng2-idle to view a simple example with quick start instructions.
 
 ## Quick start
 
@@ -47,7 +47,7 @@ Visit https://hackedbychinese.github.io/ng2-idle to view a simple example with q
 npm install --save @ng-idle/core
 ```
 
-Integrating and configuring the package into your application requires a few more steps. Please visit [@ng-idle-example](https://github.com/HackedByChinese/ng2-idle-example.git) for source and instructions on how to get going.
+Integrating and configuring the package into your application requires a few more steps. Please visit [@ng-idle-example](https://github.com/moribvndvs/ng2-idle-example.git) for source and instructions on how to get going.
 
 ## Design Considerations
 
@@ -122,4 +122,4 @@ Note: Keepalive depends on Core. If you are running the above continuous tests, 
 
 ## Contributing
 
-See the [contributing guide](https://github.com/HackedByChinese/ng2-idle/blob/master/CONTRIBUTING.md).
+See the [contributing guide](https://github.com/moribvndvs/ng2-idle/blob/master/CONTRIBUTING.md).
