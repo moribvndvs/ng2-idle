@@ -104,7 +104,7 @@ describe('keepalive/Keepalive', () => {
     const request = new HttpRequest('GET', 'https://test.com');
 
     beforeEach(() => {
-      instance = TestBed.get(Keepalive);
+      instance = TestBed.inject<Keepalive>(Keepalive);
       instance.request(request);
     });
 
@@ -137,7 +137,7 @@ describe('keepalive/Keepalive', () => {
     const request = new HttpRequest('GET', 'https://test.com/404');
 
     beforeEach(() => {
-      instance = TestBed.get(Keepalive);
+      instance = TestBed.inject<Keepalive>(Keepalive);
       instance.request(request);
     });
 
