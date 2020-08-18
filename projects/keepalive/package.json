@@ -1,6 +1,6 @@
 {
   "name": "@ng-idle/keepalive",
-  "version": "9.0.0-beta.1",
+  "version": "10.0.0-beta.1",
   "description": "Module that works with @ng-idle/core to keep a user session alive while user is active.",
   "repository": {
     "type": "git",
@@ -24,8 +24,11 @@
   },
   "homepage": "https://github.com/HackedByChinese/ng2-idle.git#readme",
   "peerDependencies": {
-    "@angular/common": "^9.0.0",
-    "@angular/core": "^9.0.0",
+    "@angular/common": "^10.0.0",
+    "@angular/core": "^10.0.0",
     "@ng-idle/core": "^0.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.0.0"
   }
 }
