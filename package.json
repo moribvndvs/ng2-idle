@@ -30,8 +30,7 @@
     "copy:info": "for d in ./dist/*; do cp LICENSE README.md $d; done",
     "prerelease": "npm run build",
     "release": "lerna version --conventional-commits",
-    "postrelease": "npm run copy:info && node scripts/postrelease.js && npm publish dist/core && npm publish dist/keepalive",
-    "postinstall": "ngcc"
+    "postrelease": "npm run copy:info && node scripts/postrelease.js && npm publish dist/core && npm publish dist/keepalive"
   },
   "dependencies": {
     "@angular/animations": "~10.0.9",
