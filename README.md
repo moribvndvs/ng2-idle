@@ -121,6 +121,8 @@ npm run ng test keepalive
 
 Note: Keepalive depends on Core. If you are running the above continuous tests, you'll need to `npm build` or `npm run ng build core` first and after making changes to Core. However, `npm test` will build all modules and run the tests in one shot.
 
+To allow the commit/push checks to run, you'll need to have commitlint and rimraf installed globally (`npm install -g commitlint rimraf`).
+
 ## Contributing
 
 See the [contributing guide](https://github.com/moribvndvs/ng2-idle/blob/master/CONTRIBUTING.md).
