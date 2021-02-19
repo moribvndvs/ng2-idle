@@ -19,7 +19,7 @@
     "ng": "ng",
     "start": "ng serve",
     "prebuild": "npm run clean:dist",
-    "build": "ng build core && ng build keepalive",
+    "build": "ng build core --aot true && ng build keepalive --aot true",
     "pretest": "npm run build",
     "test": "ng test core --watch=false --codeCoverage=true --browsers=ChromeHeadlessNoSandbox --progress=false && ng test keepalive --watch=false --codeCoverage=true --browsers=ChromeHeadlessNoSandbox --progress=false",
     "precoverage": "npm run clean:coverage && npm test",
