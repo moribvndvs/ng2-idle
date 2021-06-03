@@ -19,9 +19,11 @@ export class DocumentInterruptSource extends EventTargetInterruptSource {
   filterEvent(event: any): boolean {
     // some browser bad input hacks
     if (
-      event.type === 'mousemove' &&
+      event.type === 'mousemove' 
+      // do not filter for IE
+      && !/Trident/.test(navigator.userAgent)
       // fix for Chrome destop notifications
-      ((event.originalEvent &&
+      && ((event.originalEvent &&
         event.originalEvent.movementX === 0 &&
         event.originalEvent.movementY === 0) ||
         // fix for webkit fake mousemove
