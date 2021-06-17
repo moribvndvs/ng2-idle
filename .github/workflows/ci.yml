@@ -1,0 +1,87 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - master
+    tags:
+      - "*"
+  pull_request:
+    branches:
+      - master
+
+env:
+  TZ: "Europe/Brussels"
+  NPM_VERSION: "7.x"
+  HUSKY_SKIP_INSTALL: 1
+  NG_CLI_ANALYTICS: "ci"
+
+jobs:
+  test:
+    name: Build and test on Node.js ${{ matrix.node_version }} and ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        node_version: [ "12", "14" ]
+        os: [ ubuntu-latest, macOS-latest ]
+    steps:
+      # See: https://github.com/marketplace/actions/checkout
+      - uses: actions/checkout@v2
+
+      # See: https://github.com/marketplace/actions/setup-node-js-environment
+      - name: Use Node.js ${{ matrix.node_version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node_version }}
+
+      # See: https://github.com/marketplace/actions/cache
+      # See doc: https://docs.github.com/en/actions/guides/caching-dependencies-to-speed-up-workflows
+      - name: Cache node modules
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules-${{ matrix.node_version }}-${{ matrix.os }}
+        with:
+          # npm cache files are stored in `~/.npm` on Linux/macOS
+          path: ~/.npm
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
+
+      - name: Install npm ${{ env.NPM_VERSION }}
+        run: npm i -g npm@${{ env.NPM_VERSION }}
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Linting
+        run: npm run lint
+
+      - name: Testing
+        run: npm run test
+
+      - name: Merge coverage reports
+        run: |
+          cat coverage/core/lcov.info coverage/keepalive/lcov.info > combined-lcov.info
+
+      # See: https://github.com/marketplace/actions/coveralls-github-action
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: "combined-lcov.info"
+          flag-name: ${{ matrix.os }}-${{ matrix.node_version }}
+          parallel: true
+
+  final-step:
+    needs: test
+    name: Final step
+    runs-on: ubuntu-latest
+    steps:
+      # See: https://github.com/marketplace/actions/coveralls-github-action
+      - name: Coveralls Finished
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.github_token }}
+          parallel-finished: true
