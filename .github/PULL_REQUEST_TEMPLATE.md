@@ -1,5 +1,5 @@
 **Please check if the PR fulfills these requirements**
-- [ ] The commit message follows our guidelines: https://github.com/HackedByChinese/ng2-idle/blob/master/CONTRIBUTING.md#pr
+- [ ] The commit message follows our guidelines: https://github.com/moribvndvs/ng2-idle/blob/master/CONTRIBUTING.md#pr
 - [ ] Tests for the changes have been added (for bug fixes / features)
 - [ ] Docs have been added / updated (for bug fixes / features)
 

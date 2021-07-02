@@ -1,6 +1,7 @@
 # Introduction
 
-[![Build Status](https://travis-ci.org/moribvndvs/ng2-idle.svg?branch=master)](https://travis-ci.org/moribvndvs/ng2-idle) [![Coverage Status](https://coveralls.io/repos/github/moribvndvs/ng2-idle/badge.svg?branch=master)](https://coveralls.io/github/moribvndvs/ng2-idle?branch=master)
+[![Build Status](https://github.com/moribvndvs/ng2-idle/workflows/ci/badge.svg)](https://github.com/moribvndvs/ng2-idle/actions?query=workflow%3Aci)
+[![Coverage Status](https://coveralls.io/repos/github/moribvndvs/ng2-idle/badge.svg?branch=master)](https://coveralls.io/github/moribvndvs/ng2-idle?branch=master)
 
 A module for responding to idle users in Angular applications. This is a rewrite of the [ng-idle module](https://github.com/moribvndvs/ng-idle); however if you are using Angular 1, you must use that module.
 
