@@ -1,6 +1,6 @@
 {
   "name": "@ng-idle/core",
-  "version": "12.0.0",
+  "version": "10.0.0",
   "description": "A module for detecting and responding to the user becoming idle in Angular applications.",
   "repository": {
     "type": "git",
