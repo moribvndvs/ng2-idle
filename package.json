@@ -1,7 +1,7 @@
 {
   "name": "ng-idle",
   "description": "A module for responding to idle users in Angular applications.",
-  "version": "11.0.2",
+  "version": "11.0.3",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/moribvndvs/ng2-idle.git"
