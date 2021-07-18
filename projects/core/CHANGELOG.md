@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.0.0](https://github.com/moribvndvs/ng2-idle/compare/v10.0.0...v11.0.0) (2021-07-18)
+
+
+* Angular 12 (#151) ([add71cd](https://github.com/moribvndvs/ng2-idle/commit/add71cd62c7c8411d40c62e1b8c4e045c714c1fd)), closes [#151](https://github.com/moribvndvs/ng2-idle/issues/151)
+
+
+### BREAKING CHANGES
+
+* This version requires Angular 9 or later.
+
+
+
+
+
 # [10.0.0](https://github.com/HackedByChinese/ng2-idle/compare/v9.0.0-beta.1...v10.0.0) (2020-09-10)
 
 
