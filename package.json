@@ -1,7 +1,7 @@
 {
   "name": "ng-idle",
   "description": "A module for responding to idle users in Angular applications.",
-  "version": "11.0.0",
+  "version": "11.0.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/moribvndvs/ng2-idle.git"
@@ -28,8 +28,8 @@
     "lint:fix": "ng lint core --fix=true && ng lint keepalive --fix=true",
     "e2e": "ng e2e",
     "copy:info": "for d in ./dist/*; do cp LICENSE README.md $d; done",
-    "prerelease": "lerna version --conventional-commits",
-    "release": "npm publish dist/core && npm publish dist/keepalive",
+    "release": "lerna version --conventional-commits",
+    "postrelease": "npm publish dist/core && npm publish dist/keepalive",
     "version": "npm run build && npm run copy:info && node scripts/postrelease.js"
   },
   "dependencies": {
