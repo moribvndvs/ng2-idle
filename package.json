@@ -1,12 +1,12 @@
 {
   "name": "ng-idle",
   "description": "A module for responding to idle users in Angular applications.",
-  "version": "10.0.0",
+  "version": "11.0.0",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/moribvndvs/ng2-idle.git"
   },
-  "author": "Mike Grabski <mike@mgrab.ski>",
+  "author": "Ng-Idle Team",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/moribvndvs/ng2-idle.git/issues"
@@ -28,9 +28,8 @@
     "lint:fix": "ng lint core --fix=true && ng lint keepalive --fix=true",
     "e2e": "ng e2e",
     "copy:info": "for d in ./dist/*; do cp LICENSE README.md $d; done",
-    "prerelease": "npm run build",
     "release": "lerna version --conventional-commits",
-    "postrelease": "npm run copy:info && node scripts/postrelease.js && npm publish dist/core && npm publish dist/keepalive"
+    "postrelease": "npm run build && npm run copy:info && node scripts/postrelease.js && npm publish dist/core && npm publish dist/keepalive"
   },
   "dependencies": {
     "@angular/animations": "~12.0.5",

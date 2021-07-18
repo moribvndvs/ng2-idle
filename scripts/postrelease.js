@@ -18,8 +18,17 @@ const updateProject = project => {
   }
 };
 
+const updateRoot = () => {
+  const pkg = JSON.parse(fs.readFileSync('./package.json'))
+  pkg.version = lerna.version;
+
+  fs.writeFileSync('./package.json', JSON.stringify(pkg, null, 2), 'utf-8');
+};
+
 const projects = util.getFolders('./projects');
 
 projects.map(project => {
   updateProject(project);
 });
+
+updateRoot();

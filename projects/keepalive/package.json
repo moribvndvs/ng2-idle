@@ -17,7 +17,7 @@
     "session",
     "keepalive"
   ],
-  "author": "Mike Grabski <me@mikegrabski.com> (http://mikegrabski.com/)",
+  "author": "Ng-Idle Team",
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/moribvndvs/ng2-idle.git/issues"
