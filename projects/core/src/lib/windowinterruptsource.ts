@@ -8,6 +8,9 @@ import {
  */
 export class WindowInterruptSource extends EventTargetInterruptSource {
   constructor(events: string, options?: number | EventTargetInterruptOptions) {
-    super(window, events, options);
+    const target =
+      options && (options as EventTargetInterruptOptions).ssr ? null : window;
+
+    super(target, events, options);
   }
 }

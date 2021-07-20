@@ -18,6 +18,12 @@ export interface EventTargetInterruptOptions {
    * Note: you need to detect if the browser supports passive listeners, and only set this to true if it does.
    */
   passive?: boolean;
+
+  /**
+   * Whether or not the app is running on the server side or non-browser context where access
+   * to browser globals and user input is not possible.
+   */
+  ssr?: boolean;
 }
 
 const defaultThrottleDelay = 500;
@@ -30,6 +36,7 @@ export class EventTargetInterruptSource extends InterruptSource {
   private eventSubscription: Subscription = new Subscription();
   protected throttleDelay: number;
   protected passive: boolean;
+  protected ssr: boolean;
 
   constructor(
     protected target: any,
@@ -39,12 +46,13 @@ export class EventTargetInterruptSource extends InterruptSource {
     super(null, null);
 
     if (typeof options === 'number') {
-      options = { throttleDelay: options, passive: false };
+      options = { throttleDelay: options, passive: false, ssr: false };
     }
 
     options = options || {
-      throttleDelay: defaultThrottleDelay,
-      passive: false
+      passive: false,
+      ssr: false,
+      throttleDelay: defaultThrottleDelay
     };
 
     if (options.throttleDelay === undefined || options.throttleDelay === null) {
@@ -53,6 +61,11 @@ export class EventTargetInterruptSource extends InterruptSource {
 
     this.throttleDelay = options.throttleDelay;
     this.passive = !!options.passive;
+    this.ssr = !!options.ssr;
+
+    if (this.ssr || !target) {
+      return;
+    }
 
     const opts = this.passive ? { passive: true } : null;
     const fromEvents = events
@@ -89,6 +102,10 @@ export class EventTargetInterruptSource extends InterruptSource {
    * @return The current option values.
    */
   get options(): EventTargetInterruptOptions {
-    return { throttleDelay: this.throttleDelay, passive: this.passive };
+    return {
+      passive: this.passive,
+      ssr: this.ssr,
+      throttleDelay: this.throttleDelay
+    };
   }
 }

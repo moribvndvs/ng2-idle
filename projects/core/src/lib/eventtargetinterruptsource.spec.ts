@@ -43,6 +43,36 @@ describe('core/EventTargetInterruptSource', () => {
     expect(source.onInterrupt.emit).not.toHaveBeenCalled();
   }));
 
+  it('does not emit onInterrupt event when ssr is true', fakeAsync(() => {
+    const source = new EventTargetInterruptSource(document.body, 'click', {
+      ssr: true
+    });
+    spyOn(source.onInterrupt, 'emit').and.callThrough();
+
+    source.attach();
+
+    const expected = new Event('click');
+    document.body.dispatchEvent(expected);
+
+    expect(source.onInterrupt.emit).not.toHaveBeenCalled();
+
+    source.detach();
+  }));
+
+  it('does not emit onInterrupt event when target is null', fakeAsync(() => {
+    const source = new EventTargetInterruptSource(null, 'click');
+    spyOn(source.onInterrupt, 'emit').and.callThrough();
+
+    source.attach();
+
+    const expected = new Event('click');
+    document.body.dispatchEvent(expected);
+
+    expect(source.onInterrupt.emit).not.toHaveBeenCalled();
+
+    source.detach();
+  }));
+
   it('should throttle target events using the specified throttleDelay value', fakeAsync(() => {
     const source = new EventTargetInterruptSource(document.body, 'click', 500);
     spyOn(source.onInterrupt, 'emit').and.callThrough();
@@ -97,10 +127,11 @@ describe('core/EventTargetInterruptSource', () => {
   it('should set default options', () => {
     const target = {};
     const source = new EventTargetInterruptSource(target, 'click');
-    const { throttleDelay, passive } = source.options;
+    const { throttleDelay, passive, ssr } = source.options;
 
     expect(passive).toBeFalsy();
     expect(throttleDelay).toBe(500);
+    expect(ssr).toBeFalsy();
   });
 
   it('should set passive flag', () => {
@@ -108,10 +139,11 @@ describe('core/EventTargetInterruptSource', () => {
     const source = new EventTargetInterruptSource(target, 'click', {
       passive: true
     });
-    const { throttleDelay, passive } = source.options;
+    const { throttleDelay, passive, ssr: isBrowser } = source.options;
 
     expect(passive).toBeTruthy();
     expect(throttleDelay).toBe(500);
+    expect(isBrowser).toBeFalsy();
   });
 
   it('should set throttleDelay', () => {
@@ -119,21 +151,24 @@ describe('core/EventTargetInterruptSource', () => {
     const source = new EventTargetInterruptSource(target, 'click', {
       throttleDelay: 1000
     });
-    const { throttleDelay, passive } = source.options;
+    const { throttleDelay, passive, ssr } = source.options;
 
     expect(passive).toBeFalsy();
     expect(throttleDelay).toBe(1000);
+    expect(ssr).toBeFalsy();
   });
 
-  it('should set both options', () => {
+  it('should set all options', () => {
     const target = {};
     const source = new EventTargetInterruptSource(target, 'click', {
-      throttleDelay: 1000,
-      passive: true
+      passive: true,
+      ssr: true,
+      throttleDelay: 1000
     });
-    const { throttleDelay, passive } = source.options;
+    const { throttleDelay, passive, ssr } = source.options;
 
     expect(passive).toBeTruthy();
     expect(throttleDelay).toBe(1000);
+    expect(ssr).toBeTruthy();
   });
 });

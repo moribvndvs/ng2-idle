@@ -29,4 +29,18 @@ describe('core/WindowInterruptSource', () => {
 
     expect(source.onInterrupt.emit).not.toHaveBeenCalled();
   }));
+
+  it('does not emit onInterrupt event when ssr is true', fakeAsync(() => {
+    const source = new WindowInterruptSource('focus', { ssr: true });
+    spyOn(source.onInterrupt, 'emit').and.callThrough();
+
+    source.attach();
+
+    const expected = new Event('focus');
+    window.dispatchEvent(expected);
+
+    expect(source.onInterrupt.emit).not.toHaveBeenCalled();
+
+    source.detach();
+  }));
 });

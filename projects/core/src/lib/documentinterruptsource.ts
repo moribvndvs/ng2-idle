@@ -1,3 +1,6 @@
+import { Inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
+
 import {
   EventTargetInterruptOptions,
   EventTargetInterruptSource
@@ -8,7 +11,13 @@ import {
  */
 export class DocumentInterruptSource extends EventTargetInterruptSource {
   constructor(events: string, options?: number | EventTargetInterruptOptions) {
-    super(document.documentElement, events, options);
+    const target =
+      options && (options as EventTargetInterruptOptions).ssr
+        ? null
+        : document.documentElement;
+
+    options = !options || typeof options === 'number' ? {} : options;
+    super(target, events, options);
   }
 
   /*
