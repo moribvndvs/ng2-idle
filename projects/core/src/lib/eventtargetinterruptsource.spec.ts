@@ -63,6 +63,20 @@ describe('core/EventTargetInterruptSource', () => {
     source.detach();
   }));
 
+  it('should use passive event listeners when passive is true', fakeAsync(() => {
+    const source = new EventTargetInterruptSource(document.body, 'click', { passive: true });
+    source.initialize();
+    spyOn(source.onInterrupt, 'emit').and.callThrough();
+    source.attach();
+
+    const expected = new Event('click');
+    document.body.dispatchEvent(expected);
+
+    expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
+
+    source.detach();
+  }));
+
   it('should throttle target events using the specified throttleDelay value', fakeAsync(() => {
     const source = new EventTargetInterruptSource(document.body, 'click', 500);
     source.initialize();
