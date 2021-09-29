@@ -8,7 +8,7 @@ import {
  */
 export class DocumentInterruptSource extends EventTargetInterruptSource {
   constructor(events: string, options?: number | EventTargetInterruptOptions) {
-    super(document.documentElement, events, options);
+    super(() => document.documentElement, events, options);
   }
 
   /*

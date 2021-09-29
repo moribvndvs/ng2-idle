@@ -5,6 +5,7 @@ import { DocumentInterruptSource } from './documentinterruptsource';
 describe('core/DocumentInterruptSource', () => {
   it('emits onInterrupt event when attached and event is fired', fakeAsync(() => {
     const source = new DocumentInterruptSource('click');
+    source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
     source.attach();
 
@@ -16,8 +17,24 @@ describe('core/DocumentInterruptSource', () => {
     source.detach();
   }));
 
+  it('does not emit events when running on a server', fakeAsync(() => {
+    const source = new DocumentInterruptSource('click');
+    const options = { platformId: 'server' as unknown as object };
+    source.initialize(options);
+    spyOn(source.onInterrupt, 'emit').and.callThrough();
+    source.attach();
+
+    const expected = new Event('click');
+    document.documentElement.dispatchEvent(expected);
+
+    expect(source.onInterrupt.emit).not.toHaveBeenCalled();
+
+    source.detach();
+  }));
+
   it('does not emit onInterrupt event when detached and event is fired', fakeAsync(() => {
     const source = new DocumentInterruptSource('click');
+    source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
 
     // make it interesting by attaching and detaching
@@ -32,6 +49,7 @@ describe('core/DocumentInterruptSource', () => {
 
   it('should not emit onInterrupt event when Chrome desktop notifications are visible', fakeAsync(() => {
     const source = new DocumentInterruptSource('mousemove');
+    source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
     source.attach();
 
@@ -47,6 +65,7 @@ describe('core/DocumentInterruptSource', () => {
 
   it('should not emit onInterrupt event on webkit fake mousemove events', fakeAsync(() => {
     const source = new DocumentInterruptSource('mousemove');
+    source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
     source.attach();
 
@@ -64,6 +83,7 @@ describe('core/DocumentInterruptSource', () => {
 
   it('should emit onInterrupt event on webkit real mousemove events', fakeAsync(() => {
     const source = new DocumentInterruptSource('mousemove');
+    source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
     source.attach();
 

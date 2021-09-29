@@ -25,6 +25,7 @@ describe('core/InterruptSource', () => {
 
   it('emits onInterrupt event outside the angular zone', fakeAsync(() => {
     const source = new EventTargetInterruptSource(document.body, 'click');
+    source.initialize();
     const fakeNgZone = Zone.current.fork({
       name: 'angular',
       properties: {

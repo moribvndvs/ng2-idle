@@ -1,9 +1,11 @@
 import {
   EventEmitter,
+  Inject,
   Injectable,
   NgZone,
   OnDestroy,
-  Optional
+  Optional,
+  PLATFORM_ID
 } from '@angular/core';
 
 import { IdleExpiry } from './idleexpiry';
@@ -59,7 +61,9 @@ export class Idle implements OnDestroy {
   constructor(
     private expiry: IdleExpiry,
     private zone: NgZone,
-    @Optional() keepaliveSvc?: KeepaliveSvc
+    @Optional() keepaliveSvc?: KeepaliveSvc,
+    // tslint:disable-next-line: ban-types platform id injection will fail with any other type
+    @Optional() @Inject(PLATFORM_ID) private platformId?: Object
   ) {
     if (keepaliveSvc) {
       this.keepaliveSvc = keepaliveSvc;
@@ -175,7 +179,8 @@ export class Idle implements OnDestroy {
     const self = this;
 
     for (const source of sources) {
-      const sub = new Interrupt(source);
+      const options = { platformId: this.platformId };
+      const sub = new Interrupt(source, options);
       sub.subscribe((args: InterruptArgs) => {
         self.interrupt(args.force, args.innerArgs);
       });
