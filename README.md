@@ -95,6 +95,12 @@ For example, consider an email application. For increased security, the applicat
 
 `@ng-idle/core` can detect that the user is clicking, typing, touching, scrolling, etc. and know that the user is still active. It can work with `@ng-idle/keepalive` to ping the server every few minutes to keep them logged in. In this case, as long as the user is doing something, they stay logged in. If they step away from the computer, we can present a warning dialog, and then after a countdown, log them out.
 
+## Server-Side Rendering/Universal
+
+@ng-idle/core uses DOM events on various targets to detect user activity. However, when using SSR/Universal Rendering the app is not always running in the browser and thus may not have access to these DOM targets, causing your app to potentially crash or throw errors as it tries to use browser globals like `document` and `window` through @ng-idle.
+
+`EventTargetInterruptSource` and all the interrupt sources that derive from it (such as `DocumentInterruptSource`, `WindowInterruptSource`, and `StorageInterruptSource`) are designed to lazily initialize the event target listeners for compatibility with server-side rendering. The `EventTargetInterruptSource` will detect whether your app is running in the browser or on the server by using [`isPlatformServer`](https://angular.io/api/common/isPlatformServer) and will skip initialization of the event target listeners when run on the server.
+
 ## Developing
 
 This project was developed using the NodeJS version found in the `.nvmrc` file. You may experience problems using older versions. Try [NVM](https://github.com/creationix/nvm) or similar to manage different versions of Node concurrently. If using NVM, you can execute `nvm install` to download and switch to the correct version.

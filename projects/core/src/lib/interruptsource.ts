@@ -1,6 +1,7 @@
 import { EventEmitter } from '@angular/core';
 
 import { InterruptArgs } from './interruptargs';
+import { InterruptOptions } from './interruptoptions';
 
 declare const Zone: any;
 
@@ -48,4 +49,6 @@ export abstract class InterruptSource {
 
     this.isAttached = false;
   }
+
+  initialize?(options?: InterruptOptions): void;
 }

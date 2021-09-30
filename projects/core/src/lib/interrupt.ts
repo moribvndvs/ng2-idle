@@ -1,6 +1,7 @@
 import { Subscription } from 'rxjs';
 
 import { InterruptArgs } from './interruptargs';
+import { InterruptOptions } from './interruptoptions';
 import { InterruptSource } from './interruptsource';
 
 /*
@@ -9,7 +10,11 @@ import { InterruptSource } from './interruptsource';
 export class Interrupt {
   private sub: Subscription;
 
-  constructor(public source: InterruptSource) {}
+  constructor(public source: InterruptSource, options?: InterruptOptions) {
+    if (source.initialize) {
+      source.initialize(options);
+    }
+  }
 
   /*
    * Subscribes to the interrupt using the specified function.

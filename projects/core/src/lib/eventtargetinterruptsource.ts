@@ -1,7 +1,10 @@
+import { isPlatformServer } from '@angular/common';
 import { Observable, Subscription, fromEvent, merge } from 'rxjs';
 import { filter, throttleTime } from 'rxjs/operators';
 
+import { EventTarget } from './eventtarget';
 import { InterruptArgs } from './interruptargs';
+import { InterruptOptions } from './interruptoptions';
 import { InterruptSource } from './interruptsource';
 
 /**
@@ -32,32 +35,39 @@ export class EventTargetInterruptSource extends InterruptSource {
   protected passive: boolean;
 
   constructor(
-    protected target: any,
+    protected target: EventTarget<any> | (() => EventTarget<any>),
     protected events: string,
-    options?: number | EventTargetInterruptOptions
+    private opts?: number | EventTargetInterruptOptions
   ) {
     super(null, null);
 
-    if (typeof options === 'number') {
-      options = { throttleDelay: options, passive: false };
+    if (typeof this.opts === 'number') {
+      this.opts = { throttleDelay: this.opts, passive: false };
     }
 
-    options = options || {
-      throttleDelay: defaultThrottleDelay,
-      passive: false
+    this.opts = this.opts || {
+      passive: false,
+      throttleDelay: defaultThrottleDelay
     };
 
-    if (options.throttleDelay === undefined || options.throttleDelay === null) {
-      options.throttleDelay = defaultThrottleDelay;
+    if (this.opts.throttleDelay === undefined || this.opts.throttleDelay === null) {
+      this.opts.throttleDelay = defaultThrottleDelay;
     }
 
-    this.throttleDelay = options.throttleDelay;
-    this.passive = !!options.passive;
+    this.throttleDelay = this.opts.throttleDelay;
+    this.passive = !!this.opts.passive;
+  }
 
+  initialize(options?: InterruptOptions) {
+    if (options?.platformId && isPlatformServer(options.platformId)) {
+      return;
+    }
+
+    const eventTarget = typeof this.target === 'function' ? this.target() : this.target;
     const opts = this.passive ? { passive: true } : null;
-    const fromEvents = events
+    const fromEvents = this.events
       .split(' ')
-      .map(eventName => fromEvent<any>(target, eventName, opts));
+      .map(eventName => fromEvent(eventTarget, eventName, opts));
     this.eventSrc = merge(...fromEvents);
     this.eventSrc = this.eventSrc.pipe(
       filter(innerArgs => !this.filterEvent(innerArgs))
@@ -89,6 +99,9 @@ export class EventTargetInterruptSource extends InterruptSource {
    * @return The current option values.
    */
   get options(): EventTargetInterruptOptions {
-    return { throttleDelay: this.throttleDelay, passive: this.passive };
+    return {
+      passive: this.passive,
+      throttleDelay: this.throttleDelay
+    };
   }
 }

@@ -1,11 +1,12 @@
 import { WindowInterruptSource } from './windowinterruptsource';
+import { EventTargetInterruptOptions } from './eventtargetinterruptsource';
 
 /*
  * An interrupt source on the storage event of Window.
  */
 export class StorageInterruptSource extends WindowInterruptSource {
-  constructor(throttleDelay = 500) {
-    super('storage', throttleDelay);
+  constructor(options: number | EventTargetInterruptOptions = 500) {
+    super('storage', options);
   }
 
   /*

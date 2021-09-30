@@ -1,10 +1,12 @@
 import { fakeAsync, tick } from '@angular/core/testing';
 
+import { EventTarget } from './eventtarget';
 import { EventTargetInterruptSource } from './eventtargetinterruptsource';
 
 describe('core/EventTargetInterruptSource', () => {
   it('emits onInterrupt event when attached and event is fired', fakeAsync(() => {
     const source = new EventTargetInterruptSource(document.body, 'click');
+    source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
     source.attach();
 
@@ -18,6 +20,7 @@ describe('core/EventTargetInterruptSource', () => {
 
   it('emits onInterrupt event when multiple events are specified and one is triggered', fakeAsync(() => {
     const source = new EventTargetInterruptSource(document.body, 'click touch');
+    source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
     source.attach();
 
@@ -31,6 +34,7 @@ describe('core/EventTargetInterruptSource', () => {
 
   it('does not emit onInterrupt event when detached and event is fired', fakeAsync(() => {
     const source = new EventTargetInterruptSource(document.body, 'click');
+    source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
 
     // make it interesting by attaching and detaching
@@ -43,8 +47,39 @@ describe('core/EventTargetInterruptSource', () => {
     expect(source.onInterrupt.emit).not.toHaveBeenCalled();
   }));
 
+  it('does not emit onInterrupt event when running on a server', fakeAsync(() => {
+    const source = new EventTargetInterruptSource(document.body, 'click');
+    const options = { platformId: 'server' as unknown as object };
+    source.initialize(options);
+    spyOn(source.onInterrupt, 'emit').and.callThrough();
+
+    source.attach();
+
+    const expected = new Event('click');
+    document.body.dispatchEvent(expected);
+
+    expect(source.onInterrupt.emit).not.toHaveBeenCalled();
+
+    source.detach();
+  }));
+
+  it('should use passive event listeners when passive is true', fakeAsync(() => {
+    const source = new EventTargetInterruptSource(document.body, 'click', { passive: true });
+    source.initialize();
+    spyOn(source.onInterrupt, 'emit').and.callThrough();
+    source.attach();
+
+    const expected = new Event('click');
+    document.body.dispatchEvent(expected);
+
+    expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
+
+    source.detach();
+  }));
+
   it('should throttle target events using the specified throttleDelay value', fakeAsync(() => {
     const source = new EventTargetInterruptSource(document.body, 'click', 500);
+    source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
     source.attach();
 
@@ -77,6 +112,7 @@ describe('core/EventTargetInterruptSource', () => {
 
   it('should not throttle target events if throttleDelay is 0', fakeAsync(() => {
     const source = new EventTargetInterruptSource(document.body, 'click', 0);
+    source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
     source.attach();
 
@@ -95,7 +131,7 @@ describe('core/EventTargetInterruptSource', () => {
   }));
 
   it('should set default options', () => {
-    const target = {};
+    const target = {} as EventTarget<any>;
     const source = new EventTargetInterruptSource(target, 'click');
     const { throttleDelay, passive } = source.options;
 
@@ -104,7 +140,7 @@ describe('core/EventTargetInterruptSource', () => {
   });
 
   it('should set passive flag', () => {
-    const target = {};
+    const target = {} as EventTarget<any>;
     const source = new EventTargetInterruptSource(target, 'click', {
       passive: true
     });
@@ -115,7 +151,7 @@ describe('core/EventTargetInterruptSource', () => {
   });
 
   it('should set throttleDelay', () => {
-    const target = {};
+    const target = {} as EventTarget<any>;
     const source = new EventTargetInterruptSource(target, 'click', {
       throttleDelay: 1000
     });
@@ -125,11 +161,11 @@ describe('core/EventTargetInterruptSource', () => {
     expect(throttleDelay).toBe(1000);
   });
 
-  it('should set both options', () => {
-    const target = {};
+  it('should set all options', () => {
+    const target = {} as EventTarget<any>;
     const source = new EventTargetInterruptSource(target, 'click', {
-      throttleDelay: 1000,
-      passive: true
+      passive: true,
+      throttleDelay: 1000
     });
     const { throttleDelay, passive } = source.options;
 
