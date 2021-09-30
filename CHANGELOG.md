@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [11.1.0](https://github.com/moribvndvs/ng2-idle/compare/v11.0.3...v11.1.0) (2021-09-30)
+
+
+### Features
+
+* **interruptsource:** support ssr with the default interrupt sources ([#159](https://github.com/moribvndvs/ng2-idle/issues/159)) ([f70fcad](https://github.com/moribvndvs/ng2-idle/commit/f70fcadfd3cfaccd2b9ce9ee00a5ccb6901c4d05)), closes [#77](https://github.com/moribvndvs/ng2-idle/issues/77) [#115](https://github.com/moribvndvs/ng2-idle/issues/115)
+
+
+
+
+
 ## [11.0.3](https://github.com/moribvndvs/ng2-idle/compare/v11.0.2...v11.0.3) (2021-07-18)
 
 **Note:** Version bump only for package ng-idle
