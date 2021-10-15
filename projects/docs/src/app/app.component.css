@@ -1,0 +1,43 @@
+.toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.main-content {
+  margin: 1em;
+}
+.idle-state {
+  margin: 0 1em;
+}
+
+.idle-state .status {
+  margin: 0 .25em;
+}
+
+.idle-state .ping {
+  font-size: .5em;
+  color: gray;
+}
+
+.online-status {
+  width: .5em;
+  height: .5em;
+  border-radius: 50%;
+  background-color: yellow;
+  border: 2px solid white;
+  /* bottom: 0;
+  right: 0;
+  position: absolute; */
+  display: inline-block;
+}
+
+.online-status.online {
+  background-color: green;
+}
+
+.online-status.idle {
+  background-color: orange;
+}
+
+.online-status.offline {
+  background-color: grey;
+}
