@@ -30,12 +30,6 @@ Ideally, a candidate:
 
 Please get in touch if you are interested!
 
-## License
-
-Authored by **Mike Grabski** @moribvndvs
-
-See [LICENSE](https://github.com/moribvndvs/ng2-idle/blob/master/LICENSE) for licensing details.
-
 ## Demo
 
 Visit https://moribvndvs.github.io/ng2-idle to view a simple example with quick start instructions.
