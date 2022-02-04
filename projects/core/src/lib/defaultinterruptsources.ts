@@ -7,7 +7,7 @@ export function createDefaultInterruptSources(
 ) {
   return [
     new DocumentInterruptSource(
-      'mousemove keydown DOMMouseScroll mousewheel mousedown touchstart touchmove scroll',
+      'mousemove keydown DOMMouseScroll mousewheel wheel mousedown touchstart touchmove scroll',
       options
     ),
     new StorageInterruptSource(options)
