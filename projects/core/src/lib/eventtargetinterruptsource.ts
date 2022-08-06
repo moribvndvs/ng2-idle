@@ -67,7 +67,7 @@ export class EventTargetInterruptSource extends InterruptSource {
     const opts = this.passive ? { passive: true } : null;
     const fromEvents = this.events
       .split(' ')
-      .map(eventName => fromEvent(eventTarget, eventName, opts));
+      .map(eventName => fromEvent(eventTarget as any, eventName, opts));
     this.eventSrc = merge(...fromEvents);
     this.eventSrc = this.eventSrc.pipe(
       filter(innerArgs => !this.filterEvent(innerArgs))
