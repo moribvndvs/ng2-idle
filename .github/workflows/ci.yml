@@ -12,7 +12,6 @@ on:
 
 env:
   TZ: "Europe/Brussels"
-  NPM_VERSION: "7.x"
   HUSKY_SKIP_INSTALL: 1
   NG_CLI_ANALYTICS: "ci"
 
@@ -22,7 +21,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node_version: [ "12", "14" ]
+        node_version: [ "14", "16" ]
         os: [ ubuntu-latest, macOS-latest ]
     steps:
       # See: https://github.com/marketplace/actions/checkout
@@ -49,8 +48,6 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - name: Install npm ${{ env.NPM_VERSION }}
-        run: npm i -g npm@${{ env.NPM_VERSION }}
 
       - name: Install dependencies
         run: npm ci

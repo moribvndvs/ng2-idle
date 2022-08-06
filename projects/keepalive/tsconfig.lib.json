@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "../../out-tsc/lib",
     "declarationMap": true,
-    "target": "es2015",
+    "target": "es2020",
     "declaration": true,
     "inlineSources": true,
     "types": [],
@@ -13,12 +13,12 @@
     ]
   },
   "angularCompilerOptions": {
+    "compilationMode": "partial",
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
     "fullTemplateTypeCheck": true,
     "strictInjectionParameters": true,
-    "enableResourceInlining": true,
-    "enableIvy": false
+    "enableResourceInlining": true
   },
   "exclude": [
     "src/test.ts",
