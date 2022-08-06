@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [12.0.0](https://github.com/moribvndvs/ng2-idle/compare/v11.1.0...v12.0.0) (2022-08-06)
+
+
+### chore
+
+* update library to use angular 14 ([#169](https://github.com/moribvndvs/ng2-idle/issues/169)) ([d4e17b9](https://github.com/moribvndvs/ng2-idle/commit/d4e17b9a6bf086a8df57445ba2a092a827a90757))
+
+
+### BREAKING CHANGES
+
+* requires node 14+ and angular 14
+
+
+
+
+
 # [11.1.0](https://github.com/moribvndvs/ng2-idle/compare/v11.0.3...v11.1.0) (2021-09-30)
 
 
