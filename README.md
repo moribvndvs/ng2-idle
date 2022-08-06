@@ -80,7 +80,7 @@ By default, a `LocalStorageExpiry` type is provided, which will just keep track 
 
 ### Multiple Idle Instance Support
 
-The dependency injector in Angular supports a hierarchical injection strategy. This allows you to create an instance of `Idle` at whatever scope you need, and there can be more than one instance. This allows you two have two separate watches, for example, on two different elements on the page.  
+The dependency injector in Angular supports a hierarchical injection strategy. This allows you to create an instance of `Idle` at whatever scope you need, and there can be more than one instance. This allows you to have two separate watches, for example, on two different elements on the page.  
 If you use the default expiry (`LocalStorageExpiry`), you will need to define a name for each idle with `Idle.setIdleName('yourIdleName')`, otherwise the same key will be used in the localStorage and this feature will not work as expected.
 
 ### Example Use Case
