@@ -15,7 +15,7 @@
     "compilationMode": "partial",
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
-    "fullTemplateTypeCheck": true,
+    "strictTemplates": true,
     "strictInjectionParameters": true,
     "enableResourceInlining": true
   },
