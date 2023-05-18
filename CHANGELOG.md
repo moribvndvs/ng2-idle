@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [12.0.4](https://github.com/moribvndvs/ng2-idle/compare/v12.0.3...v12.0.4) (2023-05-18)
+
+**Note:** Version bump only for package ng-idle
+
+
+
+
+
 ## [12.0.3](https://github.com/moribvndvs/ng2-idle/compare/v12.0.2...v12.0.3) (2023-05-18)
 
 **Note:** Version bump only for package ng-idle
