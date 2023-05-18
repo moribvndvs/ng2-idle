@@ -4,7 +4,7 @@
   "description": "Module that works with @ng-idle/core to keep a user session alive while user is active.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moribvndvs/ng2-idle.git"
+    "url": "https://github.com/moribvndvs/ng2-idle.git"
   },
   "keywords": [
     "angular",

@@ -4,7 +4,7 @@
   "description": "A module for detecting and responding to the user becoming idle in Angular applications.",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/moribvndvs/ng2-idle.git"
+    "url": "https://github.com/moribvndvs/ng2-idle.git"
   },
   "keywords": [
     "angular",
