@@ -123,6 +123,20 @@ If your pull request is too out of date (resulting in merge conflicts or your ch
     git rebase master -i
     git push origin my-fix -f
 
+## Releasing
+
+If you meet the following:
+
+- Are a maintainer
+- Have an NPM account w/ OTP
+- Have been added as a maintainer to core and keepalive (in progress)
+
+Then you can do the following to release a new version
+
+- `git checkout master && git pull` to ensure you have the latest changes pulled down
+- Run `npm run test` and make sure it builds and passes tests successfully
+- Run `npm run release`. Upon successful releasing, it will ask you for your NPM OTP twice (once to publish core and again to publish keepalive)
+
 [angularhelp]: https://github.com/angular/angular/blob/master/CONTRIBUTING.md#question
 [gitter]: https://gitter.im/HackedByChinese/ng2-idle
 [stackoverflow]: http://stackoverflow.com/questions/tagged/ng2-idle
