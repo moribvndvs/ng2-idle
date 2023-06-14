@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [13.0.0](https://github.com/moribvndvs/ng2-idle/compare/v12.0.4...v13.0.0) (2023-06-14)
+
+
+### Build System
+
+* **deps:** upgrade Angular dependencies to v15 ([#186](https://github.com/moribvndvs/ng2-idle/issues/186)) ([a5a7095](https://github.com/moribvndvs/ng2-idle/commit/a5a7095f74511b7dcc74960b421620a571f2c010))
+
+
+### BREAKING CHANGES
+
+* **deps:** requires Angular 15
+
+
+
+
+
 ## [12.0.4](https://github.com/moribvndvs/ng2-idle/compare/v12.0.3...v12.0.4) (2023-05-18)
 
 **Note:** Version bump only for package @ng-idle/core
