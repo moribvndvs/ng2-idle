@@ -21,7 +21,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        node_version: [ "14", "16" ]
+        node_version: [ "14", "16", "18" ]
         os: [ ubuntu-latest, macOS-latest ]
     steps:
       # See: https://github.com/marketplace/actions/checkout
