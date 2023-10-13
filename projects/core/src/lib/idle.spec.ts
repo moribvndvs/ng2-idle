@@ -508,7 +508,6 @@ describe('core/Idle', () => {
         tick(3000);
         // we're going to check that it's idling, then force it to not be
         expect(instance.isIdling()).toBe(true);
-        // eslint-disable-next-line @typescript-eslint/dot-notation
         instance['idling'] = false;
         expect(instance.isIdling()).toBe(false);
 

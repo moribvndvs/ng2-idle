@@ -1,6 +1,6 @@
 {
   "name": "@ng-idle/core",
-  "version": "13.0.0",
+  "version": "14.0.0",
   "description": "A module for detecting and responding to the user becoming idle in Angular applications.",
   "repository": {
     "type": "git",
@@ -23,8 +23,8 @@
   },
   "homepage": "https://github.com/moribvndvs/ng2-idle.git#readme",
   "peerDependencies": {
-    "@angular/common": ">=9.0.0",
-    "@angular/core": ">=9.0.0"
+    "@angular/common": ">=16.0.0",
+    "@angular/core": ">=16.0.0"
   },
   "dependencies": {
     "tslib": "^2.0.0"
