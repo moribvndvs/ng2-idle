@@ -257,14 +257,14 @@ export class Idle implements OnDestroy {
         const diff = this.getExpiryDiff(timeout);
         if (diff > 0) {
           this.safeClearInterval('idleHandle');
-          this.setIdleIntervalOutsideOfZone(watchFn, diff);
+          this.setIdleIntervalOutsideOfZone(watchFn, 1000);
         } else {
           this.toggleState();
         }
       });
     };
 
-    this.setIdleIntervalOutsideOfZone(watchFn, this.idle * 1000);
+    this.setIdleIntervalOutsideOfZone(watchFn, 1000);
   }
 
   /*
@@ -351,7 +351,7 @@ export class Idle implements OnDestroy {
       if (this.timeoutVal > 0) {
         this.countdown = this.timeoutVal;
         this.doCountdown();
-        this.setTimoutIntervalOutsideZone(() => {
+        this.setTimeoutIntervalOutsideZone(() => {
           this.doCountdownInZone();
         }, 1000);
       }
@@ -364,7 +364,7 @@ export class Idle implements OnDestroy {
     this.safeClearInterval('idleHandle');
   }
 
-  private setTimoutIntervalOutsideZone(
+  private setTimeoutIntervalOutsideZone(
     intervalFn: () => void,
     frequency: number
   ) {
@@ -415,7 +415,9 @@ export class Idle implements OnDestroy {
     }
 
     this.onTimeoutWarning.emit(this.countdown);
-    this.countdown--;
+
+    const countdownMs = ((this.timeoutVal - 1) * 1000) + diff;
+    this.countdown = Math.round(countdownMs / 1000);
   }
 
   private safeClearInterval(handleName: string): void {
