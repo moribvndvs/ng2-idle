@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [13.0.1](https://github.com/moribvndvs/ng2-idle/compare/v13.0.0...v13.0.1) (2023-10-25)
+
+
+### Bug Fixes
+
+* **idle,timeout:** countdown idle and timeout based on time ([#131](https://github.com/moribvndvs/ng2-idle/issues/131)) ([fb9a6bd](https://github.com/moribvndvs/ng2-idle/commit/fb9a6bd4807b94886fda43ef85dbaf9e571eea64)), closes [#110](https://github.com/moribvndvs/ng2-idle/issues/110) [#112](https://github.com/moribvndvs/ng2-idle/issues/112)
+
+
+
+
+
 # [13.0.0](https://github.com/moribvndvs/ng2-idle/compare/v12.0.4...v13.0.0) (2023-06-14)
 
 
