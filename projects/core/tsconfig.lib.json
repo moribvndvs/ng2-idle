@@ -12,7 +12,7 @@
     ]
   },
   "angularCompilerOptions": {
-    "compilationMode": "full",
+    "compilationMode": "partial",
     "skipTemplateCodegen": true,
     "strictMetadataEmit": true,
     "strictTemplates": true,
