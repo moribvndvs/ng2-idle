@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [14.0.0](https://github.com/moribvndvs/ng2-idle/compare/v13.0.1...v14.0.0) (2023-11-09)
+
+
+### chore
+
+* upgrade angular dependencies to v16 ([#193](https://github.com/moribvndvs/ng2-idle/issues/193)) ([a7889c8](https://github.com/moribvndvs/ng2-idle/commit/a7889c8096bc44c41aa291227a87160bebcf3279))
+
+
+### BREAKING CHANGES
+
+* requires node 16+ and angular 16
+
+
+
+
+
 
 ## [13.0.1](https://github.com/moribvndvs/ng2-idle/compare/v13.0.0...v13.0.1) (2023-10-25)
 
