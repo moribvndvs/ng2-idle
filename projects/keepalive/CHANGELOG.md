@@ -3,11 +3,10 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
-# [{{version}}](https://github.com/moribvndvs/ng2-idle/pull/193) (2023-10-14)
 
-### BREAKING CHANGES
+## [13.0.1](https://github.com/moribvndvs/ng2-idle/compare/v13.0.0...v13.0.1) (2023-10-25)
 
-* **deps:** requires Angular 16
+**Note:** Version bump only for package @ng-idle/keepalive
 
 
 
