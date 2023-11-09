@@ -62,7 +62,6 @@ export class Idle implements OnDestroy {
     private expiry: IdleExpiry,
     private zone: NgZone,
     @Optional() keepaliveSvc?: KeepaliveSvc,
-    // eslint-disable-next-line @typescript-eslint/ban-types
     @Optional() @Inject(PLATFORM_ID) private platformId?: Object
   ) {
     if (keepaliveSvc) {
