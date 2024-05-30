@@ -51,7 +51,7 @@
     "ngx-highlightjs": "^8.0.0",
     "rxjs": "~7.8.1",
     "tslib": "^2.6.0",
-    "zone.js": "~0.13.0"
+    "zone.js": "^0.14.6"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.0",
@@ -86,7 +86,7 @@
     "ng-packagr": "^16.2.0",
     "protractor": "~7.0.0",
     "rimraf": "^3.0.2",
-    "typescript": "^4.9.5"
+    "typescript": "^5.1.6"
   },
   "config": {
     "commitizen": {
