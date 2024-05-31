@@ -14,5 +14,5 @@ export * from './lib/idleexpiry';
 export * from './lib/simpleexpiry';
 export * from './lib/localstorage';
 export * from './lib/localstorageexpiry';
-export * from './lib/module';
 export * from './lib/defaultinterruptsources';
+export {provideNgIdle}from './lib/module';
