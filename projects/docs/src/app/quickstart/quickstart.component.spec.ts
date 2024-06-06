@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { QuickstartComponent } from './quickstart.component';
+import { provideHighlightOptions } from 'ngx-highlightjs';
 
 describe('QuickstartComponent', () => {
   let component: QuickstartComponent;
@@ -8,7 +9,10 @@ describe('QuickstartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ QuickstartComponent ]
+      imports: [QuickstartComponent],
+      providers : [provideHighlightOptions({
+        fullLibraryLoader: () => import('highlight.js')
+      }),]
     })
     .compileComponents();
   });
