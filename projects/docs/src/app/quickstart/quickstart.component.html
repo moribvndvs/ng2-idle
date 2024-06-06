@@ -13,20 +13,20 @@
     Create a new project using <a
       href="https://angular.io/cli/new" target="_new"><code>ng new</code></a>.
   </p>
-  <pre><code [highlight]="newNg" [languages]="bash"></code></pre>
+  <pre><code [highlight]="newNg" language="bash"></code></pre>
 
   <h2>Add Dependencies</h2>
   <p>
     Use <code>ng add</code> to install the dependency to your application.
   </p>
-  <pre><code [highlight]="installNg" [languages]="bash"></code></pre>
+  <pre><code [highlight]="installNg" language="bash"></code></pre>
 
   <h2>Configure Your Module</h2>
   <p>
     <code>NgIdleKeepaliveModule</code> provide a default instance of <code>Idle</code> and <code>Keepalive</code> to your
     module.
   </p>
-  <pre><code [highlight]="configureModule" [languages]="typescript"></code></pre>
+  <pre><code [highlight]="configureModule" language="typescript"></code></pre>
 
   <h2>Configure Your Component</h2>
   <p>
@@ -35,11 +35,11 @@
     to every component. You can always add this functionality to individual components as needed, by default a global instance of
     <code>Idle</code> and <code>Keepalive</code> will be injected into each component, and state should be preserved across your components
   </p>
-  <pre><code [highlight]="configureComponent" [languages]="typescript"></code></pre>
+  <pre><code [highlight]="configureComponent" language="typescript"></code></pre>
 
   <h2>Add UI to Your Component</h2>
   <p>
     Now that your component has state to indicate what's going on, you can decide how your UI should present it. We're very simply going to output our state variables on the screen.
   </p>
-  <pre><code [highlight]="configureUI" [languages]="html"></code></pre>
+  <pre><code [highlight]="configureUI" language="html"></code></pre>
 </section>

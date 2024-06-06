@@ -1,13 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { HighlightModule } from 'ngx-highlightjs';
-
-
+import { Highlight } from 'ngx-highlightjs';
 @Component({
   selector: 'app-quickstart',
   templateUrl: './quickstart.component.html',
   styleUrls: ['./quickstart.component.css'],
   standalone : true,
-  imports : [HighlightModule]
+  imports: [Highlight]
 })
 export class QuickstartComponent implements OnInit {
   newNg = `
