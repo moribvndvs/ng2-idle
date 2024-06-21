@@ -1,11 +1,11 @@
 <section class="main-content mat-typography">
   <h1>Quick Start</h1>
   <p>
-    In this example, we're going to create a new project using <a target="_blank" href="https://angular.io/tutorial/toh-pt0"><code>@angular/cli</code></a>
+    In this example, we're going to create a new project using <a target="_blank" href="https://angular.io/tutorial/toh-pt0"><code>&#64;angular/cli</code></a>
     and add both the core and keepalive functionality to the root of our app to keep track of user idleness.
   </p>
   <p>
-   Keepalive is useful to repeatedly perform a background action while a user is active, however it requires the <code>@angular/common/http</code> module.
+   Keepalive is useful to repeatedly perform a background action while a user is active, however it requires the <code>&#64;angular/common/http</code> module.
    You do not need to use keepalive if this is not useful for your application.
   </p>
   <h2>Create Your Project</h2>
@@ -13,20 +13,38 @@
     Create a new project using <a
       href="https://angular.io/cli/new" target="_new"><code>ng new</code></a>.
   </p>
-  <pre><code [highlight]="newNg" [languages]="bash"></code></pre>
+  <pre><code [highlight]="newNg" language="bash"></code></pre>
 
   <h2>Add Dependencies</h2>
   <p>
     Use <code>ng add</code> to install the dependency to your application.
   </p>
-  <pre><code [highlight]="installNg" [languages]="bash"></code></pre>
+  <pre><code [highlight]="installNg" language="bash"></code></pre>
 
+  <h2>Configure Your ApplicationConfig</h2>
+  <p>
+    Adding <code>provideNgIdleKeepalive()</code> in ApplicationConfig a global instance of
+    <code>Idle</code> and <code>Keepalive</code> will be injected into each component, and state should be preserved across your components
+  </p>
+  <pre><code [highlight]="configureApplicationConfig" language="typescript"></code></pre>
+  
+  <h2>Using Standalone Component</h2>
+  <p>
+    In this example, we want to keep track of the user's idle state across the application. Therefore, we're going to configure
+    it on our root app component so that it shows up and functions the same way on every page without having to add this code
+    to every component. You can always add this functionality to individual components as needed
+    by adding <code>provideNgIdleKeepalive()</code> or <code>provideNgIdle()</code> in providers array of the component.
+    However, as we have added in <code>ApplicationConfig</code>, by default a global instance of
+    <code>Idle</code> and <code>Keepalive</code> will be injected into each component, and state should be preserved across your components
+  </p>
+  <pre><code [highlight]="configureStandaloneComponent" language="typescript"></code></pre>
+  
   <h2>Configure Your Module</h2>
   <p>
     <code>NgIdleKeepaliveModule</code> provide a default instance of <code>Idle</code> and <code>Keepalive</code> to your
     module.
   </p>
-  <pre><code [highlight]="configureModule" [languages]="typescript"></code></pre>
+  <pre><code [highlight]="configureModule" language="typescript"></code></pre>
 
   <h2>Configure Your Component</h2>
   <p>
@@ -35,11 +53,11 @@
     to every component. You can always add this functionality to individual components as needed, by default a global instance of
     <code>Idle</code> and <code>Keepalive</code> will be injected into each component, and state should be preserved across your components
   </p>
-  <pre><code [highlight]="configureComponent" [languages]="typescript"></code></pre>
+  <pre><code [highlight]="configureComponent" language="typescript"></code></pre>
 
   <h2>Add UI to Your Component</h2>
   <p>
     Now that your component has state to indicate what's going on, you can decide how your UI should present it. We're very simply going to output our state variables on the screen.
   </p>
-  <pre><code [highlight]="configureUI" [languages]="html"></code></pre>
+  <pre><code [highlight]="configureUI" language="html"></code></pre>
 </section>
