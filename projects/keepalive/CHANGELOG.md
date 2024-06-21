@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [15.0.0](https://github.com/moribvndvs/ng2-idle/compare/v14.0.0...v15.0.0) (2024-06-21)
+
+
+### Features
+
+* Angular 17 migration ([#200](https://github.com/moribvndvs/ng2-idle/issues/200)) ([4b7ea35](https://github.com/moribvndvs/ng2-idle/commit/4b7ea3538a4f41bf755c973c320d7c8279f57d3f))
+
+
+### BREAKING CHANGES
+
+* Requires Angular 17.3.10 or later, and requires Node 18 or later
+
+
+
+
+
 # [14.0.0](https://github.com/moribvndvs/ng2-idle/compare/v13.0.1...v14.0.0) (2023-11-09)
 
 
