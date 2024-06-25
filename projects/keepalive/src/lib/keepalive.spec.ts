@@ -2,11 +2,12 @@ import { fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
 import {
   HttpRequest,
   HttpResponse,
-  HttpClientModule
+  provideHttpClient,
+  withInterceptorsFromDi
 } from '@angular/common/http';
 import {
-  HttpClientTestingModule,
-  HttpTestingController
+  HttpTestingController,
+  provideHttpClientTesting
 } from '@angular/common/http/testing';
 
 import { Keepalive } from './keepalive';
@@ -14,8 +15,11 @@ import { Keepalive } from './keepalive';
 describe('keepalive/Keepalive', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule, HttpClientModule],
-      providers: [Keepalive]
+      providers: [
+        Keepalive,
+        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClientTesting()
+      ]
     });
   });
 
