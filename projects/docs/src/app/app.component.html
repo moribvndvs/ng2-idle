@@ -8,16 +8,24 @@
         'idle': idleState === 'IDLE',
         'offline': idleState === 'TIMED_OUT'
       }"></span>
-      <span class="status" *ngIf="idleState==='NOT_IDLE'">
-        Online
-        <span class="ping" *ngIf="lastPing">
-          last ping at {{lastPing | date: 'mediumTime'}}
+      @if (idleState==='NOT_IDLE') {
+        <span class="status">
+          Online
+          @if (lastPing) {
+            <span class="ping">
+              last ping at {{lastPing | date: 'mediumTime'}}
+            </span>
+          }
         </span>
-      </span>
-      <span class="status" [matBadge]="countdown" matBadgeColor="warn" matBadgeSize="small" *ngIf="idleState==='IDLE'">Inactive</span>
-      <span class="status" *ngIf="idleState==='TIMED_OUT'">
-        Offline <button mat-button (click)="reset()">Reset</button>
-      </span>
+      }
+      @if (idleState==='IDLE') {
+        <span class="status" [matBadge]="countdown" matBadgeColor="warn" matBadgeSize="small">Inactive</span>
+      }
+      @if (idleState==='TIMED_OUT') {
+        <span class="status">
+          Offline <button mat-button (click)="reset()">Reset</button>
+        </span>
+      }
     </div>
     <div class="toolbar-spacer"></div>
     <a mat-icon-button class="example-icon" aria-label="Button linking to @ng-idle Github repository"
@@ -27,7 +35,7 @@
   </mat-toolbar>
 </header>
 <section class="main-content">
- <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </section>
 <footer>
 
