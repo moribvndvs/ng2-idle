@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [16.0.0](https://github.com/moribvndvs/ng2-idle/compare/v15.0.0...v16.0.0) (2024-09-18)
+
+**Note:** Version bump only for package @ng-idle/core
+
+
+
+
+
 # [15.0.0](https://github.com/moribvndvs/ng2-idle/compare/v14.0.0...v15.0.0) (2024-06-21)
 
 
