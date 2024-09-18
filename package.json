@@ -31,7 +31,8 @@
     "copy:info": "for d in ./dist/*; do cp LICENSE README.md $d; done",
     "release": "lerna version --conventional-commits --force-publish",
     "postrelease": "npm publish ./dist/core && npm publish ./dist/keepalive",
-    "version": "npm run build:libs && npm run build:docs && npm run copy:info && node scripts/postrelease.js && git add ."
+    "version": "npm run build:libs && npm run build:docs && npm run copy:info && node scripts/postrelease.js && git add .",
+    "prepare": "husky"
   },
   "dependencies": {
     "@angular/animations": "^18.2.5",
