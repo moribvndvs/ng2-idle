@@ -20,7 +20,7 @@ export class DocumentInterruptSource extends EventTargetInterruptSource {
     // some browser bad input hacks
     if (
       event.type === 'mousemove' &&
-      // fix for Chrome destop notifications
+      // fix for Chrome desktop notifications
       ((event.originalEvent &&
         event.originalEvent.movementX === 0 &&
         event.originalEvent.movementY === 0) ||
