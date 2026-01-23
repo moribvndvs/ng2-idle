@@ -104,6 +104,21 @@
     "karma": {
       "glob": "^8.1.0",
       "rimraf": "^3.0.2"
+    },
+    "@angular-devkit/build-angular": {
+      "glob": "^10.5.0"
+    },
+    "@angular/cli": {
+      "glob": "^10.5.0"
+    },
+    "@npmcli/package-json": {
+      "glob": "^10.5.0"
+    },
+    "pacote": {
+      "glob": "^10.5.0"
+    },
+    "cacache": {
+      "glob": "^10.5.0"
     }
   }
 }
