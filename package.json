@@ -55,9 +55,9 @@
     "zone.js": "^0.15.1"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "^22.0.8",
     "@angular-eslint/builder": "^22.1.0",
     "@angular-eslint/schematics": "^22.1.0",
+    "@angular/build": "^22.0.8",
     "@angular/cli": "^22.0.8",
     "@angular/compiler-cli": "^22.0.8",
     "@angular/language-service": "^22.0.8",
