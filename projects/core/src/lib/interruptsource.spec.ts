@@ -5,6 +5,7 @@ import { MockInterruptSource } from '../testing/mockinterruptsource';
 import { InterruptArgs } from './interruptargs';
 import { EventTargetInterruptSource } from './eventtargetinterruptsource';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const Zone: any;
 
 describe('core/InterruptSource', () => {
@@ -34,7 +35,7 @@ describe('core/InterruptSource', () => {
     });
 
     spyOn(source.onInterrupt, 'emit').and.callThrough();
-    source.onInterrupt.subscribe((args: InterruptArgs) => {
+    source.onInterrupt.subscribe((_args: InterruptArgs) => {
       expect(Zone.current.name).not.toBe('angular');
       expect(Zone.current.get('isAngularZone')).toBeFalsy();
     });

@@ -13,7 +13,7 @@ export class MockInterruptSource extends InterruptSource {
    * Simulates the external interrupt, triggering onInterrupt.
    * @param innerArgs - The original event arguments or data, if any.
    */
-  trigger(innerArgs?: any): void {
+  trigger(innerArgs?: unknown): void {
     this.onInterrupt.emit(new InterruptArgs(this, innerArgs));
   }
 }

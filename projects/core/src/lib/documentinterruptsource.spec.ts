@@ -53,7 +53,9 @@ describe('core/DocumentInterruptSource', () => {
     spyOn(source.onInterrupt, 'emit').and.callThrough();
     source.attach();
 
-    const expected: any = new Event('mousemove');
+    const expected = new Event('mousemove') as Event & {
+      originalEvent?: { movementX?: number; movementY?: number };
+    };
     expected.originalEvent = { movementX: 0, movementY: 0 };
 
     document.documentElement.dispatchEvent(expected);
@@ -69,7 +71,10 @@ describe('core/DocumentInterruptSource', () => {
     spyOn(source.onInterrupt, 'emit').and.callThrough();
     source.attach();
 
-    const expected: any = new Event('mousemove');
+    const expected = new Event('mousemove') as Event & {
+      movementX?: number;
+      movementY?: number;
+    };
 
     expected.movementX = 0;
     expected.movementY = 0;
@@ -87,7 +92,10 @@ describe('core/DocumentInterruptSource', () => {
     spyOn(source.onInterrupt, 'emit').and.callThrough();
     source.attach();
 
-    const expected: any = new Event('mousemove');
+    const expected = new Event('mousemove') as Event & {
+      movementX?: number;
+      movementY?: number;
+    };
 
     expected.movementX = 7;
     expected.movementY = 16;

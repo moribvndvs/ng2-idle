@@ -16,7 +16,12 @@ export class DocumentInterruptSource extends EventTargetInterruptSource {
    * @param event - The original event object.
    * @return True if the event should be filtered (don't cause an interrupt); otherwise, false.
    */
-  filterEvent(event: any): boolean {
+  filterEvent(event: {
+    type: string;
+    originalEvent?: { movementX?: number; movementY?: number };
+    movementX?: number;
+    movementY?: number;
+  }): boolean {
     // some browser bad input hacks
     if (
       event.type === 'mousemove' &&

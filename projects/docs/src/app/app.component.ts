@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { QuickstartComponent } from './quickstart/quickstart.component';
@@ -31,13 +31,21 @@ import { Keepalive } from '@ng-idle/keepalive';
     ]
 })
 export class AppComponent implements OnInit {
+  private idle = inject(Idle);
+  private keepalive = inject(Keepalive);
+  private cd = inject(ChangeDetectorRef);
+
   idleState = "NOT_STARTED";
   countdown?: number = null;
   lastPing?: Date = null;
 
   faGithub = faGithub;
 
-  constructor(private idle: Idle, private keepalive: Keepalive, private cd: ChangeDetectorRef) {
+  constructor() {
+    const idle = this.idle;
+    const keepalive = this.keepalive;
+    const cd = this.cd;
+
     idle.setIdle(5)
     idle.setTimeout(5);
     idle.setInterrupts(DEFAULT_INTERRUPTSOURCES);

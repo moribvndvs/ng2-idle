@@ -118,13 +118,13 @@ describe('keepalive/Keepalive', () => {
     });
 
     it('ping() should fire request and emit onPingResponse event', () => {
-      let actualResponse: HttpResponse<{}>;
+      let actualResponse: HttpResponse<unknown>;
 
       instance.onPingResponse.subscribe(
-        (response: HttpResponse<{}>) => {
+        (response: HttpResponse<unknown>) => {
           actualResponse = response;
         },
-        (error: HttpResponse<{}>) => {
+        (error: HttpResponse<unknown>) => {
           actualResponse = error;
         }
       );
@@ -151,13 +151,13 @@ describe('keepalive/Keepalive', () => {
     });
 
     it('ping() should fire request and emit onPingResponse event', () => {
-      let actualResponse: HttpResponse<{}>;
+      let actualResponse: HttpResponse<unknown>;
 
       instance.onPingResponse.subscribe(
-        (response: HttpResponse<{}>) => {
+        (response: HttpResponse<unknown>) => {
           actualResponse = response;
         },
-        (error: HttpResponse<{}>) => {
+        (error: HttpResponse<unknown>) => {
           actualResponse = error;
         }
       );

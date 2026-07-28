@@ -3,6 +3,9 @@ import { EventEmitter } from '@angular/core';
 import { InterruptArgs } from './interruptargs';
 import { InterruptOptions } from './interruptoptions';
 
+// Untyped global optionally provided by zone.js; kept dependency-free so
+// this library doesn't require zone.js's types to compile in zoneless apps.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const Zone: any;
 
 /*

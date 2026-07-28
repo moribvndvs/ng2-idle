@@ -131,7 +131,7 @@ describe('core/EventTargetInterruptSource', () => {
   }));
 
   it('should set default options', () => {
-    const target = {} as EventTarget<any>;
+    const target = {} as EventTarget<unknown>;
     const source = new EventTargetInterruptSource(target, 'click');
     const { throttleDelay, passive } = source.options;
 
@@ -140,7 +140,7 @@ describe('core/EventTargetInterruptSource', () => {
   });
 
   it('should set passive flag', () => {
-    const target = {} as EventTarget<any>;
+    const target = {} as EventTarget<unknown>;
     const source = new EventTargetInterruptSource(target, 'click', {
       passive: true
     });
@@ -151,7 +151,7 @@ describe('core/EventTargetInterruptSource', () => {
   });
 
   it('should set throttleDelay', () => {
-    const target = {} as EventTarget<any>;
+    const target = {} as EventTarget<unknown>;
     const source = new EventTargetInterruptSource(target, 'click', {
       throttleDelay: 1000
     });
@@ -162,7 +162,7 @@ describe('core/EventTargetInterruptSource', () => {
   });
 
   it('should set all options', () => {
-    const target = {} as EventTarget<any>;
+    const target = {} as EventTarget<unknown>;
     const source = new EventTargetInterruptSource(target, 'click', {
       passive: true,
       throttleDelay: 1000

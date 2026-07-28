@@ -1,14 +1,8 @@
-import {
-  ApplicationRef,
-  EventEmitter,
-  Inject,
-  Injectable,
-  NgZone,
-  OnDestroy,
-  Optional,
-  PLATFORM_ID
-} from '@angular/core';
+import { ApplicationRef, EventEmitter, Injectable, NgZone, OnDestroy, PLATFORM_ID, inject } from '@angular/core';
 
+// Untyped global optionally provided by zone.js; kept dependency-free so
+// this library doesn't require zone.js's types to compile in zoneless apps.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 declare const Zone: any;
 
 import { IdleExpiry } from './idleexpiry';
@@ -41,33 +35,32 @@ export enum AutoResume {
  */
 @Injectable()
 export class Idle implements OnDestroy {
+  private expiry = inject(IdleExpiry);
+  private zone = inject(NgZone);
+  private applicationRef = inject(ApplicationRef);
+  private platformId = inject<object>(PLATFORM_ID, { optional: true });
+
   private idle: number = 20 * 60; // in seconds
   private timeoutVal = 30; // in seconds
   private autoResume: AutoResume = AutoResume.idle;
-  private interrupts: Array<Interrupt> = new Array();
+  private interrupts: Array<Interrupt> = [];
   private running = false;
   private idling: boolean;
-  private idleHandle: any;
-  private timeoutHandle: any;
+  private idleHandle: ReturnType<typeof setInterval> | null;
+  private timeoutHandle: ReturnType<typeof setInterval> | null;
   private countdown: number;
   private keepaliveEnabled = false;
   private keepaliveSvc: KeepaliveSvc;
 
-  public onIdleStart: EventEmitter<any> = new EventEmitter();
-  public onIdleEnd: EventEmitter<any> = new EventEmitter();
+  public onIdleStart: EventEmitter<unknown> = new EventEmitter();
+  public onIdleEnd: EventEmitter<unknown> = new EventEmitter();
   public onTimeoutWarning: EventEmitter<number> = new EventEmitter<number>();
   public onTimeout: EventEmitter<number> = new EventEmitter<number>();
-  public onInterrupt: EventEmitter<any> = new EventEmitter();
+  public onInterrupt: EventEmitter<unknown> = new EventEmitter();
 
-  [key: string]: any;
+  constructor() {
+    const keepaliveSvc = inject(KeepaliveSvc, { optional: true });
 
-  constructor(
-    private expiry: IdleExpiry,
-    private zone: NgZone,
-    private applicationRef: ApplicationRef,
-    @Optional() keepaliveSvc?: KeepaliveSvc,
-    @Optional() @Inject(PLATFORM_ID) private platformId?: Object
-  ) {
     if (keepaliveSvc) {
       this.keepaliveSvc = keepaliveSvc;
       this.keepaliveEnabled = true;
@@ -179,13 +172,11 @@ export class Idle implements OnDestroy {
   setInterrupts(sources: Array<InterruptSource>): Array<Interrupt> {
     this.clearInterrupts();
 
-    const self = this;
-
     for (const source of sources) {
       const options = { platformId: this.platformId };
       const sub = new Interrupt(source, options);
       sub.subscribe((args: InterruptArgs) => {
-        this.zone.run(() => self.interrupt(args.force, args.innerArgs));
+        this.zone.run(() => this.interrupt(args.force, args.innerArgs));
       });
 
       this.interrupts.push(sub);
@@ -319,7 +310,7 @@ export class Idle implements OnDestroy {
    * @param force - Forces watch to be called, unless they are timed out.
    * @param eventArgs - Optional source event arguments.
    */
-  interrupt(force?: boolean, eventArgs?: any): void {
+  interrupt(force?: boolean, eventArgs?: unknown): void {
     if (!this.running) {
       return;
     }
@@ -435,7 +426,7 @@ export class Idle implements OnDestroy {
     this.countdown = Math.round(countdownMs / 1000);
   }
 
-  private safeClearInterval(handleName: string): void {
+  private safeClearInterval(handleName: 'idleHandle' | 'timeoutHandle'): void {
     const handle = this[handleName];
     if (handle !== null && typeof handle !== 'undefined') {
       clearInterval(this[handleName]);

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { IdleExpiry } from './idleexpiry';
 import { LocalStorage } from './localstorage';
 
@@ -8,11 +8,9 @@ import { LocalStorage } from './localstorage';
  */
 @Injectable()
 export class LocalStorageExpiry extends IdleExpiry {
-  private idleName = 'main';
+  private localStorage = inject(LocalStorage);
 
-  constructor(private localStorage: LocalStorage) {
-    super();
-  }
+  private idleName = 'main';
 
   /*
    * Gets or sets the last expiry date in localStorage.

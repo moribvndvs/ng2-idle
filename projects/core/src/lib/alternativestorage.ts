@@ -4,7 +4,7 @@
  * @implements Storage
  */
 export class AlternativeStorage implements Storage {
-  private storageMap: any = {};
+  private storageMap: Record<string, string | undefined> = {};
 
   /*
    * Returns an integer representing the number of data items stored in the storageMap object.
@@ -62,6 +62,8 @@ export class AlternativeStorage implements Storage {
     this.storageMap[key] = value;
   }
 
+  // Required by the DOM Storage interface's index signature.
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [key: string]: any;
   [index: number]: string;
 }

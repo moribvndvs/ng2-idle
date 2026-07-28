@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 import { LocalStorageExpiry } from './localstorageexpiry';
 import { LocalStorage } from './localstorage';
 
-const mockLocalStorage: { [key: string]: any } = {};
+const mockLocalStorage: { [key: string]: string } = {};
 
 describe('core/LocalStorageExpiry', () => {
   beforeEach(() => {
