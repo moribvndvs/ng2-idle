@@ -1,4 +1,5 @@
 import {
+  ApplicationRef,
   EventEmitter,
   Inject,
   Injectable,
@@ -7,6 +8,8 @@ import {
   Optional,
   PLATFORM_ID
 } from '@angular/core';
+
+declare const Zone: any;
 
 import { IdleExpiry } from './idleexpiry';
 import { Interrupt } from './interrupt';
@@ -61,6 +64,7 @@ export class Idle implements OnDestroy {
   constructor(
     private expiry: IdleExpiry,
     private zone: NgZone,
+    private applicationRef: ApplicationRef,
     @Optional() keepaliveSvc?: KeepaliveSvc,
     @Optional() @Inject(PLATFORM_ID) private platformId?: Object
   ) {
@@ -181,7 +185,7 @@ export class Idle implements OnDestroy {
       const options = { platformId: this.platformId };
       const sub = new Interrupt(source, options);
       sub.subscribe((args: InterruptArgs) => {
-        self.interrupt(args.force, args.innerArgs);
+        this.zone.run(() => self.interrupt(args.force, args.innerArgs));
       });
 
       this.interrupts.push(sub);
@@ -307,7 +311,7 @@ export class Idle implements OnDestroy {
     this.running = false;
     this.countdown = 0;
 
-    this.onTimeout.emit(null);
+    this.emit(this.onTimeout, null);
   }
 
   /*
@@ -324,7 +328,7 @@ export class Idle implements OnDestroy {
       this.timeout();
       return;
     }
-    this.onInterrupt.emit(eventArgs);
+    this.emit(this.onInterrupt, eventArgs);
 
     if (
       force === true ||
@@ -332,6 +336,18 @@ export class Idle implements OnDestroy {
       (this.autoResume === AutoResume.notIdle && !this.expiry.idling())
     ) {
       this.watch(force);
+    }
+  }
+
+  /*
+   * Emits the given event and, when zone.js isn't present (e.g. zoneless apps),
+   * explicitly triggers change detection since NgZone.run() alone won't.
+   */
+  private emit<T>(emitter: EventEmitter<T>, value?: T): void {
+    emitter.emit(value);
+
+    if (typeof Zone === 'undefined') {
+      this.applicationRef.tick();
     }
   }
 
@@ -344,7 +360,7 @@ export class Idle implements OnDestroy {
     this.setIdling(!this.idling);
 
     if (this.idling) {
-      this.onIdleStart.emit(null);
+      this.emit(this.onIdleStart, null);
       this.stopKeepalive();
 
       if (this.timeoutVal > 0) {
@@ -356,7 +372,7 @@ export class Idle implements OnDestroy {
       }
     } else {
       this.toggleInterrupts(true);
-      this.onIdleEnd.emit(null);
+      this.emit(this.onIdleEnd, null);
       this.startKeepalive();
     }
 
@@ -413,7 +429,7 @@ export class Idle implements OnDestroy {
       return;
     }
 
-    this.onTimeoutWarning.emit(this.countdown);
+    this.emit(this.onTimeoutWarning, this.countdown);
 
     const countdownMs = ((this.timeoutVal - 1) * 1000) + diff;
     this.countdown = Math.round(countdownMs / 1000);

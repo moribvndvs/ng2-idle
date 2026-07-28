@@ -59,7 +59,7 @@ export const appConfig: ApplicationConfig = {
 
   configureStandaloneComponent = `
 import { DatePipe } from '@angular/common';
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DEFAULT_INTERRUPTSOURCES, Idle } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
 
@@ -78,7 +78,7 @@ export class AppComponent implements OnInit {
   lastPing?: Date = null;
 
   // add parameters for Idle and Keepalive (if using) so Angular will inject them from the module
-  constructor(private idle: Idle, keepalive: Keepalive, cd: ChangeDetectorRef) {
+  constructor(private idle: Idle, keepalive: Keepalive) {
     // set idle parameters
     idle.setIdle(5); // how long can they be inactive before considered idle, in seconds
     idle.setTimeout(5); // how long can they be idle before considered timed out, in seconds
@@ -93,7 +93,6 @@ export class AppComponent implements OnInit {
       this.idleState = "NOT_IDLE";
       console.log(\`\${this.idleState} \${new Date()}\`)
       this.countdown = null;
-      cd.detectChanges(); // how do i avoid this kludge?
     });
     // do something when the user has timed out
     idle.onTimeout.subscribe(() => this.idleState = "TIMED_OUT");
@@ -121,7 +120,7 @@ export class AppComponent implements OnInit {
 }
   `;
   configureComponent = `
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Idle, DEFAULT_INTERRUPTSOURCES } from '@ng-idle/core';
 import { Keepalive } from '@ng-idle/keepalive';
 
@@ -137,7 +136,7 @@ export class AppComponent implements OnInit {
   lastPing?: Date = null;
 
   // add parameters for Idle and Keepalive (if using) so Angular will inject them from the module
-  constructor(private idle: Idle, keepalive: Keepalive, cd: ChangeDetectorRef) {
+  constructor(private idle: Idle, keepalive: Keepalive) {
     // set idle parameters
     idle.setIdle(5); // how long can they be inactive before considered idle, in seconds
     idle.setTimeout(5); // how long can they be idle before considered timed out, in seconds
@@ -152,7 +151,6 @@ export class AppComponent implements OnInit {
       this.idleState = "NOT_IDLE";
       console.log(\`\${this.idleState} \${new Date()}\`)
       this.countdown = null;
-      cd.detectChanges(); // how do i avoid this kludge?
     });
     // do something when the user has timed out
     idle.onTimeout.subscribe(() => this.idleState = "TIMED_OUT");

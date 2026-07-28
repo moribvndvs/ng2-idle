@@ -27,7 +27,7 @@ export abstract class InterruptSource {
     // If the current zone is the 'angular' zone (a.k.a. NgZone) then re-enter this method in its parent zone
     // The parent zone is usually the '<root>' zone but it can also be 'long-stack-trace-zone' in debug mode
     // In tests, the current zone is typically a 'ProxyZone' created by async/fakeAsync (from @angular/core/testing)
-    if (Zone.current.get('isAngularZone') === true) {
+    if (typeof Zone !== 'undefined' && Zone.current.get('isAngularZone') === true) {
       Zone.current.parent.run(() => this.attach());
       return;
     }

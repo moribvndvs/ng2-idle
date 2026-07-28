@@ -1,6 +1,14 @@
-import { EventEmitter, Injectable, NgZone, OnDestroy } from '@angular/core';
+import {
+  ApplicationRef,
+  EventEmitter,
+  Injectable,
+  NgZone,
+  OnDestroy
+} from '@angular/core';
 import { HttpClient, HttpRequest, HttpResponse } from '@angular/common/http';
 import { KeepaliveSvc } from '@ng-idle/core';
+
+declare const Zone: any;
 
 /**
  * An example of an injectable service.
@@ -27,7 +35,11 @@ export class Keepalive extends KeepaliveSvc implements OnDestroy {
    * Initializes a new instance of Keepalive
    * @param http - The HTTP service.
    */
-  constructor(private http: HttpClient, private zone: NgZone) {
+  constructor(
+    private http: HttpClient,
+    private zone: NgZone,
+    private applicationRef: ApplicationRef
+  ) {
     super();
   }
 
@@ -69,14 +81,14 @@ export class Keepalive extends KeepaliveSvc implements OnDestroy {
    * onPingResponse event.
    */
   ping(): void {
-    this.onPing.emit(null);
+    this.emit(this.onPing, null);
     if (this.pingRequest) {
       this.http.request(this.pingRequest).subscribe(
         (response: HttpResponse<any>) => {
-          this.onPingResponse.emit(response);
+          this.emit(this.onPingResponse, response);
         },
         (error: HttpResponse<any>) => {
-          this.onPingResponse.emit(error);
+          this.emit(this.onPingResponse, error);
         }
       );
     }
@@ -124,5 +136,17 @@ export class Keepalive extends KeepaliveSvc implements OnDestroy {
 
   private hasPingHandle(): boolean {
     return this.pingHandle !== null && typeof this.pingHandle !== 'undefined';
+  }
+
+  /*
+   * Emits the given event and, when zone.js isn't present (e.g. zoneless apps),
+   * explicitly triggers change detection since NgZone.run() alone won't.
+   */
+  private emit<T>(emitter: EventEmitter<T>, value?: T): void {
+    emitter.emit(value);
+
+    if (typeof Zone === 'undefined') {
+      this.applicationRef.tick();
+    }
   }
 }
