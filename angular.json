@@ -31,9 +31,6 @@
           "builder": "@angular/build:karma",
           "options": {
             "main": "projects/core/src/test.ts",
-            "polyfills": [
-              "zone.js"
-            ],
             "tsConfig": "projects/core/tsconfig.spec.json",
             "karmaConfig": "projects/core/karma.conf.js"
           }
@@ -71,9 +68,6 @@
           "builder": "@angular/build:karma",
           "options": {
             "main": "projects/keepalive/src/test.ts",
-            "polyfills": [
-              "zone.js"
-            ],
             "tsConfig": "projects/keepalive/tsconfig.spec.json",
             "karmaConfig": "projects/keepalive/karma.conf.js"
           }

@@ -1,4 +1,5 @@
-import { fakeAsync, inject, TestBed, tick } from '@angular/core/testing';
+import { provideZonelessChangeDetection } from '@angular/core';
+import { inject, TestBed } from '@angular/core/testing';
 import {
   HttpRequest,
   HttpResponse,
@@ -17,6 +18,7 @@ describe('keepalive/Keepalive', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
+        provideZonelessChangeDetection(),
         Keepalive,
         provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideHttpClientTesting()
@@ -173,50 +175,53 @@ describe('keepalive/Keepalive', () => {
 
   describe('on an interval', () => {
     beforeEach(() => {
+      jasmine.clock().install();
       instance.interval(5);
       spyOn(instance, 'ping').and.callThrough();
     });
 
-    it('start() should schedule and ping at the specified interval', fakeAsync((): void => {
+    afterEach(() => {
+      jasmine.clock().uninstall();
+    });
+
+    it('start() should schedule and ping at the specified interval', () => {
       instance.start();
 
-      tick(1000);
+      jasmine.clock().tick(1000);
       expect(instance.ping).not.toHaveBeenCalled();
 
-      tick(4000);
+      jasmine.clock().tick(4000);
       expect(instance.ping).toHaveBeenCalledTimes(1);
 
-      tick(5000);
+      jasmine.clock().tick(5000);
       expect(instance.ping).toHaveBeenCalledTimes(2);
 
-      // must call stop to clear intervals, otherwise fake_async will
-      // throw "1 periodic timer(s) still in the queue."
       instance.stop();
-    }));
+    });
 
-    it('stop() should cease pinging', fakeAsync((): void => {
+    it('stop() should cease pinging', () => {
       instance.start();
       instance.stop();
 
-      tick(5000);
+      jasmine.clock().tick(5000);
       expect(instance.ping).not.toHaveBeenCalled();
-    }));
+    });
 
-    it('start() after calling start() cancels the previous interval', fakeAsync((): void => {
+    it('start() after calling start() cancels the previous interval', () => {
       instance.start();
       instance.interval(10);
       instance.start();
 
-      tick(5000);
+      jasmine.clock().tick(5000);
       expect(instance.ping).not.toHaveBeenCalled();
 
-      tick(5000);
+      jasmine.clock().tick(5000);
       expect(instance.ping).toHaveBeenCalledTimes(1);
 
       instance.stop();
-    }));
+    });
 
-    it('ngOnDestroy() invokes stop()', fakeAsync((): void => {
+    it('ngOnDestroy() invokes stop()', () => {
       spyOn(instance, 'stop').and.callThrough();
 
       instance.start();
@@ -224,7 +229,7 @@ describe('keepalive/Keepalive', () => {
       instance.ngOnDestroy();
 
       expect(instance.stop).toHaveBeenCalled();
-    }));
+    });
 
     it('isRunning() should return true after start() and false after stop()', () => {
       expect(instance.isRunning()).toBe(false);
