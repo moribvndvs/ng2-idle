@@ -21,7 +21,7 @@ export class QuickstartComponent implements OnInit {
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http'; // omit if not using keepalive
 import { BrowserModule } from '@angular/platform-browser';
-import { NgIdleKeepaliveModule } from '@ng-idle/keepalive'; // use import {NgIdleModule} from '@ng-idle/core'; if not using keepalive
+import { provideNgIdleKeepalive } from '@ng-idle/keepalive'; // use provideNgIdle from '@ng-idle/core' if not using keepalive
 
 import { AppComponent } from './app.component';
 
@@ -31,10 +31,11 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
-    NgIdleKeepaliveModule.forRoot() // use NgIdleModule.forRoot() if not using keepalive
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    provideNgIdleKeepalive() // use provideNgIdle() if not using keepalive
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
