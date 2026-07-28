@@ -27,7 +27,6 @@
         "./dist/keepalive/*"
       ]
     },
-    "useDefineForClassFields": false,
     "strict": false
   }
 }
