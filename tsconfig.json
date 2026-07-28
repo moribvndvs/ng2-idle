@@ -1,7 +1,6 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
     "esModuleInterop": true,
     "sourceMap": true,
@@ -16,18 +15,19 @@
     ],
     "paths": {
       "@ng-idle/core": [
-        "dist/core"
+        "./dist/core"
       ],
       "@ng-idle/core/*": [
-        "dist/core/*"
+        "./dist/core/*"
       ],
       "@ng-idle/keepalive": [
-        "dist/keepalive"
+        "./dist/keepalive"
       ],
       "@ng-idle/keepalive/*": [
-        "dist/keepalive/*"
+        "./dist/keepalive/*"
       ]
     },
-    "useDefineForClassFields": false
+    "useDefineForClassFields": false,
+    "strict": false
   }
 }
