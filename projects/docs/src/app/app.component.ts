@@ -1,7 +1,5 @@
 import { ChangeDetectorRef, Component, OnInit, ChangeDetectionStrategy, inject } from '@angular/core';
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { QuickstartComponent } from './quickstart/quickstart.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { DatePipe, NgClass } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -18,8 +16,6 @@ import { Keepalive } from '@ng-idle/keepalive';
     styleUrls: ['./app.component.css'],
     changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
-        PageNotFoundComponent,
-        QuickstartComponent,
         MatToolbarModule,
         FontAwesomeModule,
         MatIconModule,
