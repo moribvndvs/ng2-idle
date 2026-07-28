@@ -95,12 +95,15 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "docs",
+            "outputPath": {
+              "base": "docs"
+            },
             "index": "projects/docs/src/index.html",
-            "main": "projects/docs/src/main.ts",
-            "polyfills": "projects/docs/src/polyfills.ts",
+            "polyfills": [
+              "projects/docs/src/polyfills.ts"
+            ],
             "tsConfig": "projects/docs/tsconfig.app.json",
             "assets": [
               "projects/docs/src/favicon.ico",
@@ -111,7 +114,8 @@
               "./node_modules/highlight.js/styles/github-dark.css",
               "projects/docs/src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "browser": "projects/docs/src/main.ts"
           },
           "configurations": {
             "production": {
@@ -136,9 +140,7 @@
               "outputHashing": "all"
             },
             "development": {
-              "buildOptimizer": false,
               "optimization": false,
-              "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
               "namedChunks": true

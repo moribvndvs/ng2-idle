@@ -13,22 +13,21 @@ import { RouterOutlet } from '@angular/router';
 import { Keepalive } from '@ng-idle/keepalive';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
-  standalone: true,
-  imports: [
-    PageNotFoundComponent,
-    QuickstartComponent,
-    MatToolbarModule,
-    FontAwesomeModule,
-    MatIconModule,
-    MatBadgeModule,
-    MatButtonModule,
-    RouterOutlet,
-    NgClass,
-    DatePipe
-],
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
+    imports: [
+        PageNotFoundComponent,
+        QuickstartComponent,
+        MatToolbarModule,
+        FontAwesomeModule,
+        MatIconModule,
+        MatBadgeModule,
+        MatButtonModule,
+        RouterOutlet,
+        NgClass,
+        DatePipe
+    ]
 })
 export class AppComponent implements OnInit {
   idleState = "NOT_STARTED";
