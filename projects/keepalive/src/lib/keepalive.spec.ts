@@ -3,7 +3,8 @@ import {
   HttpRequest,
   HttpResponse,
   provideHttpClient,
-  withInterceptorsFromDi
+  withInterceptorsFromDi,
+  withXhr
 } from '@angular/common/http';
 import {
   HttpTestingController,
@@ -17,7 +18,7 @@ describe('keepalive/Keepalive', () => {
     TestBed.configureTestingModule({
       providers: [
         Keepalive,
-        provideHttpClient(withInterceptorsFromDi()),
+        provideHttpClient(withXhr(), withInterceptorsFromDi()),
         provideHttpClientTesting()
       ]
     });

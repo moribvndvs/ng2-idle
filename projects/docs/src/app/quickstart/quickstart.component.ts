@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Highlight } from 'ngx-highlightjs';
 @Component({
     selector: 'app-quickstart',
     templateUrl: './quickstart.component.html',
     styleUrls: ['./quickstart.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [Highlight]
 })
 export class QuickstartComponent implements OnInit {

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { QuickstartComponent } from './quickstart/quickstart.component';
@@ -16,6 +16,7 @@ import { Keepalive } from '@ng-idle/keepalive';
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
+    changeDetection: ChangeDetectionStrategy.Eager,
     imports: [
         PageNotFoundComponent,
         QuickstartComponent,
