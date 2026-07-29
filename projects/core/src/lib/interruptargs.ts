@@ -6,7 +6,7 @@ import { InterruptSource } from './interruptsource';
 export class InterruptArgs {
   constructor(
     public source: InterruptSource,
-    public innerArgs: any,
+    public innerArgs: unknown,
     public force = false
   ) {}
 }

@@ -5,15 +5,17 @@
     "declarationMap": true,
     "declaration": true,
     "inlineSources": true,
-    "types": [],
-    "lib": [
-      "dom",
-      "es2018"
-    ]
+    "types": []
   },
   "angularCompilerOptions": {
     "compilationMode": "partial",
     "skipTemplateCodegen": true,
+    "extendedDiagnostics": {
+      "checks": {
+        "nullishCoalescingNotNullable": "suppress",
+        "optionalChainNotNullable": "suppress"
+      }
+    },
     "strictMetadataEmit": true,
     "strictTemplates": true,
     "strictInjectionParameters": true,

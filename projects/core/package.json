@@ -23,8 +23,8 @@
   },
   "homepage": "https://github.com/moribvndvs/ng2-idle.git#readme",
   "peerDependencies": {
-    "@angular/common": ">=17.3.10",
-    "@angular/core": ">=17.3.10"
+    "@angular/common": ">=22.0.0",
+    "@angular/core": ">=22.0.0"
   },
   "dependencies": {
     "tslib": "^2.6.0"

@@ -1,10 +1,8 @@
-import { fakeAsync, tick } from '@angular/core/testing';
-
 import { EventTarget } from './eventtarget';
 import { EventTargetInterruptSource } from './eventtargetinterruptsource';
 
 describe('core/EventTargetInterruptSource', () => {
-  it('emits onInterrupt event when attached and event is fired', fakeAsync(() => {
+  it('emits onInterrupt event when attached and event is fired', () => {
     const source = new EventTargetInterruptSource(document.body, 'click');
     source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
@@ -16,9 +14,9 @@ describe('core/EventTargetInterruptSource', () => {
     expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
 
     source.detach();
-  }));
+  });
 
-  it('emits onInterrupt event when multiple events are specified and one is triggered', fakeAsync(() => {
+  it('emits onInterrupt event when multiple events are specified and one is triggered', () => {
     const source = new EventTargetInterruptSource(document.body, 'click touch');
     source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
@@ -30,9 +28,9 @@ describe('core/EventTargetInterruptSource', () => {
     expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
 
     source.detach();
-  }));
+  });
 
-  it('does not emit onInterrupt event when detached and event is fired', fakeAsync(() => {
+  it('does not emit onInterrupt event when detached and event is fired', () => {
     const source = new EventTargetInterruptSource(document.body, 'click');
     source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
@@ -45,9 +43,9 @@ describe('core/EventTargetInterruptSource', () => {
     document.body.dispatchEvent(expected);
 
     expect(source.onInterrupt.emit).not.toHaveBeenCalled();
-  }));
+  });
 
-  it('does not emit onInterrupt event when running on a server', fakeAsync(() => {
+  it('does not emit onInterrupt event when running on a server', () => {
     const source = new EventTargetInterruptSource(document.body, 'click');
     const options = { platformId: 'server' as unknown as object };
     source.initialize(options);
@@ -61,9 +59,9 @@ describe('core/EventTargetInterruptSource', () => {
     expect(source.onInterrupt.emit).not.toHaveBeenCalled();
 
     source.detach();
-  }));
+  });
 
-  it('should use passive event listeners when passive is true', fakeAsync(() => {
+  it('should use passive event listeners when passive is true', () => {
     const source = new EventTargetInterruptSource(document.body, 'click', { passive: true });
     source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
@@ -75,63 +73,68 @@ describe('core/EventTargetInterruptSource', () => {
     expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
 
     source.detach();
-  }));
+  });
 
-  it('should throttle target events using the specified throttleDelay value', fakeAsync(() => {
-    const source = new EventTargetInterruptSource(document.body, 'click', 500);
-    source.initialize();
-    spyOn(source.onInterrupt, 'emit').and.callThrough();
-    source.attach();
+  describe('throttling', () => {
+    beforeEach(() => jasmine.clock().install());
+    afterEach(() => jasmine.clock().uninstall());
 
-    // two immediate calls should get throttled to only 1 call
-    document.body.dispatchEvent(new Event('click'));
-    expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
+    it('should throttle target events using the specified throttleDelay value', () => {
+      const source = new EventTargetInterruptSource(document.body, 'click', 500);
+      source.initialize();
+      spyOn(source.onInterrupt, 'emit').and.callThrough();
+      source.attach();
 
-    document.body.dispatchEvent(new Event('click'));
-    expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
+      // two immediate calls should get throttled to only 1 call
+      document.body.dispatchEvent(new Event('click'));
+      expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
 
-    // call halfway through the delay should still only yield one call
-    tick(250);
-    document.body.dispatchEvent(new Event('click'));
-    expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
+      document.body.dispatchEvent(new Event('click'));
+      expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
 
-    // the throttle delay has now been met, so the next event should result in an additional
-    // call
-    tick(250);
-    document.body.dispatchEvent(new Event('click'));
-    expect(source.onInterrupt.emit).toHaveBeenCalledTimes(2);
+      // call halfway through the delay should still only yield one call
+      jasmine.clock().tick(250);
+      document.body.dispatchEvent(new Event('click'));
+      expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
 
-    // another 500ms has passed so the next event should result in yet another call
-    tick(500);
-    document.body.dispatchEvent(new Event('click'));
-    expect(source.onInterrupt.emit).toHaveBeenCalledTimes(3);
+      // the throttle delay has now been met, so the next event should result in an additional
+      // call
+      jasmine.clock().tick(250);
+      document.body.dispatchEvent(new Event('click'));
+      expect(source.onInterrupt.emit).toHaveBeenCalledTimes(2);
 
-    // need to detach to remove throttle timers or test will fail
-    source.detach();
-  }));
+      // another 500ms has passed so the next event should result in yet another call
+      jasmine.clock().tick(500);
+      document.body.dispatchEvent(new Event('click'));
+      expect(source.onInterrupt.emit).toHaveBeenCalledTimes(3);
 
-  it('should not throttle target events if throttleDelay is 0', fakeAsync(() => {
-    const source = new EventTargetInterruptSource(document.body, 'click', 0);
-    source.initialize();
-    spyOn(source.onInterrupt, 'emit').and.callThrough();
-    source.attach();
+      // need to detach to remove throttle timers or test will fail
+      source.detach();
+    });
 
-    document.body.dispatchEvent(new Event('click'));
-    expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
+    it('should not throttle target events if throttleDelay is 0', () => {
+      const source = new EventTargetInterruptSource(document.body, 'click', 0);
+      source.initialize();
+      spyOn(source.onInterrupt, 'emit').and.callThrough();
+      source.attach();
 
-    document.body.dispatchEvent(new Event('click'));
-    expect(source.onInterrupt.emit).toHaveBeenCalledTimes(2);
+      document.body.dispatchEvent(new Event('click'));
+      expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
 
-    tick(250);
-    document.body.dispatchEvent(new Event('click'));
-    expect(source.onInterrupt.emit).toHaveBeenCalledTimes(3);
+      document.body.dispatchEvent(new Event('click'));
+      expect(source.onInterrupt.emit).toHaveBeenCalledTimes(2);
 
-    // need to detach to remove throttle timers or test will fail
-    source.detach();
-  }));
+      jasmine.clock().tick(250);
+      document.body.dispatchEvent(new Event('click'));
+      expect(source.onInterrupt.emit).toHaveBeenCalledTimes(3);
+
+      // need to detach to remove throttle timers or test will fail
+      source.detach();
+    });
+  });
 
   it('should set default options', () => {
-    const target = {} as EventTarget<any>;
+    const target = {} as EventTarget<unknown>;
     const source = new EventTargetInterruptSource(target, 'click');
     const { throttleDelay, passive } = source.options;
 
@@ -140,7 +143,7 @@ describe('core/EventTargetInterruptSource', () => {
   });
 
   it('should set passive flag', () => {
-    const target = {} as EventTarget<any>;
+    const target = {} as EventTarget<unknown>;
     const source = new EventTargetInterruptSource(target, 'click', {
       passive: true
     });
@@ -151,7 +154,7 @@ describe('core/EventTargetInterruptSource', () => {
   });
 
   it('should set throttleDelay', () => {
-    const target = {} as EventTarget<any>;
+    const target = {} as EventTarget<unknown>;
     const source = new EventTargetInterruptSource(target, 'click', {
       throttleDelay: 1000
     });
@@ -162,7 +165,7 @@ describe('core/EventTargetInterruptSource', () => {
   });
 
   it('should set all options', () => {
-    const target = {} as EventTarget<any>;
+    const target = {} as EventTarget<unknown>;
     const source = new EventTargetInterruptSource(target, 'click', {
       passive: true,
       throttleDelay: 1000

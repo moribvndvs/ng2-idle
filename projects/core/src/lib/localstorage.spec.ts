@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 import { LocalStorage } from './localstorage';
 import { AlternativeStorage } from './alternativestorage';
 
-const mockLocalStorage: { [key: string]: any } = {};
+const mockLocalStorage: { [key: string]: string } = {};
 
 describe('core/LocalStorage', () => {
   describe('with no localStorage available', () => {

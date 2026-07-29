@@ -1,9 +1,7 @@
-import { fakeAsync } from '@angular/core/testing';
-
 import { StorageInterruptSource } from './storageinterruptsource';
 
 describe('core/StorageInterruptSource', () => {
-  it('emits onInterrupt event when attached and event is fired', fakeAsync(() => {
+  it('emits onInterrupt event when attached and event is fired', () => {
     const source = new StorageInterruptSource();
     source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
@@ -23,9 +21,9 @@ describe('core/StorageInterruptSource', () => {
     expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
 
     source.detach();
-  }));
+  });
 
-  it('does not emit onInterrupt event when detached and event is fired', fakeAsync(() => {
+  it('does not emit onInterrupt event when detached and event is fired', () => {
     const source = new StorageInterruptSource();
     source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
@@ -37,9 +35,9 @@ describe('core/StorageInterruptSource', () => {
     window.dispatchEvent(expected);
 
     expect(source.onInterrupt.emit).not.toHaveBeenCalled();
-  }));
+  });
 
-  it('does not emit onInterrupt event when attached and key is not ng2Idle.expiry and event is fired', fakeAsync(() => {
+  it('does not emit onInterrupt event when attached and key is not ng2Idle.expiry and event is fired', () => {
     const source = new StorageInterruptSource();
     source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
@@ -59,9 +57,9 @@ describe('core/StorageInterruptSource', () => {
     expect(source.onInterrupt.emit).not.toHaveBeenCalled();
 
     source.detach();
-  }));
+  });
 
-  it('does not emit onInterrupt event when running on a server', fakeAsync(() => {
+  it('does not emit onInterrupt event when running on a server', () => {
     const source = new StorageInterruptSource();
     const options = { platformId: 'server' as unknown as object };
     source.initialize(options);
@@ -75,5 +73,5 @@ describe('core/StorageInterruptSource', () => {
     expect(source.onInterrupt.emit).not.toHaveBeenCalled();
 
     source.detach();
-  }));
+  });
 });
