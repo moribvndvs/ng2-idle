@@ -1,36 +1,32 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
     "outDir": "./dist/out-tsc",
+    "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
     "module": "es2020",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
     "typeRoots": [
       "node_modules/@types"
     ],
-    "lib": [
-      "es2018",
-      "dom"
-    ],
     "paths": {
       "@ng-idle/core": [
-        "dist/core"
+        "./dist/core"
       ],
       "@ng-idle/core/*": [
-        "dist/core/*"
+        "./dist/core/*"
       ],
       "@ng-idle/keepalive": [
-        "dist/keepalive"
+        "./dist/keepalive"
       ],
       "@ng-idle/keepalive/*": [
-        "dist/keepalive/*"
+        "./dist/keepalive/*"
       ]
     },
-    "useDefineForClassFields": false
+    "strict": false
   }
 }

@@ -29,13 +29,13 @@ const defaultThrottleDelay = 500;
  * An interrupt source on an EventTarget object, such as a Window or HTMLElement.
  */
 export class EventTargetInterruptSource extends InterruptSource {
-  private eventSrc: Observable<any>;
+  private eventSrc: Observable<unknown>;
   private eventSubscription: Subscription = new Subscription();
   protected throttleDelay: number;
   protected passive: boolean;
 
   constructor(
-    protected target: EventTarget<any> | (() => EventTarget<any>),
+    protected target: EventTarget<unknown> | (() => EventTarget<unknown>),
     protected events: string,
     private opts?: number | EventTargetInterruptOptions
   ) {
@@ -67,7 +67,12 @@ export class EventTargetInterruptSource extends InterruptSource {
     const opts = this.passive ? { passive: true } : null;
     const fromEvents = this.events
       .split(' ')
-      .map(eventName => fromEvent(eventTarget as any, eventName, opts));
+      .map(eventName =>
+        // `EventTarget<unknown>` doesn't line up with any single `fromEvent` overload;
+        // the target shape is validated by callers providing a real DOM/Node/jQuery-style target.
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        fromEvent(eventTarget as any, eventName, opts)
+      );
     this.eventSrc = merge(...fromEvents);
     this.eventSrc = this.eventSrc.pipe(
       filter(innerArgs => !this.filterEvent(innerArgs))
@@ -76,7 +81,7 @@ export class EventTargetInterruptSource extends InterruptSource {
       this.eventSrc = this.eventSrc.pipe(throttleTime(this.throttleDelay));
     }
 
-    const handler = (innerArgs: any) =>
+    const handler = (innerArgs: unknown) =>
       this.onInterrupt.emit(new InterruptArgs(this, innerArgs));
 
     this.attachFn = () =>
@@ -90,7 +95,7 @@ export class EventTargetInterruptSource extends InterruptSource {
    * @param event - The original event object.
    * @return True if the event should be filtered (don't cause an interrupt); otherwise, false.
    */
-  protected filterEvent(event: any): boolean {
+  protected filterEvent(_event: unknown): boolean {
     return false;
   }
 

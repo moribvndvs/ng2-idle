@@ -24,7 +24,7 @@ export class LocalStorage {
       storage.setItem('ng2IdleStorage', '');
       storage.removeItem('ng2IdleStorage');
       return storage;
-    } catch (err) {
+    } catch (_err) {
       return new AlternativeStorage();
     }
   }

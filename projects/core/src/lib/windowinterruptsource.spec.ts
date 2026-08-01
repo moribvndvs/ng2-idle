@@ -1,9 +1,7 @@
-import { fakeAsync } from '@angular/core/testing';
-
 import { WindowInterruptSource } from './windowinterruptsource';
 
 describe('core/WindowInterruptSource', () => {
-  it('emits onInterrupt event when attached and event is fired', fakeAsync(() => {
+  it('emits onInterrupt event when attached and event is fired', () => {
     const source = new WindowInterruptSource('focus');
     source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
@@ -15,9 +13,9 @@ describe('core/WindowInterruptSource', () => {
     expect(source.onInterrupt.emit).toHaveBeenCalledTimes(1);
 
     source.detach();
-  }));
+  });
 
-  it('does not emit onInterrupt event when detached and event is fired', fakeAsync(() => {
+  it('does not emit onInterrupt event when detached and event is fired', () => {
     const source = new WindowInterruptSource('focus');
     source.initialize();
     spyOn(source.onInterrupt, 'emit').and.callThrough();
@@ -30,9 +28,9 @@ describe('core/WindowInterruptSource', () => {
     window.dispatchEvent(expected);
 
     expect(source.onInterrupt.emit).not.toHaveBeenCalled();
-  }));
+  });
 
-  it('does not emit onInterrupt event when running on a server', fakeAsync(() => {
+  it('does not emit onInterrupt event when running on a server', () => {
     const source = new WindowInterruptSource('focus');
     const options = { platformId: 'server' as unknown as object };
     source.initialize(options);
@@ -46,5 +44,5 @@ describe('core/WindowInterruptSource', () => {
     expect(source.onInterrupt.emit).not.toHaveBeenCalled();
 
     source.detach();
-  }));
+  });
 });

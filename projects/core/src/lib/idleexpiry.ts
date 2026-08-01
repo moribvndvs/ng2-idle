@@ -2,7 +2,7 @@
  * Represents a base class for types that provide expiry detection for the Idle service.
  */
 export abstract class IdleExpiry {
-  protected idValue: any;
+  protected idValue: unknown;
   protected idlingValue: boolean;
 
   constructor() {
@@ -15,7 +15,7 @@ export abstract class IdleExpiry {
    * @param id - The id.
    * @return The current id.
    */
-  id(value?: any): any {
+  id(value?: unknown): unknown {
     if (value !== void 0) {
       if (!value) {
         throw new Error('A value must be specified for the ID.');

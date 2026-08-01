@@ -41,8 +41,10 @@
   
   <h2>Configure Your Module</h2>
   <p>
-    <code>NgIdleKeepaliveModule</code> provide a default instance of <code>Idle</code> and <code>Keepalive</code> to your
-    module.
+    If your app still uses an <code>NgModule</code> instead of standalone components, add
+    <code>provideNgIdleKeepalive()</code> (or <code>provideNgIdle()</code> from <code>@ng-idle/core</code> if you're
+    not using keepalive) to the module's <code>providers</code> array to provide a default instance of
+    <code>Idle</code> and <code>Keepalive</code> to your module.
   </p>
   <pre><code [highlight]="configureModule" language="typescript"></code></pre>
 
